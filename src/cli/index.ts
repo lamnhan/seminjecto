@@ -1,5 +1,75 @@
-export class Cli {
+import chalk from 'chalk';
+import * as commander from 'commander';
+import { SeminjectoModule, CommandDef } from '../public-api';
 
-  constructor() {}
+import { NewCommand } from './commands/new';
+import { GenerateCommand } from './commands/generate';
+
+export class Cli {
+  private seminjectoModule: SeminjectoModule;
+
+  private newCommand: NewCommand;
+  private generateCommand: GenerateCommand;
+
+  commander = ['semidi', 'Simple dependency injection for Node modules.'];
+
+  /**
+   * @params <name> - The project name
+   */
+  newCommandDef: CommandDef = [
+    'new <name>',
+    'Create a new project.',
+    ['-c, --cli', 'Create a CLI project.']
+  ];
+
+  /**
+   * @params <type> - The resource type
+   * @params <dest> - The resource destination
+   */
+  generateCommandDef: CommandDef = [
+    'generate <type> <dest>', 'Generate a resource.'
+  ];
+
+  constructor() {
+    this.newCommand = new NewCommand();
+    this.generateCommand = new GenerateCommand();
+  }
+
+  getApp() {
+    const [command, description] = this.commander;
+    commander
+      .version(require('../../package.json').version, '-v, --version')
+      .usage(`${command} [options] [command]`)
+      .description(description);
+
+    // new
+    (() => {
+      const [ command, description, cliOpt ] = this.newCommandDef;
+      commander.command(command).description(description)
+        .option(...cliOpt) // -c, --cli
+        .action((name, options) => this.newCommand.run(name, options));
+    })();
+
+    // generate
+    (() => {
+      const [ command, description ] = this.generateCommandDef;
+      commander.command(command).description(description)
+        .action((type, dest) => this.generateCommand.run(type, dest));
+    })();
+
+    commander
+      .command('help')
+      .description('Display help.')
+      .action(() => commander.outputHelp());
+
+    commander
+      .command('*')
+      .description('Any other command is not supported.')
+      .action((cmd: string) =>
+        console.error(chalk.red(`Unknown command '${cmd}'`))
+      );
+
+    return commander;
+  }
 
 }

@@ -1,3 +1,1 @@
-export interface Options {
-  options1?: string;
-}
+export type CommandDef = [string, string, ...Array<[string, string]>];
