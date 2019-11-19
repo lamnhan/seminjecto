@@ -31,8 +31,12 @@ export class Cli {
   ];
 
   constructor() {
+    this.seminjectoModule = new SeminjectoModule();
+    // commands
     this.newCommand = new NewCommand();
-    this.generateCommand = new GenerateCommand();
+    this.generateCommand = new GenerateCommand(
+      this.seminjectoModule.Generate,
+    );
   }
 
   getApp() {
@@ -45,7 +49,9 @@ export class Cli {
     // new
     (() => {
       const [ command, description, cliOpt ] = this.newCommandDef;
-      commander.command(command).description(description)
+      commander
+        .command(command)
+        .description(description)
         .option(...cliOpt) // -c, --cli
         .action((name, options) => this.newCommand.run(name, options));
     })();
@@ -53,7 +59,9 @@ export class Cli {
     // generate
     (() => {
       const [ command, description ] = this.generateCommandDef;
-      commander.command(command).description(description)
+      commander
+        .command(command)
+        .description(description)
         .action((type, dest) => this.generateCommand.run(type, dest));
     })();
 

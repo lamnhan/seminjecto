@@ -1,5 +1,14 @@
-export class Main {
+import { GenerateService } from './services/generate';
 
-  constructor() {}
+export class Main {
+  private generateService: GenerateService;
+
+  constructor() {
+    this.generateService = new GenerateService();
+  }
+
+  get Generate() {
+    return this.generateService;
+  }
 
 }
