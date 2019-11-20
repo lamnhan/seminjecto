@@ -1,7 +1,7 @@
 {
   "name": "@lamnhan/seminjecto",
   "version": "0.0.1",
-  "description": "Simple dependency injection for Node modules.",
+  "description": "Simple dependency injection for Typescript modules.",
   "author": "Lam Nhan",
   "homepage": "https://lamnhan.com",
   "license": "MIT",

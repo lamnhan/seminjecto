@@ -11,7 +11,7 @@ export class Cli {
   private newCommand: NewCommand;
   private generateCommand: GenerateCommand;
 
-  commander = ['semidi', 'Simple dependency injection for Node modules.'];
+  commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
   /**
    * @params <name> - The project name
