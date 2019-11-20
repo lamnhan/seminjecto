@@ -33,7 +33,9 @@ export class Cli {
   constructor() {
     this.seminjectoModule = new SeminjectoModule();
     // commands
-    this.newCommand = new NewCommand();
+    this.newCommand = new NewCommand(
+      this.seminjectoModule.Create
+    );
     this.generateCommand = new GenerateCommand(
       this.seminjectoModule.Generate,
     );
