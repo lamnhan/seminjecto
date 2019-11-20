@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import chalk from 'chalk';
 
 import { CreateService } from '../../public-api';
 
@@ -10,14 +11,20 @@ export class NewCommand {
 
   constructor(private createService: CreateService) {}
 
-  run(name: string, { cli }: NewCommandOptions) {
+  run(name: string, description: string, { cli }: NewCommandOptions) {
     const path = resolve(name);
+    description = description || 'A Seminjecto project.';
+    // create
     if (cli) {
-      this.createService.createCli(path);
+      this.createService.createCli(path, description);
     } else {
-      this.createService.createLib(path);
+      this.createService.createLib(path, description);
     }
-    console.log('Create new project: ', name);
+    // result
+    console.log(
+      `Create new ${chalk.yellow(cli ? 'cli': 'lib')} project:`,
+      chalk.green(name)
+    );
   }
 
 }

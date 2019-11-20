@@ -15,9 +15,10 @@ export class Cli {
 
   /**
    * @params <name> - The project name
+   * @params [description] - The project description
    */
   newCommandDef: CommandDef = [
-    'new <name>',
+    'new <name> [description]',
     'Create a new project.',
     ['-c, --cli', 'Create a CLI project.']
   ];
@@ -55,7 +56,7 @@ export class Cli {
         .command(command)
         .description(description)
         .option(...cliOpt) // -c, --cli
-        .action((name, options) => this.newCommand.run(name, options));
+        .action((name, description, options) => this.newCommand.run(name, description, options));
     })();
 
     // generate
