@@ -11,8 +11,10 @@ export class GenerateCommand {
     const { content, path, fullPath } = this.generateService.generate(type, dest);
     // save the file
     await outputFile(fullPath, content);
+    // modify
+    await this.generateService.modify(type, path);
     // show result
-    return console.log('File saved: ', chalk.green(path));
+    return console.log(`New ${chalk.yellow(type)} saved: `, chalk.green(path));
   }
 
 }

@@ -1,12 +1,15 @@
 import { resolve } from 'path';
-import { readFile, outputFile } from 'fs-extra';
 import axios from 'axios';
 
+import { FileService } from './file';
 import { DownloadService } from './download';
 
 export class CreateService {
 
-  constructor (private downloadService: DownloadService) {}
+  constructor (
+    private fileService: FileService,
+    private downloadService: DownloadService
+  ) {}
 
   async createLib(dest: string, description: string) {
     return this.create('lib', dest, description);
@@ -36,7 +39,7 @@ export class CreateService {
     description: string
   ) {
     // src/public-api.ts
-    await this.changeFileContent(
+    await this.fileService.changeContent(
       resolve(dest, 'src', 'public-api.ts'),
       {
         '{ Main as LibModule }': `{ Main as ${titleName}Module }`,
@@ -46,7 +49,7 @@ export class CreateService {
     // lib
     if (type === 'lib') {
       // package.json
-      await this.changeFileContent(
+      await this.fileService.changeContent(
         resolve(dest, 'package.json'),
         {
           ': "lib"': `: "${name}"`,
@@ -57,7 +60,7 @@ export class CreateService {
     // CLI only
     else if (type === 'cli') {
       // package.json
-      await this.changeFileContent(
+      await this.fileService.changeContent(
         resolve(dest, 'package.json'),
         {
           ': "cli"': `: "${name}"`,
@@ -66,7 +69,7 @@ export class CreateService {
         }
       );
       // src/cli/index.ts
-      await this.changeFileContent(
+      await this.fileService.changeContent(
         resolve(dest, 'src', 'cli', 'index.ts'),
         {
           '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
@@ -88,24 +91,6 @@ export class CreateService {
     const name = pkg;
     const version = data.name;
     return `https://github.com/${name}/archive/${version}.zip`;;
-  }
-
-  private async changeFileContent(
-    filePath: string,
-    modifier: 
-      | {[regex: string]: string}
-      | ((content: string) => string)
-  ) {
-    let content = await readFile(filePath, 'utf8');
-    if (modifier instanceof Function) {
-      content = modifier(content);
-    } else {
-      Object.keys(modifier)
-      .forEach(regex => 
-        content = content.replace(new RegExp(regex), modifier[regex])
-      );
-    }
-    return outputFile(filePath, content);
   }
 
 }
