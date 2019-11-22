@@ -20,7 +20,7 @@ export class Cli {
   newCommandDef: CommandDef = [
     'new <name> [description]',
     'Create a new project.',
-    ['-c, --cli', 'Create a CLI project.']
+    ['-x, --cli', 'Create a CLI project.']
   ];
 
   /**
@@ -55,7 +55,7 @@ export class Cli {
       commander
         .command(command)
         .description(description)
-        .option(...cliOpt) // -c, --cli
+        .option(...cliOpt) // -x, --cli
         .action((name, description, options) => this.newCommand.run(name, description, options));
     })();
 

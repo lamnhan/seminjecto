@@ -1,4 +1,3 @@
-import { EOL } from 'os';
 import { resolve } from 'path';
 
 import { FileService } from './file';
@@ -47,21 +46,21 @@ export class GenerateService {
         content = content
           // import ...
           .replace(
-            EOL + 'export class Main {',
+            '\nexport class Main {',
             [
               `import { ${className} } from '${importPath}';`,
               '',
               'export class Main {'
-            ].join(EOL)
+            ].join('\n')
           )
           // variable
           .replace(
-            EOL + '  constructor(',
+            '\n  constructor(',
             [
               `  private ${varName}: ${className};`,
               '',
               '  constructor('
-            ].join(EOL)
+            ].join('\n')
           );
         // init
         let cstrContent = content.substr(content.indexOf('constructor('));
@@ -71,7 +70,7 @@ export class GenerateService {
             cstrContent,
             cstrContent
             + `  this.${varName} = new ${className}();`
-            + EOL
+            + '\n'
             + '  '
           );
         // get
@@ -83,7 +82,7 @@ export class GenerateService {
               '',
               '}',
               ''
-            ].join(EOL);
+            ].join('\n');
         return content;
       }
     );
@@ -100,21 +99,21 @@ export class GenerateService {
         content = content
           // import ...
           .replace(
-            EOL + 'export class Cli {',
+            '\nexport class Cli {',
             [
               `import { ${className} } from '${importPath}';`,
               '',
               'export class Cli {'
-            ].join(EOL)
+            ].join('\n')
           )
           // variable
           .replace(
-            EOL + '  commander = [',
+            '\n  commander = [',
             [
               `  private ${varName}: ${className};`,
               '',
               '  commander = ['
-            ].join(EOL)
+            ].join('\n')
           )
           // command def
           .replace(
@@ -125,7 +124,7 @@ export class GenerateService {
               `  ];`,
               '',
               '  constructor('
-            ].join(EOL)
+            ].join('\n')
           );
         // init
         let constructorContent = content.substr(content.indexOf('constructor('));
@@ -137,7 +136,7 @@ export class GenerateService {
             constructorContent,
             constructorContent
             + `  this.${varName} = new ${className}();`
-            + EOL
+            + '\n'
             + '  '
           );
         // command
@@ -155,7 +154,7 @@ export class GenerateService {
               `    })();`,
               '',
               `    // help`
-            ].join(EOL)
+            ].join('\n')
           );
         return content;
       }
@@ -174,7 +173,7 @@ export class GenerateService {
       '',
       '}',
       ''
-    ].join(EOL);
+    ].join('\n');
     // result
     return { ...destData, content };
   }
@@ -193,7 +192,7 @@ export class GenerateService {
       '',
       '}',
       ''
-    ].join(EOL);
+    ].join('\n');
     // result
     return { ...destData, content };
   }
