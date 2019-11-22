@@ -66,15 +66,18 @@
 					<a href="#lamnhanseminjecto" id="lamnhanseminjecto" style="color: inherit; text-decoration: none;">
 						<h1>@lamnhan/seminjecto</h1>
 					</a>
-					<p><strong>Simple dependency injection for Node modules.</strong></p>
+					<p><strong>Simple dependency injection for Typescript modules.</strong></p>
 				</section>
 				<section id="header">
 					<p><a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License"></a> <a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/patreon.svg" alt="Support me on Patreon"></a> <a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/paypal_donate.svg" alt="PayPal"></a> <a href="https://m.me/lamhiennhan"><img src="https://img.shields.io/badge/ask/me-anything-1abc9c.svg" alt="Ask me anything"></a></p>
 				</section>
 				<section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<ul>
-						<li><a href="#commands">Commands</a></li>
-						<li><a href="#reference">Reference</a><ul>
+						<li><a href="#introduction">Introduction</a></li>
+						<li><a href="#benefits">Benefits</a></li>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#command-overview">Command overview</a></li>
+						<li><a href="#command-reference">Command reference</a><ul>
 								<li><a href="#command-generate"><code>generate</code></a></li>
 								<li><a href="#command-new"><code>new</code></a></li>
 							</ul>
@@ -88,8 +91,7 @@
 					</a>
 					<p>Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like <a href="http://inversify.io/">InversifyJS</a>, <a href="https://github.com/microsoft/tsyringe">tsyringe</a>, ...</p>
 					<p>But you can also manually apply DI to any module using this simple method. There is a central class (<code>Main</code> for library, <code>Cli</code> for cli app, ...) that acts as a DI container and injector.</p>
-					<pre><code class="language-ts">
-<span class="hljs-comment">// the service 1</span>
+					<pre><code class="language-ts"><span class="hljs-comment">// the service 1</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service1Service {}
 
 <span class="hljs-comment">// the service 2 is depends on the service 1</span>
@@ -99,7 +101,6 @@
 
 <span class="hljs-comment">// the container for all services and also the injetor</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Main {
-
   <span class="hljs-keyword">private</span> service1Service: Service1Service;
   <span class="hljs-keyword">private</span> service2Service: Service2Service;
 
@@ -114,9 +115,7 @@
   <span class="hljs-keyword">get</span> Service1() {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.service1Service;
   }
-
-}
-</code></pre>
+}</code></pre>
 					<a href="#benefits" id="benefits" style="color: inherit; text-decoration: none;">
 						<h2>Benefits</h2>
 					</a>
@@ -124,7 +123,7 @@
 						<li>No need for extra IOC libraries</li>
 						<li>Clean project structure</li>
 						<li>Easy to test (using <a href="https://github.com/lamnhan/testing">@lamnhan/testing</a>)</li>
-						<li>Easy to generate documentation (using <a href="https://github.com/lamnhan/docsuper">@lamnhan/docsuper</a>)</li>
+						<li>Easy to generate documentation (using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>)</li>
 					</ul>
 					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 						<h2>Installation</h2>
@@ -133,13 +132,14 @@
 					<pre><code class="language-sh">npm install -g @lamnhan/seminjecto</code></pre>
 				</section>
 				<section id="commands" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
-					<h2><a name="commands"><p>Commands</p>
+					<h2><a name="command-overview"><p>Command overview</p>
 					</a></h2>
+					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
-						<li><a href="#command-generate"><code>generate &lt;type&gt; &lt;dest&gt;</code></a></li>
-						<li><a href="#command-new"><code>new &lt;name&gt; --cli</code></a></li>
+						<li><a href="#command-generate"><code>semidi generate &lt;type&gt; &lt;dest&gt;</code></a></li>
+						<li><a href="#command-new"><code>semidi new &lt;name&gt; [description] --cli</code></a></li>
 					</ul>
-					<h2><a name="reference"><p>Reference</p>
+					<h2><a name="command-reference"><p>Command reference</p>
 					</a></h2>
 					<h3><a name="command-generate"><p><code>generate</code></p>
 					</a></h3>
@@ -155,10 +155,11 @@
 					<p><strong>Parameters</strong></p>
 					<ul>
 						<li><code>&lt;name&gt;</code>: The project name</li>
+						<li><code>[description]</code>: The project description</li>
 					</ul>
 					<p><strong>Options</strong></p>
 					<ul>
-						<li><code>-c, --cli</code>: Create a CLI project.</li>
+						<li><code>-x, --cli</code>: Create a CLI project.</li>
 					</ul>
 				</section>
 				<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
@@ -169,7 +170,7 @@
 				</section>
 				<section id="attr">
 					<hr>
-					<p>⚡️ This document is generated automatically using <a href="https://github.com/lamnhan/docsuper">@lamnhan/docsuper</a>.</p>
+					<p>⚡️ This document is generated automatically using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>.</p>
 				</section>
 			</div>
 		</div>
@@ -187,7 +188,19 @@
 						<a href="classes/cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/generatecommand.html" class="tsd-kind-icon">Generate<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/generateservice.html" class="tsd-kind-icon">Generate<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/main.html" class="tsd-kind-icon">Main</a>
@@ -200,6 +213,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#generatetype" class="tsd-kind-icon">Generate<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#main" class="tsd-kind-icon">main</a>

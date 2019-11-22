@@ -2,7 +2,7 @@
 
 # @lamnhan/seminjecto
 
-**Simple dependency injection for Node modules.**
+**Simple dependency injection for Typescript modules.**
 
 </section>
 
@@ -26,8 +26,8 @@
 - [Introduction](#introduction)
 - [Benefits](#benefits)
 - [Installation](#installation)
-- [Commands](#commands)
-- [Reference](#reference)
+- [Command overview](#command-overview)
+- [Command reference](#command-reference)
   - [`generate`](#command-generate)
   - [`new`](#command-new)
 - [Detail API reference](https://lamnhan.com/seminjecto)
@@ -76,7 +76,7 @@ export class Main {
 - No need for extra IOC libraries
 - Clean project structure
 - Easy to test (using [@lamnhan/testing](https://github.com/lamnhan/testing))
-- Easy to generate documentation (using [@lamnhan/docsuper](https://github.com/lamnhan/docsuper))
+- Easy to generate documentation (using [@lamnhan/ayedocs](https://github.com/lamnhan/ayedocs))
 
 ## Installation
 
@@ -90,13 +90,15 @@ npm install -g @lamnhan/seminjecto
 
 <section id="commands" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-<h2><a name="commands"><p>Commands</p>
+<h2><a name="command-overview"><p>Command overview</p>
 </a></h2>
 
-- [`generate <type> <dest>`](#command-generate)
-- [`new <name> --cli`](#command-new)
+Simple dependency injection for Typescript modules.
 
-<h2><a name="reference"><p>Reference</p>
+- [`semidi generate <type> <dest>`](#command-generate)
+- [`semidi new <name> [description] --cli`](#command-new)
+
+<h2><a name="command-reference"><p>Command reference</p>
 </a></h2>
 
 <h3><a name="command-generate"><p><code>generate</code></p>
@@ -117,10 +119,11 @@ Create a new project.
 **Parameters**
 
 - `<name>`: The project name
+- `[description]`: The project description
 
 **Options**
 
-- `-c, --cli`: Create a CLI project.
+- `-x, --cli`: Create a CLI project.
 
 </section>
 
@@ -136,6 +139,6 @@ Create a new project.
 
 ---
 
-⚡️ This document is generated automatically using [@lamnhan/docsuper](https://github.com/lamnhan/docsuper).
+⚡️ This document is generated automatically using [@lamnhan/ayedocs](https://github.com/lamnhan/ayedocs).
 
 </section>

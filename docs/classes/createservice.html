@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GenerateCommand | @lamnhan/seminjecto</title>
+	<title>CreateService | @lamnhan/seminjecto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="generatecommand.html">GenerateCommand</a>
+					<a href="createservice.html">CreateService</a>
 				</li>
 			</ul>
-			<h1>Class GenerateCommand</h1>
+			<h1>Class CreateService</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GenerateCommand</span>
+						<span class="target">CreateService</span>
 					</li>
 				</ul>
 			</section>
@@ -79,13 +79,14 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="generatecommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="createservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="generatecommand.html#run" class="tsd-kind-icon">run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="createservice.html#createcli" class="tsd-kind-icon">create<wbr>Cli</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="createservice.html#createlib" class="tsd-kind-icon">create<wbr>Lib</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,22 +98,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Generate<wbr>Command<span class="tsd-signature-symbol">(</span>generateService<span class="tsd-signature-symbol">: </span><a href="generateservice.html" class="tsd-signature-type">GenerateService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="generatecommand.html" class="tsd-signature-type">GenerateCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Create<wbr>Service<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, downloadService<span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="createservice.html" class="tsd-signature-type">CreateService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/7c07f81/src/cli/commands/generate.ts#L6">cli/commands/generate.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/7c07f81/src/lib/services/create.ts#L7">lib/services/create.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>generateService: <a href="generateservice.html" class="tsd-signature-type">GenerateService</a></h5>
+									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
+								</li>
+								<li>
+									<h5>downloadService: <a href="downloadservice.html" class="tsd-signature-type">DownloadService</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="generatecommand.html" class="tsd-signature-type">GenerateCommand</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="createservice.html" class="tsd-signature-type">CreateService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -120,25 +124,51 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="run" class="tsd-anchor"></a>
-					<h3>run</h3>
+					<a name="createcli" class="tsd-anchor"></a>
+					<h3>create<wbr>Cli</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../globals.html#generatetype" class="tsd-signature-type">GenerateType</a>, dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Cli<span class="tsd-signature-symbol">(</span>dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/7c07f81/src/cli/commands/generate.ts#L10">cli/commands/generate.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/7c07f81/src/lib/services/create.ts#L18">lib/services/create.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../globals.html#generatetype" class="tsd-signature-type">GenerateType</a></h5>
+									<h5>dest: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
+									<h5>description: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createlib" class="tsd-anchor"></a>
+					<h3>create<wbr>Lib</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Lib<span class="tsd-signature-symbol">(</span>dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/7c07f81/src/lib/services/create.ts#L14">lib/services/create.ts:14</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
 									<h5>dest: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -160,30 +190,33 @@
 					<li class=" tsd-kind-class">
 						<a href="cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="createservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="createservice.html#createcli" class="tsd-kind-icon">create<wbr>Cli</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="createservice.html#createlib" class="tsd-kind-icon">create<wbr>Lib</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="generatecommand.html" class="tsd-kind-icon">Generate<wbr>Command</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="generatecommand.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="generatecommand.html#run" class="tsd-kind-icon">run</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="generateservice.html" class="tsd-kind-icon">Generate<wbr>Service</a>
 					</li>
