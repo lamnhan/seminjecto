@@ -26,18 +26,18 @@ export class GenerateService {
     const name = (
       path.replace(/\\/g, '').split('/').pop() as string
     ).replace('.ts', '');
+    const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     if (type === 'service') {
-      return this.modificationForService(importPath, name);
+      return this.modificationForService(importPath, name, titleName);
     } else if (type === 'command') {
-      return this.modificationForCommand(importPath, name);
+      return this.modificationForCommand(importPath, name, titleName);
     } else {
       throw new Error('Not support type: ' + type);
     }
   }
 
-  private modificationForService(importPath: string, name: string) {
+  private modificationForService(importPath: string, name: string, titleName: string) {
     importPath = importPath.replace('src/lib/', './');
-    const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     const varName = `${name}Service`;
     const className = `${titleName}Service`;
     // src/lib/main.ts
@@ -56,11 +56,75 @@ export class GenerateService {
           )
           // variable
           .replace(
-            EOL + 'constructor(',
+            EOL + '  constructor(',
             [
-              `private ${varName}: ${className};`,
+              `  private ${varName}: ${className};`,
               '',
-              'constructor('
+              '  constructor('
+            ].join(EOL)
+          );
+        // init
+        let cstrContent = content.substr(content.indexOf('constructor('));
+        cstrContent = cstrContent.substring(0, cstrContent.indexOf('}'));
+        content = content
+          .replace(
+            cstrContent,
+            cstrContent
+            + `  this.${varName} = new ${className}();`
+            + EOL
+            + '  '
+          );
+        // get
+        content = content.substring(0, content.lastIndexOf('}'))
+          + [
+              `  get ${titleName}() {`,
+              `    return this.${varName};`,
+              '  }',
+              '',
+              '}',
+              ''
+            ].join(EOL);
+        return content;
+      }
+    );
+  }
+
+  private modificationForCommand(importPath: string, name: string, titleName: string) {
+    importPath = importPath.replace('src/cli/', './');
+    const varName = `${name}Command`;
+    const className = `${titleName}Command`;
+    // src/cli/index.ts
+    return this.fileService.changeContent(
+      resolve('src', 'cli', 'index.ts'),
+      content => {
+        content = content
+          // import ...
+          .replace(
+            EOL + 'export class Cli {',
+            [
+              `import { ${className} } from '${importPath}';`,
+              '',
+              'export class Cli {'
+            ].join(EOL)
+          )
+          // variable
+          .replace(
+            EOL + '  commander = [',
+            [
+              `  private ${varName}: ${className};`,
+              '',
+              '  commander = ['
+            ].join(EOL)
+          )
+          // command def
+          .replace(
+            '  constructor(',
+            [
+              `  ${name}CommandDef: CommandDef = [`,
+              `    '${name}', 'Command description.'`,
+              `  ];`,
+              '',
+              '  constructor('
             ].join(EOL)
           );
         // init
@@ -72,30 +136,27 @@ export class GenerateService {
           .replace(
             constructorContent,
             constructorContent
-            + `    this.${varName} = new ${className}();`
+            + `  this.${varName} = new ${className}();`
             + EOL
+            + '  '
           );
-        // get
-        content = content.substring(0, content.lastIndexOf('}'))
-          + [
-              `  get ${titleName}() {`,
-              `    return this.${varName};`,
-              '  }',
+        // command
+        content = content
+          .replace(
+            `// help`,
+            [
+              `// ${name}`,
+              `    (() => {`,
+              `      const [ command, description ] = this.${name}CommandDef;`,
+              `      commander`,
+              `        .command(command)`,
+              `        .description(description)`,
+              `        .action(() => this.${varName}.run());`,
+              `    })();`,
               '',
-              '}'
-            ].join(EOL);
-        return content;
-      }
-    );
-  }
-
-  private modificationForCommand(importPath: string, name: string) {
-    const varName = `${name}Command`;
-    const className = `${name.charAt(0).toUpperCase() + name.substr(1)}Command`;
-    // src/lib/main.ts
-    return this.fileService.changeContent(
-      resolve('src', 'lib', 'main.ts'),
-      content => {
+              `    // help`
+            ].join(EOL)
+          );
         return content;
       }
     );
@@ -106,9 +167,13 @@ export class GenerateService {
     // content
     const { className } = destData;
     const content = [
+      '',
       `export class ${className}Service {`,
+      '',
       '  constructor () {}',
-      '}'
+      '',
+      '}',
+      ''
     ].join(EOL);
     // result
     return { ...destData, content };
@@ -119,10 +184,15 @@ export class GenerateService {
     // content
     const { className } = destData;
     const content = [
+      '',
       `export class ${className}Command {`,
+      '',
       '  constructor () {}',
+      '',
       '  run() {}',
-      '}'
+      '',
+      '}',
+      ''
     ].join(EOL);
     // result
     return { ...destData, content };

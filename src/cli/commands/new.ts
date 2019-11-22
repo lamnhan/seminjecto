@@ -22,7 +22,7 @@ export class NewCommand {
     }
     // result
     console.log(
-      `Create new ${chalk.yellow(cli ? 'cli': 'lib')} project:`,
+      `Create a new ${chalk.yellow(cli ? 'cli': 'lib')} project:`,
       chalk.green(name)
     );
   }
