@@ -21,24 +21,29 @@ export class GenerateService {
   }
 
   modify(type: GenerateType, path: string) {
-    const importPath = path;
     const name = (
       path.replace(/\\/g, '').split('/').pop() as string
     ).replace('.ts', '');
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     if (type === 'service') {
-      return this.modificationForService(importPath, name, titleName);
+      return this.modificationForService(path, name, titleName);
     } else if (type === 'command') {
-      return this.modificationForCommand(importPath, name, titleName);
+      return this.modificationForCommand(path, name, titleName);
     } else {
       throw new Error('Not support type: ' + type);
     }
   }
 
-  private modificationForService(importPath: string, name: string, titleName: string) {
-    importPath = importPath.replace('src/lib/', './');
+  private async modificationForService(path: string, name: string, titleName: string) {
+    const importPath = path.replace('src/lib/', './').replace('.ts', '');
+    const exportPath = importPath.replace('./', './lib/');
     const varName = `${name}Service`;
     const className = `${titleName}Service`;
+    // src/public-api.ts
+    await this.fileService.changeContent(
+      resolve('src', 'public-api.ts'),
+      content => content + `\nexport * from '${exportPath}';`
+    );
     // src/lib/main.ts
     return this.fileService.changeContent(
       resolve('src', 'lib', 'main.ts'),
@@ -88,8 +93,8 @@ export class GenerateService {
     );
   }
 
-  private modificationForCommand(importPath: string, name: string, titleName: string) {
-    importPath = importPath.replace('src/cli/', './');
+  private modificationForCommand(path: string, name: string, titleName: string) {
+    const importPath = path.replace('src/cli/', './').replace('.ts', '');
     const varName = `${name}Command`;
     const className = `${titleName}Command`;
     // src/cli/index.ts
