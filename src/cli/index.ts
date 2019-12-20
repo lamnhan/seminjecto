@@ -1,6 +1,6 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import * as commander from 'commander';
-import { SeminjectoModule, CommandDef } from '../public-api';
+import { SeminjectoModule } from '../public-api';
 
 import { NewCommand } from './commands/new';
 import { GenerateCommand } from './commands/generate';
@@ -8,8 +8,8 @@ import { GenerateCommand } from './commands/generate';
 export class Cli {
   private seminjectoModule: SeminjectoModule;
 
-  private newCommand: NewCommand;
-  private generateCommand: GenerateCommand;
+  newCommand: NewCommand;
+  generateCommand: GenerateCommand;
 
   commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
@@ -28,17 +28,16 @@ export class Cli {
    * @params <dest> - The resource destination
    */
   generateCommandDef: CommandDef = [
-    'generate <type> <dest>', 'Generate a resource.'
+    'generate <type> <dest>',
+    'Generate a resource.'
   ];
 
   constructor() {
     this.seminjectoModule = new SeminjectoModule();
     // commands
-    this.newCommand = new NewCommand(
-      this.seminjectoModule.Create
-    );
+    this.newCommand = new NewCommand(this.seminjectoModule.createService);
     this.generateCommand = new GenerateCommand(
-      this.seminjectoModule.Generate,
+      this.seminjectoModule.generateService
     );
   }
 
@@ -51,36 +50,39 @@ export class Cli {
 
     // new
     (() => {
-      const [ command, description, cliOpt ] = this.newCommandDef;
+      const [command, description, cliOpt] = this.newCommandDef;
       commander
         .command(command)
         .description(description)
         .option(...cliOpt) // -x, --cli
-        .action((name, description, options) => this.newCommand.run(name, description, options));
+        .action((name, description, options) =>
+          this.newCommand.run(name, description, options)
+        );
     })();
 
     // generate
     (() => {
-      const [ command, description ] = this.generateCommandDef;
+      const [command, description] = this.generateCommandDef;
       commander
         .command(command)
         .description(description)
         .action((type, dest) => this.generateCommand.run(type, dest));
     })();
 
+    // help
     commander
       .command('help')
       .description('Display help.')
       .action(() => commander.outputHelp());
 
+    // *
     commander
       .command('*')
       .description('Any other command is not supported.')
-      .action((cmd: string) =>
-        console.error(chalk.red(`Unknown command '${cmd}'`))
-      );
+      .action((cmd: string) => console.error(red(`Unknown command '${cmd}'`)));
 
     return commander;
   }
-
 }
+
+type CommandDef = [string, string, ...Array<[string, string]>];

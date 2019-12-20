@@ -1,6 +1,5 @@
-export * from './lib/types';
-export { Main as SeminjectoModule } from './lib/main';
-export { main as seminjecto } from './lib/index';
+export { Main as SeminjectoModule } from './lib/index';
+export { Cli as SeminjectoCliModule } from './cli/index';
 
 export * from './lib/services/file';
 export * from './lib/services/download';

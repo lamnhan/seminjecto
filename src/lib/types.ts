@@ -1,1 +1,0 @@
-export type CommandDef = [string, string, ...Array<[string, string]>];

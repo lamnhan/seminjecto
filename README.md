@@ -30,18 +30,19 @@
 - [Command reference](#command-reference)
   - [`generate`](#command-generate)
   - [`new`](#command-new)
+  - [`help`](#command-help)
 - [Detail API reference](https://lamnhan.com/seminjecto)
 
 
 </section>
 
-<section id="getting-started">
+<section id="main">
 
 ## Introduction
 
 Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like [InversifyJS](http://inversify.io/), [tsyringe](https://github.com/microsoft/tsyringe), ...
 
-But you can also manually apply DI to any module using this simple method. There is a central class (`Main` for library, `Cli` for cli app, ...) that acts as a DI container and injector.
+But you can also manually apply DI to any module using this simple method. There is a central class (`Main` for library, `Cli` for cli app, `App` for app, ...) that acts as a DI container and injector.
 
 ```ts
 // the service 1
@@ -54,19 +55,14 @@ export class Service2Service {
 
 // the container for all services and also the injetor
 export class Main {
-  private service1Service: Service1Service;
-  private service2Service: Service2Service;
+  service1Service: Service1Service;
+  service2Service: Service2Service;
 
   constructor() {
     this.service1Service = new Service1Service();
     this.service2Service = new Service2Service(
       this.service1Service // injects the service 1
     );
-  }
-
-  // export any service to the outside world
-  get Service1() {
-    return this.service1Service;
   }
 }
 ```
@@ -75,7 +71,7 @@ export class Main {
 
 - No need for extra IOC libraries
 - Clean project structure
-- Easy to test (using [@lamnhan/testing](https://github.com/lamnhan/testing))
+- Easy to test (using [@lamnhan/testea](https://github.com/lamnhan/testea))
 - Easy to generate documentation (using [@lamnhan/ayedocs](https://github.com/lamnhan/ayedocs))
 
 ## Installation
@@ -86,9 +82,16 @@ Install as glocal CLI app.
 npm install -g @lamnhan/seminjecto
 ```
 
+## Skeletons
+
+These skeletons can be use to faster setup a project. You can either clone them manually or using the command [`semidi new <name>`](#command-new):
+
+- [Library](https://github.com/lamnhan/seminjecto-lib): For any normal library.
+- [CLI](https://github.com/lamnhan/seminjecto-cli): For building a Node CLI app.
+
 </section>
 
-<section id="commands" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
 <h2><a name="command-overview"><p>Command overview</p>
 </a></h2>
@@ -97,6 +100,7 @@ Simple dependency injection for Typescript modules.
 
 - [`semidi generate <type> <dest>`](#command-generate)
 - [`semidi new <name> [description] --cli`](#command-new)
+- [`semidi help`](#command-help)
 
 <h2><a name="command-reference"><p>Command reference</p>
 </a></h2>
@@ -124,6 +128,11 @@ Create a new project.
 **Options**
 
 - `-x, --cli`: Create a CLI project.
+
+<h3><a name="command-help"><p><code>help</code></p>
+</a></h3>
+
+Display help.
 
 </section>
 

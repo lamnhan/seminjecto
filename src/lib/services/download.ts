@@ -5,12 +5,11 @@ import {
   remove,
   readdir,
   lstatSync,
-  createWriteStream
+  createWriteStream,
 } from 'fs-extra';
 import * as zipper from 'adm-zip';
 
 export class DownloadService {
-
   constructor() {}
 
   async downloadAndUnzip(url: string, filePath: string) {
@@ -32,7 +31,8 @@ export class DownloadService {
         .catch(reject)
         .then(() => {
           axios({
-            method: 'GET', url,
+            method: 'GET',
+            url,
             responseType: 'stream',
           }).then(downloadResponse => {
             downloadResponse.data.pipe(createWriteStream(filePath));
@@ -86,8 +86,7 @@ export class DownloadService {
       folderName,
       filePath,
       fileName,
-      fileFullName
+      fileFullName,
     };
   }
-
 }

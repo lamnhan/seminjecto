@@ -1,6 +1,5 @@
 import { resolve } from 'path';
-import chalk from 'chalk';
-
+import { yellow, green } from 'chalk';
 import { CreateService } from '../../public-api';
 
 export interface NewCommandOptions {
@@ -8,7 +7,6 @@ export interface NewCommandOptions {
 }
 
 export class NewCommand {
-
   constructor(private createService: CreateService) {}
 
   run(name: string, description: string, { cli }: NewCommandOptions) {
@@ -22,9 +20,8 @@ export class NewCommand {
     }
     // result
     console.log(
-      `Create a new ${chalk.yellow(cli ? 'cli': 'lib')} project:`,
-      chalk.green(name)
+      `Create a new ${yellow(cli ? 'cli' : 'lib')} project:`,
+      green(name)
     );
   }
-
 }

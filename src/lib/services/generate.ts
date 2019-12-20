@@ -5,10 +5,7 @@ import { FileService } from './file';
 export type GenerateType = 'service' | 'command';
 
 export class GenerateService {
-
-  constructor(
-    private fileService: FileService
-  ) {}
+  constructor(private fileService: FileService) {}
 
   generate(type: GenerateType, dest: string) {
     if (type === 'service') {
@@ -21,9 +18,10 @@ export class GenerateService {
   }
 
   modify(type: GenerateType, path: string) {
-    const name = (
-      path.replace(/\\/g, '').split('/').pop() as string
-    ).replace('.ts', '');
+    const name = (path
+      .replace(/\\/g, '')
+      .split('/')
+      .pop() as string).replace('.ts', '');
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     if (type === 'service') {
       return this.modificationForService(path, name, titleName);
@@ -34,7 +32,11 @@ export class GenerateService {
     }
   }
 
-  private async modificationForService(path: string, name: string, titleName: string) {
+  private async modificationForService(
+    path: string,
+    name: string,
+    titleName: string
+  ) {
     const importPath = path.replace('src/lib/', './').replace('.ts', '');
     const exportPath = importPath.replace('./', './lib/');
     const varName = `${name}Service`;
@@ -44,9 +46,9 @@ export class GenerateService {
       resolve('src', 'public-api.ts'),
       content => content + `\nexport * from '${exportPath}';`
     );
-    // src/lib/main.ts
+    // src/lib/index.ts
     return this.fileService.changeContent(
-      resolve('src', 'lib', 'main.ts'),
+      resolve('src', 'lib', 'index.ts'),
       content => {
         content = content
           // import ...
@@ -55,45 +57,31 @@ export class GenerateService {
             [
               `import { ${className} } from '${importPath}';`,
               '',
-              'export class Main {'
+              'export class Main {',
             ].join('\n')
           )
           // variable
           .replace(
             '\n  constructor(',
-            [
-              `  private ${varName}: ${className};`,
-              '',
-              '  constructor('
-            ].join('\n')
+            [`  ${varName}: ${className};`, '', '  constructor('].join('\n')
           );
         // init
         let cstrContent = content.substr(content.indexOf('constructor('));
         cstrContent = cstrContent.substring(0, cstrContent.indexOf('}'));
-        content = content
-          .replace(
-            cstrContent,
-            cstrContent
-            + `  this.${varName} = new ${className}();`
-            + '\n'
-            + '  '
-          );
-        // get
-        content = content.substring(0, content.lastIndexOf('}'))
-          + [
-              `  get ${titleName}() {`,
-              `    return this.${varName};`,
-              '  }',
-              '',
-              '}',
-              ''
-            ].join('\n');
+        content = content.replace(
+          cstrContent,
+          cstrContent + `  this.${varName} = new ${className}();` + '\n' + '  '
+        );
         return content;
       }
     );
   }
 
-  private modificationForCommand(path: string, name: string, titleName: string) {
+  private modificationForCommand(
+    path: string,
+    name: string,
+    titleName: string
+  ) {
     const importPath = path.replace('src/cli/', './').replace('.ts', '');
     const varName = `${name}Command`;
     const className = `${titleName}Command`;
@@ -108,17 +96,13 @@ export class GenerateService {
             [
               `import { ${className} } from '${importPath}';`,
               '',
-              'export class Cli {'
+              'export class Cli {',
             ].join('\n')
           )
           // variable
           .replace(
             '\n  commander = [',
-            [
-              `  private ${varName}: ${className};`,
-              '',
-              '  commander = ['
-            ].join('\n')
+            [`  ${varName}: ${className};`, '', '  commander = ['].join('\n')
           )
           // command def
           .replace(
@@ -128,39 +112,40 @@ export class GenerateService {
               `    '${name}', 'Command description.'`,
               `  ];`,
               '',
-              '  constructor('
+              '  constructor(',
             ].join('\n')
           );
         // init
-        let constructorContent = content.substr(content.indexOf('constructor('));
-        constructorContent = constructorContent.substring(
-          0, constructorContent.indexOf('}')
+        let constructorContent = content.substr(
+          content.indexOf('constructor(')
         );
-        content = content
-          .replace(
-            constructorContent,
-            constructorContent
-            + `  this.${varName} = new ${className}();`
-            + '\n'
-            + '  '
-          );
+        constructorContent = constructorContent.substring(
+          0,
+          constructorContent.indexOf('}')
+        );
+        content = content.replace(
+          constructorContent,
+          constructorContent +
+            `  this.${varName} = new ${className}();` +
+            '\n' +
+            '  '
+        );
         // command
-        content = content
-          .replace(
-            `// help`,
-            [
-              `// ${name}`,
-              `    (() => {`,
-              `      const [ command, description ] = this.${name}CommandDef;`,
-              `      commander`,
-              `        .command(command)`,
-              `        .description(description)`,
-              `        .action(() => this.${varName}.run());`,
-              `    })();`,
-              '',
-              `    // help`
-            ].join('\n')
-          );
+        content = content.replace(
+          `// help`,
+          [
+            `// ${name}`,
+            `    (() => {`,
+            `      const [command, description] = this.${name}CommandDef;`,
+            `      commander`,
+            `        .command(command)`,
+            `        .description(description)`,
+            `        .action(() => this.${varName}.run());`,
+            `    })();`,
+            '',
+            `    // help`,
+          ].join('\n')
+        );
         return content;
       }
     );
@@ -177,7 +162,7 @@ export class GenerateService {
       '  constructor () {}',
       '',
       '}',
-      ''
+      '',
     ].join('\n');
     // result
     return { ...destData, content };
@@ -196,7 +181,7 @@ export class GenerateService {
       '  run() {}',
       '',
       '}',
-      ''
+      '',
     ].join('\n');
     // result
     return { ...destData, content };
@@ -210,5 +195,4 @@ export class GenerateService {
     const fullPath = resolve(path);
     return { name, className, path, fullPath };
   }
-
 }

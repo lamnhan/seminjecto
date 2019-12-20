@@ -5,8 +5,7 @@ import { FileService } from './file';
 import { DownloadService } from './download';
 
 export class CreateService {
-
-  constructor (
+  constructor(
     private fileService: FileService,
     private downloadService: DownloadService
   ) {}
@@ -18,13 +17,16 @@ export class CreateService {
   async createCli(dest: string, description: string) {
     return this.create('cli', dest, description);
   }
-  
+
   private async create(type: 'lib' | 'cli', dest: string, description: string) {
     const url = await this.resolveLatestRelease('lamnhan/seminjecto-' + type);
     const filePath = dest + '/download.zip';
     await this.downloadService.downloadAndUnzip(url, filePath);
     // modify content
-    const name = (dest.replace(/\\/g, '/').split('/').pop() as string)
+    const name = (dest
+      .replace(/\\/g, '/')
+      .split('/')
+      .pop() as string)
       .toLowerCase()
       .replace(/[\W_]+/g, '');
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
@@ -43,41 +45,35 @@ export class CreateService {
       resolve(dest, 'src', 'public-api.ts'),
       {
         '{ Main as LibModule }': `{ Main as ${titleName}Module }`,
-        '{ main as lib }': `{ main as ${name} }`
-      },
+        '{ Cli as LibCliModule }': `{ Cli as ${titleName}CliModule }`,
+      }
     );
     // lib
     if (type === 'lib') {
       // package.json
-      await this.fileService.changeContent(
-        resolve(dest, 'package.json'),
-        {
-          ': "lib"': `: "${name}"`,
-          'A Seminjecto project.': description
-        }
-      );
+      await this.fileService.changeContent(resolve(dest, 'package.json'), {
+        ': "lib"': `: "${name}"`,
+        'A Seminjecto project.': description,
+      });
     }
     // CLI only
     else if (type === 'cli') {
       // package.json
-      await this.fileService.changeContent(
-        resolve(dest, 'package.json'),
-        {
-          ': "cli"': `: "${name}"`,
-          'A Seminjecto project.': description,
-          '"cli":': `"${name}":`,
-        }
-      );
+      await this.fileService.changeContent(resolve(dest, 'package.json'), {
+        ': "cli"': `: "${name}"`,
+        'A Seminjecto project.': description,
+        '"cli":': `"${name}":`,
+      });
       // src/cli/index.ts
       await this.fileService.changeContent(
         resolve(dest, 'src', 'cli', 'index.ts'),
         {
           '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
-          '\'cli\'': `'${name}'`,
-          '\'A Seminjecto project.\'': `'${description}'`,
+          "'cli'": `'${name}'`,
+          "'A Seminjecto project.'": `'${description}'`,
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
           'this.libModule': `this.${name}Module`,
-          'new LibModule': `new ${titleName}Module`
+          'new LibModule': `new ${titleName}Module`,
         }
       );
     }
@@ -90,7 +86,6 @@ export class CreateService {
     });
     const name = pkg;
     const version = data.name;
-    return `https://github.com/${name}/archive/${version}.zip`;;
+    return `https://github.com/${name}/archive/${version}.zip`;
   }
-
 }
