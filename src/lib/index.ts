@@ -1,7 +1,7 @@
-import { FileService } from './services/file';
-import { DownloadService } from './services/download';
-import { GenerateService } from './services/generate';
-import { CreateService } from './services/create';
+import { FileService } from './services/file.service';
+import { DownloadService } from './services/download.service';
+import { GenerateService } from './services/generate.service';
+import { CreateService } from './services/create.service';
 
 export class Main {
   fileService: FileService;

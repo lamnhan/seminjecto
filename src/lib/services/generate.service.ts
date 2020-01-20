@@ -1,23 +1,30 @@
 import { resolve } from 'path';
 
-import { FileService } from './file';
-
-export type GenerateType = 'service' | 'command';
+import { FileService } from './file.service';
 
 export class GenerateService {
   constructor(private fileService: FileService) {}
 
-  generate(type: GenerateType, dest: string) {
+  private processDest(type: string, dest: string, part = 'lib') {
+    const destSplit = dest.split('/');
+    const name = (destSplit.pop() as string).split('.')[0].toLowerCase();
+    const className = name.charAt(0).toUpperCase() + name.substr(1);
+    const path = ['src', part, ...destSplit, `${name}.${type}.ts`].join('/');
+    const fullPath = resolve(path);
+    return { name, className, path, fullPath };
+  }
+
+  generate(type: string, dest: string) {
     if (type === 'service') {
-      return this.getServiceData(dest);
+      return this.getServiceData(type, dest);
     } else if (type === 'command') {
-      return this.getCommandData(dest);
+      return this.getCommandData(type, dest);
     } else {
-      throw new Error('Not support type: ' + type);
+      return this.getAnyTypeData(type, dest);
     }
   }
 
-  modify(type: GenerateType, path: string) {
+  modify(type: string, path: string) {
     const name = (path
       .replace(/\\/g, '')
       .split('/')
@@ -28,7 +35,7 @@ export class GenerateService {
     } else if (type === 'command') {
       return this.modificationForCommand(path, name, titleName);
     } else {
-      throw new Error('Not support type: ' + type);
+      return this.modificationForAnyType(type, path, name, titleName);
     }
   }
 
@@ -77,14 +84,20 @@ export class GenerateService {
     );
   }
 
-  private modificationForCommand(
+  private async modificationForCommand(
     path: string,
     name: string,
     titleName: string
   ) {
     const importPath = path.replace('src/cli/', './').replace('.ts', '');
+    const exportPath = importPath.replace('./', './cli/');
     const varName = `${name}Command`;
     const className = `${titleName}Command`;
+    // src/public-api.ts
+    await this.fileService.changeContent(
+      resolve('src', 'public-api.ts'),
+      content => content + `\nexport * from '${exportPath}';`
+    );
     // src/cli/index.ts
     return this.fileService.changeContent(
       resolve('src', 'cli', 'index.ts'),
@@ -151,8 +164,55 @@ export class GenerateService {
     );
   }
 
-  private getServiceData(dest: string) {
-    const destData = this.processDest(dest, 'lib');
+  private async modificationForAnyType(
+    type: string,
+    path: string,
+    name: string,
+    titleName: string
+  ) {
+    const classSurfix = type.charAt(0).toUpperCase() + type.substr(1);
+    const importPath = path.replace('src/lib/', './').replace('.ts', '');
+    const exportPath = importPath.replace('./', './lib/');
+    const varName = `${name}${classSurfix}`;
+    const className = `${titleName}${classSurfix}`;
+    // src/public-api.ts
+    await this.fileService.changeContent(
+      resolve('src', 'public-api.ts'),
+      content => content + `\nexport * from '${exportPath}';`
+    );
+    // src/lib/index.ts
+    return this.fileService.changeContent(
+      resolve('src', 'lib', 'index.ts'),
+      content => {
+        content = content
+          // import ...
+          .replace(
+            '\nexport class Main {',
+            [
+              `import { ${className} } from '${importPath}';`,
+              '',
+              'export class Main {',
+            ].join('\n')
+          )
+          // variable
+          .replace(
+            '\n  constructor(',
+            [`  ${varName}: ${className};`, '', '  constructor('].join('\n')
+          );
+        // init
+        let cstrContent = content.substr(content.indexOf('constructor('));
+        cstrContent = cstrContent.substring(0, cstrContent.indexOf('}'));
+        content = content.replace(
+          cstrContent,
+          cstrContent + `  this.${varName} = new ${className}();` + '\n' + '  '
+        );
+        return content;
+      }
+    );
+  }
+
+  private getServiceData(type: string, dest: string) {
+    const destData = this.processDest(type, dest, 'lib');
     // content
     const { className } = destData;
     const content = [
@@ -168,8 +228,8 @@ export class GenerateService {
     return { ...destData, content };
   }
 
-  private getCommandData(dest: string) {
-    const destData = this.processDest(dest, 'cli');
+  private getCommandData(type: string, dest: string) {
+    const destData = this.processDest(type, dest, 'cli');
     // content
     const { className } = destData;
     const content = [
@@ -187,12 +247,22 @@ export class GenerateService {
     return { ...destData, content };
   }
 
-  private processDest(dest: string, part = 'lib') {
-    const destSplit = dest.split('/');
-    const name = (destSplit.pop() as string).split('.')[0].toLowerCase();
-    const className = name.charAt(0).toUpperCase() + name.substr(1);
-    const path = ['src', part, ...destSplit, `${name}.ts`].join('/');
-    const fullPath = resolve(path);
-    return { name, className, path, fullPath };
+  private getAnyTypeData(type: string, dest: string) {
+    const destData = this.processDest(type, dest, 'lib');
+    // content
+    const { className } = destData;
+    const classSurfix = type.charAt(0).toUpperCase() + type.substr(1);
+    const content = [
+      '',
+      `export class ${className}${classSurfix} {`,
+      '',
+      '  constructor () {}',
+      '',
+      '}',
+      '',
+    ].join('\n');
+    // result
+    return { ...destData, content };
   }
+
 }

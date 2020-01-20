@@ -1,15 +1,12 @@
 import { yellow, green } from 'chalk';
 import { outputFile, pathExists } from 'fs-extra';
-import { GenerateService, GenerateType } from '../../public-api';
+import { GenerateService } from '../../public-api';
 
 export class GenerateCommand {
   constructor(private generateService: GenerateService) {}
 
-  async run(type: GenerateType, dest: string) {
-    const { content, path, fullPath } = this.generateService.generate(
-      type,
-      dest
-    );
+  async run(type: string, dest: string) {
+    const { content, path, fullPath } = this.generateService.generate(type, dest);
     if (await pathExists(fullPath)) {
       return console.log(
         `A ${yellow(type)} already available at ` + green(path)

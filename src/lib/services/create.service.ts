@@ -1,8 +1,8 @@
 import { resolve } from 'path';
 import axios from 'axios';
 
-import { FileService } from './file';
-import { DownloadService } from './download';
+import { FileService } from './file.service';
+import { DownloadService } from './download.service';
 
 export class CreateService {
   constructor(

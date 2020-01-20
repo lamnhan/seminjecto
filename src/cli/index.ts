@@ -2,8 +2,8 @@ import { red } from 'chalk';
 import * as commander from 'commander';
 import { SeminjectoModule } from '../public-api';
 
-import { NewCommand } from './commands/new';
-import { GenerateCommand } from './commands/generate';
+import { NewCommand } from './commands/new.command';
+import { GenerateCommand } from './commands/generate.command';
 
 export class Cli {
   private seminjectoModule: SeminjectoModule;
