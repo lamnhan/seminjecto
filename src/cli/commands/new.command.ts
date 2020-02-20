@@ -1,26 +1,24 @@
 import { resolve } from 'path';
 import { yellow, green } from 'chalk';
-import { CreateService } from '../../public-api';
-
-export interface NewCommandOptions {
-  cli: boolean;
-}
+import { CreateService, CreateType } from '../../public-api';
 
 export class NewCommand {
   constructor(private createService: CreateService) {}
 
-  run(name: string, description: string, { cli }: NewCommandOptions) {
+  run(type: CreateType, name: string, description: string) {
     const path = resolve(name);
     description = description || 'A Seminjecto project.';
     // create
-    if (cli) {
-      this.createService.createCli(path, description);
-    } else {
+    if (type === 'lib') {
       this.createService.createLib(path, description);
+    } else if (type === 'cli') {
+      this.createService.createCli(path, description);
+    } else if (type === 'app') {
+      this.createService.createApp(path, description);
     }
     // result
     console.log(
-      `Create a new ${yellow(cli ? 'cli' : 'lib')} project:`,
+      `Create a new ${yellow(type)} project:`,
       green(name)
     );
   }

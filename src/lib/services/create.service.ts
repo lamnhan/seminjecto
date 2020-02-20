@@ -4,6 +4,8 @@ import axios from 'axios';
 import { FileService } from './file.service';
 import { DownloadService } from './download.service';
 
+export type CreateType = 'lib' | 'cli' | 'app';
+
 export class CreateService {
   constructor(
     private fileService: FileService,
@@ -18,7 +20,11 @@ export class CreateService {
     return this.create('cli', dest, description);
   }
 
-  private async create(type: 'lib' | 'cli', dest: string, description: string) {
+  async createApp(dest: string, description: string) {
+    return this.create('app', dest, description);
+  }
+
+  private async create(type: CreateType, dest: string, description: string) {
     const url = await this.resolveLatestRelease('lamnhan/seminjecto-' + type);
     const filePath = dest + '/download.zip';
     await this.downloadService.downloadAndUnzip(url, filePath);
@@ -34,7 +40,7 @@ export class CreateService {
   }
 
   private async modifyContent(
-    type: 'lib' | 'cli',
+    type: CreateType,
     dest: string,
     name: string,
     titleName: string,
@@ -46,9 +52,10 @@ export class CreateService {
       {
         '{ Main as LibModule }': `{ Main as ${titleName}Module }`,
         '{ Cli as LibCliModule }': `{ Cli as ${titleName}CliModule }`,
+        '{ App as LibAppModule }': `{ App as ${titleName}AppModule }`,
       }
     );
-    // lib
+    // LIB only
     if (type === 'lib') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
@@ -71,6 +78,24 @@ export class CreateService {
           '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
           "'cli'": `'${name}'`,
           "'A Seminjecto project.'": `'${description}'`,
+          'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
+          'this.libModule': `this.${name}Module`,
+          'new LibModule': `new ${titleName}Module`,
+        }
+      );
+    }
+    // APP only
+    if (type === 'app') {
+      // package.json
+      await this.fileService.changeContent(resolve(dest, 'package.json'), {
+        ': "app"': `: "${name}"`,
+        'A Seminjecto project.': description,
+      });
+      // src/cli/index.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'app', 'index.ts'),
+        {
+          '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
           'this.libModule': `this.${name}Module`,
           'new LibModule': `new ${titleName}Module`,

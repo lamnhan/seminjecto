@@ -14,13 +14,13 @@ export class Cli {
   commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
   /**
+   * @params <type> - The project type: lib, cli, app, ...
    * @params <name> - The project name
    * @params [description] - The project description
    */
   newCommandDef: CommandDef = [
-    'new <name> [description]',
-    'Create a new project.',
-    ['-x, --cli', 'Create a CLI project.']
+    'new <type> <name> [description]',
+    'Create a new project.'
   ];
 
   /**
@@ -35,7 +35,9 @@ export class Cli {
   constructor() {
     this.seminjectoModule = new SeminjectoModule();
     // commands
-    this.newCommand = new NewCommand(this.seminjectoModule.createService);
+    this.newCommand = new NewCommand(
+      this.seminjectoModule.createService
+    );
     this.generateCommand = new GenerateCommand(
       this.seminjectoModule.generateService
     );
@@ -50,13 +52,12 @@ export class Cli {
 
     // new
     (() => {
-      const [command, description, cliOpt] = this.newCommandDef;
+      const [command, description] = this.newCommandDef;
       commander
         .command(command)
         .description(description)
-        .option(...cliOpt) // -x, --cli
-        .action((name, description, options) =>
-          this.newCommand.run(name, description, options)
+        .action((type, name, description) =>
+          this.newCommand.run(type, name, description)
         );
     })();
 
