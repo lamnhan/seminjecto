@@ -42,7 +42,7 @@
 
 Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like [InversifyJS](http://inversify.io/), [tsyringe](https://github.com/microsoft/tsyringe), ...
 
-But you can also manually apply DI to any module using this simple method. There is a central class (`Main` for library, `Cli` for cli app, `App` for app, ...) that acts as a DI container and injector.
+But you can also manually apply DI to any module using this simple method. There is a central class (`Lib` for library, `Cli` for cli app, `App` for app, ...) that acts as a DI container and injector.
 
 ```ts
 // the service 1
@@ -54,7 +54,7 @@ export class Service2Service {
 }
 
 // the container for all services and also the injetor
-export class Main {
+export class Lib {
   service1Service: Service1Service;
   service2Service: Service2Service;
 
@@ -88,6 +88,139 @@ These skeletons can be use to faster setup a project. You can either clone them 
 
 - [Library](https://github.com/lamnhan/seminjecto-lib): For any normal library.
 - [CLI](https://github.com/lamnhan/seminjecto-cli): For building a Node CLI app.
+- [Express](https://github.com/lamnhan/seminjecto-express): Standard ExpressJS app.
+- [Sheetbase](https://github.com/sheetbase/blank-server-app): Sheetbase server app.
+
+## Convention
+
+This standalization is applied to any project unders **Seminjecto** convention.
+
+### Helpers
+
+#### VSCode
+
+The file `settings.json` unders `.vscode` folder provides configuration for excluding certain content in VSCode (and other configs you may need):
+
+```json
+{
+  // hide these folders and files
+  "files.exclude": {
+    ".vscode/": true, // the VSCode RC folder
+    ".nyc_output/": true, // the NYC coverage output folder
+    "docs/": true, // the docs/homepage website folder
+    "src/**/*.js": true, // any Typescript output .js in 'src/' folder
+    "test/**/*.js": true, // any Typescript output .js in 'test/' folder
+    "**/*.d.ts": true, // any Typescript declaration file
+    "**/*.map": true // any .map files
+  }
+}
+```
+
+#### GIT
+
+Files are ignored by GIT:
+
+```text
+node_modules/
+# testing
+.nyc_output/
+# distribution
+src/**/*.js
+test/**/*.js
+*.map
+*.d.ts
+```
+
+#### Linter/prettier
+
+Linter and prettier using [@google/gts](https://github.com/google/gts):
+
+- The `.eslintrc.json` file: Eslint config
+- The `.prettierrc.js` file: Prettier config
+
+#### Documentation
+
+Automatic document generation using [@lamnhan/ayedocs](https://github.com/lamnhan/ayedocs):
+
+- The file `.ayedocsrc.js` provides configuration
+- Output will be found in the `docs` folder
+
+#### Testing
+
+Testing using [@lamnhan/testea](https://github.com/lamnhan/testea):
+
+- Generate spec files by: `testea generate`
+- All specs files are under `test` folder
+- Run test by: `npm run test`
+
+### Project types
+
+**Seminjecto** supports these types of Node project, where source code is hosted under `src` folder.
+
+#### Library
+
+A library is a project that can using in other projects.
+
+A library is organized into one file and one folder:
+
+- The `public-api.ts` file: where you export anything you want other project to access
+- The `lib` folder: contains `index.ts` central file (class `Lib`) and groups of source code type (services, ...)
+
+List of scripts:
+
+```json
+{
+  "compile": "tsc",
+  "build": "npm.cmd run compile && npm.cmd i -g",
+  "docs": "ayedocs generate",
+  "test": "npm.cmd run compile && nyc --cache false mocha test/**/*.js",
+  "coverage": "nyc --cache false report --reporter=text-lcov | coveralls",
+  "check": "gts check",
+  "fix": "gts fix",
+  "clean": "gts clean",
+  "prepare": "npm.cmd run compile",
+  "pretest": "npm.cmd run compile",
+  "posttest": "npm.cmd run check"
+}
+```
+
+Package properties:
+
+```json
+{
+  "main": "src/public-api.js",
+  "types": "src/public-api.d.ts",
+  "files": [
+    "src",
+    "!**/*.ts",
+    "**/*.d.ts"
+  ],
+}
+```
+
+#### CLI
+
+A CLI project is an extended of library, two additional file and folder:
+
+- The `bin.ts` file: cli logic
+- The `cli` folder: contains `index.ts` central file (class `Cli`) and groups of source code type (commands, ...)
+
+Package properties:
+
+```json
+{
+  "bin": {
+    "cli": "src/bin.js"
+  },
+}
+```
+
+#### App (Express, Sheetbase, ...)
+
+A app project is an extended of library, two additional file and folder:
+
+- The `www.ts` file: app logic
+- The `app` folder: contains `index.ts` central file (class `App`) and groups of source code type (routes, ...)
 
 </section>
 
