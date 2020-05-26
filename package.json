@@ -1,14 +1,14 @@
 {
   "name": "@lamnhan/seminjecto",
-  "version": "1.0.0-beta2",
+  "version": "1.0.0-beta3",
   "description": "Simple dependency injection for Typescript modules.",
   "author": "Lam Nhan",
   "homepage": "https://lamnhan.com",
   "license": "MIT",
-  "main": "./src/public-api.js",
-  "typings": "./src/public-api.d.ts",
+  "main": "src/public-api.js",
+  "types": "src/public-api.d.ts",
   "bin": {
-    "semidi": "./src/bin.js"
+    "semidi": "src/bin.js"
   },
   "files": [
     "src",
@@ -16,17 +16,24 @@
     "**/*.d.ts"
   ],
   "scripts": {
-    "compile": "tsc -p .",
-    "fix": "gts fix",
-    "build": "npm run compile && npm i -g",
+    "compile": "tsc",
+    "build": "npm.cmd run compile && npm.cmd i -g",
     "docs": "ayedocs generate",
-    "test": "npm run compile && nyc --cache false mocha test/**/*.js",
-    "coverage": "nyc --cache false report --reporter=text-lcov | coveralls"
+    "test": "npm.cmd run compile && nyc --cache false mocha test/**/*.js",
+    "coverage": "nyc --cache false report --reporter=text-lcov | coveralls",
+    "check": "gts check",
+    "fix": "gts fix",
+    "clean": "gts clean",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run check"
   },
   "keywords": [
     "node",
+    "dependency-injection",
     "module",
-    "dependency-injection"
+    "cli",
+    "app"
   ],
   "repository": {
     "type": "git",
@@ -45,16 +52,15 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.4.32",
-    "@types/chai": "^4.2.9",
+    "@types/chai": "^4.2.11",
     "@types/fs-extra": "^8.1.0",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.4",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.5",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.9",
-    "gts": "^1.1.2",
-    "mocha": "^7.0.1",
-    "nyc": "^15.0.0",
-    "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "coveralls": "^3.1.0",
+    "gts": "^2.0.2",
+    "mocha": "^7.2.0",
+    "nyc": "^15.0.1",
+    "typescript": "^3.9.3"
   }
 }
