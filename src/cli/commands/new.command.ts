@@ -13,8 +13,8 @@ export class NewCommand {
       this.createService.createLib(path, description);
     } else if (type === 'cli') {
       this.createService.createCli(path, description);
-    } else if (type === 'app') {
-      this.createService.createApp(path, description);
+    } else if (type === 'express') {
+      this.createService.createExpress(path, description);
     }
     // result
     console.log(`Create a new ${yellow(type)} project:`, green(name));

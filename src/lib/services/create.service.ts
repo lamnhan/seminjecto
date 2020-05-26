@@ -4,7 +4,7 @@ import axios from 'axios';
 import {FileService} from './file.service';
 import {DownloadService} from './download.service';
 
-export type CreateType = 'lib' | 'cli' | 'app';
+export type CreateType = 'lib' | 'cli' | 'express';
 
 export class CreateService {
   constructor(
@@ -20,8 +20,8 @@ export class CreateService {
     return this.create('cli', dest, description);
   }
 
-  async createApp(dest: string, description: string) {
-    return this.create('app', dest, description);
+  async createExpress(dest: string, description: string) {
+    return this.create('express', dest, description);
   }
 
   private async create(type: CreateType, dest: string, description: string) {
@@ -72,7 +72,7 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'cli', 'index.ts'),
         {
-          '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
+          '{ LibModule }': `{ ${titleName}Module }`, // import {...}
           "'cli'": `'${name}'`,
           "'A Seminjecto project.'": `'${description}'`,
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
@@ -81,18 +81,18 @@ export class CreateService {
         }
       );
     }
-    // APP only
-    if (type === 'app') {
+    // EXPRESS only
+    if (type === 'express') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "app"': `: "${name}"`,
         'A Seminjecto project.': description,
       });
-      // src/cli/index.ts
+      // src/app/index.ts
       await this.fileService.changeContent(
         resolve(dest, 'src', 'app', 'index.ts'),
         {
-          '{ LibModule }': `{ ${titleName}Module }`, // import { ... }
+          '{ LibModule }': `{ ${titleName}Module }`, // import {...}
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
           'this.libModule': `this.${name}Module`,
           'new LibModule': `new ${titleName}Module`,
