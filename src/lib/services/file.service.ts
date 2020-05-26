@@ -1,11 +1,11 @@
-import { readFile, outputFile } from 'fs-extra';
+import {readFile, outputFile} from 'fs-extra';
 
 export class FileService {
   constructor() {}
 
   async changeContent(
     filePath: string,
-    modifier: { [str: string]: string } | ((content: string) => string)
+    modifier: {[str: string]: string} | ((content: string) => string)
   ) {
     let content = await readFile(filePath, 'utf8');
     if (modifier instanceof Function) {

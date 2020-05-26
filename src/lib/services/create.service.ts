@@ -1,8 +1,8 @@
-import { resolve } from 'path';
+import {resolve} from 'path';
 import axios from 'axios';
 
-import { FileService } from './file.service';
-import { DownloadService } from './download.service';
+import {FileService} from './file.service';
+import {DownloadService} from './download.service';
 
 export type CreateType = 'lib' | 'cli' | 'app';
 
@@ -29,10 +29,7 @@ export class CreateService {
     const filePath = dest + '/download.zip';
     await this.downloadService.downloadAndUnzip(url, filePath);
     // modify content
-    const name = (dest
-      .replace(/\\/g, '/')
-      .split('/')
-      .pop() as string)
+    const name = (dest.replace(/\\/g, '/').split('/').pop() as string)
       .toLowerCase()
       .replace(/[\W_]+/g, '');
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
@@ -50,7 +47,7 @@ export class CreateService {
     await this.fileService.changeContent(
       resolve(dest, 'src', 'public-api.ts'),
       {
-        '{ Main as LibModule }': `{ Main as ${titleName}Module }`,
+        '{ Lib as LibModule }': `{ Lib as ${titleName}Module }`,
         '{ Cli as LibCliModule }': `{ Cli as ${titleName}CliModule }`,
         '{ App as LibAppModule }': `{ App as ${titleName}AppModule }`,
       }
@@ -105,7 +102,7 @@ export class CreateService {
   }
 
   private async resolveLatestRelease(pkg: string) {
-    const { data } = await axios({
+    const {data} = await axios({
       method: 'GET',
       url: `https://api.github.com/repos/${pkg}/releases/latest`,
     });

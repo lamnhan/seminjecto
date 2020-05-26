@@ -1,9 +1,9 @@
-import { red } from 'chalk';
+import {red} from 'chalk';
 import * as commander from 'commander';
-import { SeminjectoModule } from '../public-api';
+import {SeminjectoModule} from '../public-api';
 
-import { NewCommand } from './commands/new.command';
-import { GenerateCommand } from './commands/generate.command';
+import {NewCommand} from './commands/new.command';
+import {GenerateCommand} from './commands/generate.command';
 
 export class Cli {
   private seminjectoModule: SeminjectoModule;
@@ -20,7 +20,7 @@ export class Cli {
    */
   newCommandDef: CommandDef = [
     'new <type> <name> [description]',
-    'Create a new project.'
+    'Create a new project.',
   ];
 
   /**
@@ -29,15 +29,13 @@ export class Cli {
    */
   generateCommandDef: CommandDef = [
     'generate <type> <dest>',
-    'Generate a resource.'
+    'Generate a resource.',
   ];
 
   constructor() {
     this.seminjectoModule = new SeminjectoModule();
     // commands
-    this.newCommand = new NewCommand(
-      this.seminjectoModule.createService
-    );
+    this.newCommand = new NewCommand(this.seminjectoModule.createService);
     this.generateCommand = new GenerateCommand(
       this.seminjectoModule.generateService
     );

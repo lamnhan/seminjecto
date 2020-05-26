@@ -20,12 +20,12 @@ export class DownloadService {
     // remove the zip file
     await remove(filePath);
     // unnest if wrapped
-    const { folderPath } = this.extractFilePath(filePath);
+    const {folderPath} = this.extractFilePath(filePath);
     await this.unnest(folderPath);
   }
 
   download(url: string, filePath: string): Promise<void> {
-    const { folderPath } = this.extractFilePath(filePath);
+    const {folderPath} = this.extractFilePath(filePath);
     return new Promise((resolve, reject) => {
       ensureDir(folderPath)
         .catch(reject)
@@ -44,7 +44,7 @@ export class DownloadService {
   }
 
   unzip(filePath: string): Promise<void> {
-    const { folderPath } = this.extractFilePath(filePath);
+    const {folderPath} = this.extractFilePath(filePath);
     return new Promise(resolve => {
       setTimeout(() => {
         const zip = new zipper(filePath);

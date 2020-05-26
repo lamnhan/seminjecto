@@ -1,6 +1,6 @@
-import { resolve } from 'path';
-import { yellow, green } from 'chalk';
-import { CreateService, CreateType } from '../../public-api';
+import {resolve} from 'path';
+import {yellow, green} from 'chalk';
+import {CreateService, CreateType} from '../../public-api';
 
 export class NewCommand {
   constructor(private createService: CreateService) {}
@@ -17,9 +17,6 @@ export class NewCommand {
       this.createService.createApp(path, description);
     }
     // result
-    console.log(
-      `Create a new ${yellow(type)} project:`,
-      green(name)
-    );
+    console.log(`Create a new ${yellow(type)} project:`, green(name));
   }
 }

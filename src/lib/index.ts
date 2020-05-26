@@ -1,9 +1,9 @@
-import { FileService } from './services/file.service';
-import { DownloadService } from './services/download.service';
-import { GenerateService } from './services/generate.service';
-import { CreateService } from './services/create.service';
+import {FileService} from './services/file.service';
+import {DownloadService} from './services/download.service';
+import {GenerateService} from './services/generate.service';
+import {CreateService} from './services/create.service';
 
-export class Main {
+export class Lib {
   fileService: FileService;
   downloadService: DownloadService;
   generateService: GenerateService;

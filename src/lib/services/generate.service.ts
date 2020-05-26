@@ -1,6 +1,6 @@
-import { resolve } from 'path';
+import {resolve} from 'path';
 
-import { FileService } from './file.service';
+import {FileService} from './file.service';
 
 export class GenerateService {
   constructor(private fileService: FileService) {}
@@ -11,26 +11,18 @@ export class GenerateService {
     const className = name.charAt(0).toUpperCase() + name.substr(1);
     const path = ['src', part, ...destSplit, `${name}.${type}.ts`].join('/');
     const fullPath = resolve(path);
-    return { name, className, path, fullPath };
+    return {name, className, path, fullPath};
   }
 
   generate(type: string, dest: string) {
-    const part = type === 'route' ? 'app': type === 'command' ? 'cli': 'lib';
-    const body: string[] = type === 'command'
-      ? ['run() {}']
-      : type === 'route'
-      ? ['get() {}']
-      : [];
+    const part = type === 'route' ? 'app' : type === 'command' ? 'cli' : 'lib';
+    const body: string[] =
+      type === 'command' ? ['run() {}'] : type === 'route' ? ['get() {}'] : [];
     return this.getTemplateData(type, dest, part, body);
   }
 
   modify(type: string, path: string) {
-    const name = (
-        path
-        .replace(/\\/g, '')
-        .split('/')
-        .pop() as string
-      )
+    const name = (path.replace(/\\/g, '').split('/').pop() as string)
       .replace('.ts', '')
       .split('.')
       .shift() as string;
@@ -38,11 +30,32 @@ export class GenerateService {
     if (type === 'command') {
       return this.modificationForCommand(path, name, titleName);
     } else if (type === 'service') {
-      return this.modificationForAnyType(type, path, name, titleName, 'lib', 'Main');
+      return this.modificationForAnyType(
+        type,
+        path,
+        name,
+        titleName,
+        'lib',
+        'Lib'
+      );
     } else if (type === 'route') {
-      return this.modificationForAnyType(type, path, name, titleName, 'app', 'App');
+      return this.modificationForAnyType(
+        type,
+        path,
+        name,
+        titleName,
+        'app',
+        'App'
+      );
     } else {
-      return this.modificationForAnyType(type, path, name, titleName, 'lib', 'Main');
+      return this.modificationForAnyType(
+        type,
+        path,
+        name,
+        titleName,
+        'lib',
+        'Lib'
+      );
     }
   }
 
@@ -85,7 +98,7 @@ export class GenerateService {
             [
               `  ${name}CommandDef: CommandDef = [`,
               `    '${name}', 'Command description.'`,
-              `  ];`,
+              '  ];',
               '',
               '  constructor(',
             ].join('\n')
@@ -107,18 +120,18 @@ export class GenerateService {
         );
         // command
         content = content.replace(
-          `// help`,
+          '// help',
           [
             `// ${name}`,
-            `    (() => {`,
+            '    (() => {',
             `      const [command, description] = this.${name}CommandDef;`,
-            `      commander`,
-            `        .command(command)`,
-            `        .description(description)`,
+            '      commander',
+            '        .command(command)',
+            '        .description(description)',
             `        .action(() => this.${varName}.run());`,
-            `    })();`,
+            '    })();',
             '',
-            `    // help`,
+            '    // help',
           ].join('\n')
         );
         return content;
@@ -132,7 +145,7 @@ export class GenerateService {
     name: string,
     titleName: string,
     part: string,
-    parentName: string,
+    parentName: string
   ) {
     const classSurfix = type.charAt(0).toUpperCase() + type.substr(1);
     const importPath = path.replace(`src/${part}/`, './').replace('.ts', '');
@@ -179,14 +192,14 @@ export class GenerateService {
     type: string,
     dest: string,
     part: string,
-    body: string[] = [],
+    body: string[] = []
   ) {
     const destData = this.processDest(type, dest, part);
     // content
-    const { className } = destData;
+    const {className} = destData;
     const classSurfix = type.charAt(0).toUpperCase() + type.substr(1);
     if (body.length > 0) {
-      body = body.map(x => x.substr(0, 2) === '  ' ? x: `  ${x}`);
+      body = body.map(x => (x.substr(0, 2) === '  ' ? x : `  ${x}`));
       body.unshift('');
     }
     const content = [
@@ -200,7 +213,6 @@ export class GenerateService {
       '',
     ].join('\n');
     // result
-    return { ...destData, content };
+    return {...destData, content};
   }
-
 }
