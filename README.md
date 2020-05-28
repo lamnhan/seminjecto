@@ -8,7 +8,11 @@
 
 <section id="header">
 
-[![License][license_badge]][license_url] [![Support me on Patreon][patreon_badge]][patreon_url] [![PayPal][paypal_donate_badge]][paypal_donate_url] [![Ask me anything][ask_me_badge]][ask_me_url] [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
+[![License][license_badge]][license_url]
+[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
+[![Support me on Patreon][patreon_badge]][patreon_url]
+[![PayPal][paypal_donate_badge]][paypal_donate_url]
+[![Ask me anything][ask_me_badge]][ask_me_url]
 
 [license_badge]: https://img.shields.io/github/license/mashape/apistatus.svg
 [license_url]: https://github.com/lamnhan/seminjecto/blob/master/LICENSE
@@ -69,8 +73,9 @@ export class Lib {
 
 ## Benefits
 
-- No need for extra IOC libraries
+- One approaching to any project
 - Clean project structure
+- No need for extra IOC libraries
 - Easy to test (using [@lamnhan/testea](https://github.com/lamnhan/testea))
 - Easy to generate documentation (using [@lamnhan/ayedocs](https://github.com/lamnhan/ayedocs))
 
@@ -89,7 +94,6 @@ These skeletons can be use to faster setup a project. You can either clone them 
 - [Library](https://github.com/lamnhan/seminjecto-lib): For any normal library.
 - [CLI](https://github.com/lamnhan/seminjecto-cli): For building a Node CLI app.
 - [Express](https://github.com/lamnhan/seminjecto-express): Standard ExpressJS app.
-- [Sheetbase](https://github.com/sheetbase/blank-server-app): Sheetbase server app.
 
 ## Convention
 
@@ -101,42 +105,20 @@ This standalization is applied to any project unders **Seminjecto** convention.
 
 The file `settings.json` unders `.vscode` folder provides configuration for excluding certain content in VSCode (and other configs you may need):
 
-```json
-{
-  // hide these folders and files
-  "files.exclude": {
-    ".vscode/": true, // the VSCode RC folder
-    ".nyc_output/": true, // the NYC coverage output folder
-    "docs/": true, // the docs/homepage website folder
-    "src/**/*.js": true, // any Typescript output .js in 'src/' folder
-    "test/**/*.js": true, // any Typescript output .js in 'test/' folder
-    "**/*.d.ts": true, // any Typescript declaration file
-    "**/*.map": true // any .map files
-  }
-}
-```
+See [.vscode/settings.json](https://github.com/lamnhan/seminjecto/blob/master/.vscode/settings.json)
 
 #### GIT
 
 Files are ignored by GIT:
 
-```text
-node_modules/
-# testing
-.nyc_output/
-# distribution
-src/**/*.js
-test/**/*.js
-*.map
-*.d.ts
-```
+See [.gitignore](https://github.com/lamnhan/seminjecto/blob/master/.gitignore)
 
 #### Linter/prettier
 
 Linter and prettier using [@google/gts](https://github.com/google/gts):
 
-- The `.eslintrc.json` file: Eslint config
-- The `.prettierrc.js` file: Prettier config
+- The `.eslintrc.json`: the Eslint config file
+- The `.prettierrc.js`: the Prettier config file
 
 #### Documentation
 
@@ -161,66 +143,28 @@ Testing using [@lamnhan/testea](https://github.com/lamnhan/testea):
 
 A library is a project that can using in other projects.
 
-A library is organized into one file and one folder:
+A library is organized into a pair of file and folder:
 
 - The `public-api.ts` file: where you export anything you want other project to access
-- The `lib` folder: contains `index.ts` central file (class `Lib`) and groups of source code type (services, ...)
+- The `lib` folder: the lirary home, contains `index.ts` (class `Lib`) and groups of source code by type (services, ...)
 
-List of scripts:
-
-```json
-{
-  "compile": "tsc",
-  "build": "npm.cmd run compile && npm.cmd i -g",
-  "docs": "ayedocs generate",
-  "test": "npm.cmd run compile && nyc --cache false mocha test/**/*.js",
-  "coverage": "nyc --cache false report --reporter=text-lcov | coveralls",
-  "check": "gts check",
-  "fix": "gts fix",
-  "clean": "gts clean",
-  "prepare": "npm.cmd run compile",
-  "pretest": "npm.cmd run compile",
-  "posttest": "npm.cmd run check"
-}
-```
-
-Package properties:
-
-```json
-{
-  "main": "src/public-api.js",
-  "types": "src/public-api.d.ts",
-  "files": [
-    "src",
-    "!**/*.ts",
-    "**/*.d.ts"
-  ],
-}
-```
+See [package.json](https://github.com/lamnhan/seminjecto/blob/master/package.json) for properties and scripts.
 
 #### CLI
 
-A CLI project is an extended of library, two additional file and folder:
+A CLI project is an extended of library, a pair of file and folder added:
 
-- The `bin.ts` file: cli logic
-- The `cli` folder: contains `index.ts` central file (class `Cli`) and groups of source code type (commands, ...)
+- The `bin.ts` file: the cli logic
+- The `cli` folder: the CLI home, contains `index.ts` (class `Cli`) and groups of source code by type (commands, ...)
 
-Package properties:
+See `bin` property in [package.json](https://github.com/lamnhan/seminjecto/blob/master/package.json) for CLI app registration.
 
-```json
-{
-  "bin": {
-    "cli": "src/bin.js"
-  },
-}
-```
+#### App (Express, ...)
 
-#### App (Express, Sheetbase, ...)
+A app project is an extended of library, a pair of file and folder added:
 
-A app project is an extended of library, two additional file and folder:
-
-- The `www.ts` file: app logic
-- The `app` folder: contains `index.ts` central file (class `App`) and groups of source code type (routes, ...)
+- The `www.ts` file: the app logic
+- The `app` folder: the app home, contains `index.ts` (class `App`) and groups of source code by type (routes, ...)
 
 </section>
 
