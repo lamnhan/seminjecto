@@ -29,15 +29,6 @@ export class GenerateService {
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     if (type === 'command') {
       return this.modificationForCommand(path, name, titleName);
-    } else if (type === 'service') {
-      return this.modificationForAnyType(
-        type,
-        path,
-        name,
-        titleName,
-        'lib',
-        'Lib'
-      );
     } else if (type === 'route') {
       return this.modificationForAnyType(
         type,
@@ -82,7 +73,7 @@ export class GenerateService {
           .replace(
             '\nexport class Cli {',
             [
-              `import { ${className} } from '${importPath}';`,
+              `import {${className}} from '${importPath}';`,
               '',
               'export class Cli {',
             ].join('\n')
@@ -166,7 +157,7 @@ export class GenerateService {
           .replace(
             `\nexport class ${parentName} {`,
             [
-              `import { ${className} } from '${importPath}';`,
+              `import {${className}} from '${importPath}';`,
               '',
               `export class ${parentName} {`,
             ].join('\n')

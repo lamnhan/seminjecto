@@ -47,9 +47,9 @@ export class CreateService {
     await this.fileService.changeContent(
       resolve(dest, 'src', 'public-api.ts'),
       {
-        '{ Lib as LibModule }': `{ Lib as ${titleName}Module }`,
-        '{ Cli as LibCliModule }': `{ Cli as ${titleName}CliModule }`,
-        '{ App as LibAppModule }': `{ App as ${titleName}AppModule }`,
+        '{Lib as LibModule}': `{Lib as ${titleName}Module}`,
+        '{Cli as LibCliModule}': `{Cli as ${titleName}CliModule}`,
+        '{App as LibAppModule}': `{App as ${titleName}AppModule}`,
       }
     );
     // LIB only
@@ -72,7 +72,7 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'cli', 'index.ts'),
         {
-          '{ LibModule }': `{ ${titleName}Module }`, // import {...}
+          '{LibModule}': `{${titleName}Module}`, // import {...}
           "'cli'": `'${name}'`,
           "'A Seminjecto project.'": `'${description}'`,
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
@@ -92,7 +92,7 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'app', 'index.ts'),
         {
-          '{ LibModule }': `{ ${titleName}Module }`, // import {...}
+          '{LibModule}': `{${titleName}Module}`, // import {...}
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
           'this.libModule': `this.${name}Module`,
           'new LibModule': `new ${titleName}Module`,
