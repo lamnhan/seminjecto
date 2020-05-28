@@ -67,6 +67,7 @@ export class Cli {
       const [command, description] = this.generateCommandDef;
       commander
         .command(command)
+        .alias('g')
         .description(description)
         .action((type, dest) => this.generateCommand.run(type, dest));
     })();
