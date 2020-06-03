@@ -80,10 +80,28 @@
 						<li><a href="#introduction">Introduction</a></li>
 						<li><a href="#benefits">Benefits</a></li>
 						<li><a href="#installation">Installation</a></li>
+						<li><a href="#skeletons">Skeletons</a></li>
+						<li><a href="#convention">Convention</a><ul>
+								<li><a href="#helpers">Helpers</a><ul>
+										<li><a href="#vscode">VSCode</a></li>
+										<li><a href="#git">GIT</a></li>
+										<li><a href="#linter-prettier">Linter/prettier</a></li>
+										<li><a href="#documentation">Documentation</a></li>
+										<li><a href="#testing">Testing</a></li>
+									</ul>
+								</li>
+								<li><a href="#project-types">Project types</a><ul>
+										<li><a href="#library">Library</a></li>
+										<li><a href="#cli">CLI</a></li>
+										<li><a href="#app-express">App (Express, ...)</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
 						<li><a href="#command-overview">Command overview</a></li>
 						<li><a href="#command-reference">Command reference</a><ul>
-								<li><a href="#command-generate"><code>generate</code></a></li>
-								<li><a href="#command-new"><code>new</code></a></li>
+								<li><a href="#command-%5B"><code>[</code></a></li>
+								<li><a href="#command-%5B"><code>[</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
 							</ul>
 						</li>
@@ -219,31 +237,153 @@
 					</a></h2>
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
-						<li><a href="#command-generate"><code>semidi generate &lt;type&gt; &lt;dest&gt;</code></a></li>
-						<li><a href="#command-new"><code>semidi new &lt;name&gt; [description] --cli</code></a></li>
+						<li><a href="#command-%5B"><code>semidi [ &#39; g e n e r a t e &lt; t y p e &gt; &lt; d e s t &gt; &#39; , &#39; G e n e r a t e a r e s o u r c e . &#39; , ]</code></a></li>
+						<li><a href="#command-%5B"><code>semidi [ &#39; n e w &lt; t y p e &gt; &lt; n a m e &gt; [ d e s c r i p t i o n ] &#39; , &#39; C r e a t e a n e w p r o j e c t . &#39; , ]</code></a></li>
 						<li><a href="#command-help"><code>semidi help</code></a></li>
 					</ul>
 					<h2><a name="command-reference"><p>Command reference</p>
 					</a></h2>
-					<h3><a name="command-generate"><p><code>generate</code></p>
+					<h3><a name="command-["><p><code>[</code></p>
 					</a></h3>
-					<p>Generate a resource.</p>
-					<p><strong>Parameters</strong></p>
-					<ul>
-						<li><code>&lt;type&gt;</code>: The resource type</li>
-						<li><code>&lt;dest&gt;</code>: The resource destination</li>
-					</ul>
-					<h3><a name="command-new"><p><code>new</code></p>
-					</a></h3>
-					<p>Create a new project.</p>
-					<p><strong>Parameters</strong></p>
-					<ul>
-						<li><code>&lt;name&gt;</code>: The project name</li>
-						<li><code>[description]</code>: The project description</li>
-					</ul>
 					<p><strong>Options</strong></p>
 					<ul>
-						<li><code>-x, --cli</code>: Create a CLI project.</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>e</code>:</li>
+						<li>``:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>y</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li>``:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>d</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>G</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>e</code>:</li>
+						<li>``:</li>
+						<li><code>a</code>:</li>
+						<li>``:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>]</code>:</li>
+					</ul>
+					<h3><a name="command-["><p><code>[</code></p>
+					</a></h3>
+					<p><strong>Options</strong></p>
+					<ul>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>w</code>:</li>
+						<li>``:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>y</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li>``:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>m</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li>``:</li>
+						<li><code>[</code>:</li>
+						<li><code>d</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>C</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>e</code>:</li>
+						<li>``:</li>
+						<li><code>a</code>:</li>
+						<li>``:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>w</code>:</li>
+						<li>``:</li>
+						<li><code>p</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>j</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li>``:</li>
+						<li><code>]</code>:</li>
 					</ul>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>
