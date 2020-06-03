@@ -30,10 +30,22 @@
 - [Introduction](#introduction)
 - [Benefits](#benefits)
 - [Installation](#installation)
+- [Skeletons](#skeletons)
+- [Convention](#convention)
+  - [Helpers](#helpers)
+    - [VSCode](#vscode)
+    - [GIT](#git)
+    - [Linter/prettier](#linter-prettier)
+    - [Documentation](#documentation)
+    - [Testing](#testing)
+  - [Project types](#project-types)
+    - [Library](#library)
+    - [CLI](#cli)
+    - [App (Express, ...)](#app-express)
 - [Command overview](#command-overview)
 - [Command reference](#command-reference)
-  - [`generate`](#command-generate)
-  - [`new`](#command-new)
+  - [`[`](#command-[)
+  - [`[`](#command-[)
   - [`help`](#command-help)
 - [Detail API reference](https://lamnhan.com/seminjecto)
 
@@ -175,36 +187,156 @@ A app project is an extended of library, a pair of file and folder added:
 
 Simple dependency injection for Typescript modules.
 
-- [`semidi generate <type> <dest>`](#command-generate)
-- [`semidi new <name> [description] --cli`](#command-new)
+- [`semidi [ ' g e n e r a t e < t y p e > < d e s t > ' , ' G e n e r a t e a r e s o u r c e . ' , ]`](#command-[)
+- [`semidi [ ' n e w < t y p e > < n a m e > [ d e s c r i p t i o n ] ' , ' C r e a t e a n e w p r o j e c t . ' , ]`](#command-[)
 - [`semidi help`](#command-help)
 
 <h2><a name="command-reference"><p>Command reference</p>
 </a></h2>
 
-<h3><a name="command-generate"><p><code>generate</code></p>
+<h3><a name="command-["><p><code>[</code></p>
 </a></h3>
-
-Generate a resource.
-
-**Parameters**
-
-- `<type>`: The resource type
-- `<dest>`: The resource destination
-
-<h3><a name="command-new"><p><code>new</code></p>
-</a></h3>
-
-Create a new project.
-
-**Parameters**
-
-- `<name>`: The project name
-- `[description]`: The project description
 
 **Options**
 
-- `-x, --cli`: Create a CLI project.
+- ``:
+- ``:
+- ``:
+- ``:
+- `'`:
+- `g`:
+- `e`:
+- `n`:
+- `e`:
+- `r`:
+- `a`:
+- `t`:
+- `e`:
+- ``:
+- `<`:
+- `t`:
+- `y`:
+- `p`:
+- `e`:
+- `>`:
+- ``:
+- `<`:
+- `d`:
+- `e`:
+- `s`:
+- `t`:
+- `>`:
+- `'`:
+- `,`:
+- ``:
+- ``:
+- ``:
+- ``:
+- ``:
+- `'`:
+- `G`:
+- `e`:
+- `n`:
+- `e`:
+- `r`:
+- `a`:
+- `t`:
+- `e`:
+- ``:
+- `a`:
+- ``:
+- `r`:
+- `e`:
+- `s`:
+- `o`:
+- `u`:
+- `r`:
+- `c`:
+- `e`:
+- `.`:
+- `'`:
+- `,`:
+- ``:
+- ``:
+- ``:
+- `]`:
+
+<h3><a name="command-["><p><code>[</code></p>
+</a></h3>
+
+**Options**
+
+- ``:
+- ``:
+- ``:
+- ``:
+- `'`:
+- `n`:
+- `e`:
+- `w`:
+- ``:
+- `<`:
+- `t`:
+- `y`:
+- `p`:
+- `e`:
+- `>`:
+- ``:
+- `<`:
+- `n`:
+- `a`:
+- `m`:
+- `e`:
+- `>`:
+- ``:
+- `[`:
+- `d`:
+- `e`:
+- `s`:
+- `c`:
+- `r`:
+- `i`:
+- `p`:
+- `t`:
+- `i`:
+- `o`:
+- `n`:
+- `]`:
+- `'`:
+- `,`:
+- ``:
+- ``:
+- ``:
+- ``:
+- ``:
+- `'`:
+- `C`:
+- `r`:
+- `e`:
+- `a`:
+- `t`:
+- `e`:
+- ``:
+- `a`:
+- ``:
+- `n`:
+- `e`:
+- `w`:
+- ``:
+- `p`:
+- `r`:
+- `o`:
+- `j`:
+- `e`:
+- `c`:
+- `t`:
+- `.`:
+- `'`:
+- `,`:
+- ``:
+- ``:
+- ``:
+- `]`:
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>

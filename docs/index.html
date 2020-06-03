@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>@lamnhan/seminjecto</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for @lamnhan/seminjecto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> @lamnhan/seminjecto</h1>
+			<h1>@lamnhan/seminjecto</h1>
 		</div>
 	</div>
 </header>
@@ -69,35 +69,33 @@
 					<p><strong>Simple dependency injection for Typescript modules.</strong></p>
 				</section>
 				<section id="header">
-					<p><a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License"></a> <a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/patreon.svg" alt="Support me on Patreon"></a> <a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/paypal_donate.svg" alt="PayPal"></a> <a href="https://m.me/lamhiennhan"><img src="https://img.shields.io/badge/ask/me-anything-1abc9c.svg" alt="Ask me anything"></a></p>
+					<p><a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License"></a>
+						<a href="https://github.com/google/gts"><img src="https://img.shields.io/badge/code%20style-google-blueviolet.svg" alt="Code Style: Google"></a>
+						<a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/patreon.svg" alt="Support me on Patreon"></a>
+						<a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/paypal_donate.svg" alt="PayPal"></a>
+					<a href="https://m.me/lamhiennhan"><img src="https://img.shields.io/badge/ask/me-anything-1abc9c.svg" alt="Ask me anything"></a></p>
 				</section>
 				<section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<ul>
 						<li><a href="#introduction">Introduction</a></li>
 						<li><a href="#benefits">Benefits</a></li>
 						<li><a href="#installation">Installation</a></li>
-						<li><a href="#command-overview">Command overview
-						</a></li>
-						<li><a href="#command-reference">Command reference
-								</a> - <a href="#command-generate">generate
-								</a> - <a href="#command-new">new
-						</a></li>
 						<li><a href="#command-overview">Command overview</a></li>
 						<li><a href="#command-reference">Command reference</a><ul>
-								<li><a href="#command-%5B"><code>[</code></a></li>
-								<li><a href="#command-%5B"><code>[</code></a></li>
+								<li><a href="#command-generate"><code>generate</code></a></li>
+								<li><a href="#command-new"><code>new</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
 							</ul>
 						</li>
 						<li><a href="https://lamnhan.com/seminjecto">Detail API reference</a></li>
 					</ul>
 				</section>
-				<section id="getting-started">
+				<section id="main">
 					<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
 						<h2>Introduction</h2>
 					</a>
 					<p>Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like <a href="http://inversify.io/">InversifyJS</a>, <a href="https://github.com/microsoft/tsyringe">tsyringe</a>, ...</p>
-					<p>But you can also manually apply DI to any module using this simple method. There is a central class (<code>Main</code> for library, <code>Cli</code> for cli app, <code>App</code> for app, ...) that acts as a DI container and injector.</p>
+					<p>But you can also manually apply DI to any module using this simple method. There is a central class (<code>Lib</code> for library, <code>Cli</code> for cli app, <code>App</code> for app, ...) that acts as a DI container and injector.</p>
 					<pre><code class="language-ts"><span class="hljs-comment">// the service 1</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service1Service {}
 
@@ -107,7 +105,7 @@
 }
 
 <span class="hljs-comment">// the container for all services and also the injetor</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Main {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Lib {
   service1Service: Service1Service;
   service2Service: Service2Service;
 
@@ -122,8 +120,9 @@
 						<h2>Benefits</h2>
 					</a>
 					<ul>
-						<li>No need for extra IOC libraries</li>
+						<li>One approaching to any project</li>
 						<li>Clean project structure</li>
+						<li>No need for extra IOC libraries</li>
 						<li>Easy to test (using <a href="https://github.com/lamnhan/testea">@lamnhan/testea</a>)</li>
 						<li>Easy to generate documentation (using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>)</li>
 					</ul>
@@ -132,14 +131,97 @@
 					</a>
 					<p>Install as glocal CLI app.</p>
 					<pre><code class="language-sh">npm install -g @lamnhan/seminjecto</code></pre>
+					<a href="#skeletons" id="skeletons" style="color: inherit; text-decoration: none;">
+						<h2>Skeletons</h2>
+					</a>
+					<p>These skeletons can be use to faster setup a project. You can either clone them manually or using the command <a href="#command-new"><code>semidi new &lt;name&gt;</code></a>:</p>
+					<ul>
+						<li><a href="https://github.com/lamnhan/seminjecto-lib">Library</a>: For any normal library.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-cli">CLI</a>: For building a Node CLI app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-express">Express</a>: Standard ExpressJS app.</li>
+					</ul>
+					<a href="#convention" id="convention" style="color: inherit; text-decoration: none;">
+						<h2>Convention</h2>
+					</a>
+					<p>This standalization is applied to any project unders <strong>Seminjecto</strong> convention.</p>
+					<a href="#helpers" id="helpers" style="color: inherit; text-decoration: none;">
+						<h3>Helpers</h3>
+					</a>
+					<a href="#vscode" id="vscode" style="color: inherit; text-decoration: none;">
+						<h4>VSCode</h4>
+					</a>
+					<p>The file <code>settings.json</code> unders <code>.vscode</code> folder provides configuration for excluding certain content in VSCode (and other configs you may need):</p>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.vscode/settings.json">.vscode/settings.json</a></p>
+					<a href="#git" id="git" style="color: inherit; text-decoration: none;">
+						<h4>GIT</h4>
+					</a>
+					<p>Files are ignored by GIT:</p>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.gitignore">.gitignore</a></p>
+					<a href="#linterprettier" id="linterprettier" style="color: inherit; text-decoration: none;">
+						<h4>Linter/prettier</h4>
+					</a>
+					<p>Linter and prettier using <a href="https://github.com/google/gts">@google/gts</a>:</p>
+					<ul>
+						<li>The <code>.eslintrc.json</code>: the Eslint config file</li>
+						<li>The <code>.prettierrc.js</code>: the Prettier config file</li>
+					</ul>
+					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+						<h4>Documentation</h4>
+					</a>
+					<p>Automatic document generation using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>:</p>
+					<ul>
+						<li>The file <code>.ayedocsrc.js</code> provides configuration</li>
+						<li>Output will be found in the <code>docs</code> folder</li>
+					</ul>
+					<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+						<h4>Testing</h4>
+					</a>
+					<p>Testing using <a href="https://github.com/lamnhan/testea">@lamnhan/testea</a>:</p>
+					<ul>
+						<li>Generate spec files by: <code>testea generate</code></li>
+						<li>All specs files are under <code>test</code> folder</li>
+						<li>Run test by: <code>npm run test</code></li>
+					</ul>
+					<a href="#project-types" id="project-types" style="color: inherit; text-decoration: none;">
+						<h3>Project types</h3>
+					</a>
+					<p><strong>Seminjecto</strong> supports these types of Node project, where source code is hosted under <code>src</code> folder.</p>
+					<a href="#library" id="library" style="color: inherit; text-decoration: none;">
+						<h4>Library</h4>
+					</a>
+					<p>A library is a project that can using in other projects.</p>
+					<p>A library is organized into a pair of file and folder:</p>
+					<ul>
+						<li>The <code>public-api.ts</code> file: where you export anything you want other project to access</li>
+						<li>The <code>lib</code> folder: the lirary home, contains <code>index.ts</code> (class <code>Lib</code>) and groups of source code by type (services, ...)</li>
+					</ul>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/package.json">package.json</a> for properties and scripts.</p>
+					<a href="#cli" id="cli" style="color: inherit; text-decoration: none;">
+						<h4>CLI</h4>
+					</a>
+					<p>A CLI project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>bin.ts</code> file: the cli logic</li>
+						<li>The <code>cli</code> folder: the CLI home, contains <code>index.ts</code> (class <code>Cli</code>) and groups of source code by type (commands, ...)</li>
+					</ul>
+					<p>See <code>bin</code> property in <a href="https://github.com/lamnhan/seminjecto/blob/master/package.json">package.json</a> for CLI app registration.</p>
+					<a href="#app-express-" id="app-express-" style="color: inherit; text-decoration: none;">
+						<h4>App (Express, ...)</h4>
+					</a>
+					<p>A app project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>www.ts</code> file: the app logic</li>
+						<li>The <code>app</code> folder: the app home, contains <code>index.ts</code> (class <code>App</code>) and groups of source code by type (routes, ...)</li>
+					</ul>
 				</section>
-				<section id="cli">
+				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<h2><a name="command-overview"><p>Command overview</p>
 					</a></h2>
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
 						<li><a href="#command-generate"><code>semidi generate &lt;type&gt; &lt;dest&gt;</code></a></li>
 						<li><a href="#command-new"><code>semidi new &lt;name&gt; [description] --cli</code></a></li>
+						<li><a href="#command-help"><code>semidi help</code></a></li>
 					</ul>
 					<h2><a name="command-reference"><p>Command reference</p>
 					</a></h2>
@@ -163,6 +245,9 @@
 					<ul>
 						<li><code>-x, --cli</code>: Create a CLI project.</li>
 					</ul>
+					<h3><a name="command-help"><p><code>help</code></p>
+					</a></h3>
+					<p>Display help.</p>
 				</section>
 				<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<a href="#license" id="license" style="color: inherit; text-decoration: none;">
@@ -205,16 +290,19 @@
 						<a href="classes/generateservice.html" class="tsd-kind-icon">Generate<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/main.html" class="tsd-kind-icon">Main</a>
+						<a href="classes/lib.html" class="tsd-kind-icon">Lib</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#generatetype" class="tsd-kind-icon">Generate<wbr>Type</a>
+						<a href="globals.html#createtype" class="tsd-kind-icon">Create<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a>
 					</li>
 				</ul>
 			</nav>
@@ -226,57 +314,9 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
