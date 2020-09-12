@@ -1,3 +1,4 @@
 {
+  "ignorePatterns": ["docs/", "**/*.js"],
   "extends": "./node_modules/gts/"
 }
