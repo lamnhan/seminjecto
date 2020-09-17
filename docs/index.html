@@ -128,9 +128,9 @@
   service2Service: Service2Service;
 
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">this</span>.service1Service = <span class="hljs-keyword">new</span> Service1Service();
-    <span class="hljs-keyword">this</span>.service2Service = <span class="hljs-keyword">new</span> Service2Service(
-      <span class="hljs-keyword">this</span>.service1Service <span class="hljs-comment">// injects the service 1</span>
+    <span class="hljs-built_in">this</span>.service1Service = <span class="hljs-keyword">new</span> Service1Service();
+    <span class="hljs-built_in">this</span>.service2Service = <span class="hljs-keyword">new</span> Service2Service(
+      <span class="hljs-built_in">this</span>.service1Service <span class="hljs-comment">// injects the service 1</span>
     );
   }
 }</code></pre>
@@ -235,11 +235,11 @@
 				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<h2><a name="command-overview"><p>Command overview</p>
 					</a></h2>
-					<p>&#39;</p>
+					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
-						<li><a href="#command-generate"><code>[ generate &lt;type&gt; &lt;dest&gt;</code></a></li>
-						<li><a href="#command-new"><code>[ new &lt;type&gt; &lt;name&gt; [description]</code></a></li>
-						<li><a href="#command-help"><code>[ help</code></a></li>
+						<li><a href="#command-generate"><code>semidi generate &lt;type&gt; &lt;dest&gt;</code></a></li>
+						<li><a href="#command-new"><code>semidi new &lt;type&gt; &lt;name&gt; [description]</code></a></li>
+						<li><a href="#command-help"><code>semidi help</code></a></li>
 					</ul>
 					<h2><a name="command-reference"><p>Command reference</p>
 					</a></h2>
@@ -341,6 +341,5 @@
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
