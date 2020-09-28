@@ -16,6 +16,8 @@ export class NewCommand {
       this.createService.createCli(path, description);
     } else if (type === 'express') {
       this.createService.createExpress(path, description);
+    } else if (type === 'sheetbase') {
+      this.createService.createSheetbase(path, description);
     }
     // result
     console.log(`Create a new ${yellow(type)} project:`, green(name));

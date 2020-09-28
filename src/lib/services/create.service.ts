@@ -4,7 +4,7 @@ import axios from 'axios';
 import {FileService} from './file.service';
 import {DownloadService} from './download.service';
 
-export type CreateType = 'lib' | 'cli' | 'express';
+export type CreateType = 'lib' | 'cli' | 'express' | 'sheetbase';
 
 export class CreateService {
   constructor(
@@ -22,6 +22,10 @@ export class CreateService {
 
   async createExpress(dest: string, description: string) {
     return this.create('express', dest, description);
+  }
+
+  async createSheetbase(dest: string, description: string) {
+    return this.create('sheetbase', dest, description);
   }
 
   private async create(type: CreateType, dest: string, description: string) {
@@ -86,6 +90,24 @@ export class CreateService {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "app"': `: "${name}"`,
+        'A Seminjecto project.': description,
+      });
+      // src/app/index.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'app', 'index.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${titleName}Module}`, // import {...}
+          'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
+          'this.libModule': `this.${name}Module`,
+          'new LibModule': `new ${titleName}Module`,
+        }
+      );
+    }
+    // SHEETBASE only
+    if (type === 'sheetbase') {
+      // package.json
+      await this.fileService.changeContent(resolve(dest, 'package.json'), {
+        ': "app"': `: "@app/${name}"`,
         'A Seminjecto project.': description,
       });
       // src/app/index.ts
