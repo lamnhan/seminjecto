@@ -1,6 +1,7 @@
 import {resolve} from 'path';
 import {yellow, green} from 'chalk';
-import {CreateService, CreateType} from '../../public-api';
+
+import {CreateService, CreateType} from '../../lib/services/create.service';
 
 export class NewCommand {
   constructor(private createService: CreateService) {}

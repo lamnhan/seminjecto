@@ -1,6 +1,6 @@
 import {red} from 'chalk';
 import {Command} from 'commander';
-import {SeminjectoModule} from '../public-api';
+import {Lib as SeminjectoModule} from '../lib/index';
 
 import {NewCommand} from './commands/new.command';
 import {GenerateCommand} from './commands/generate.command';

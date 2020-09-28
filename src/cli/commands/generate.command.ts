@@ -1,6 +1,7 @@
 import {yellow, green} from 'chalk';
 import {outputFile, pathExists} from 'fs-extra';
-import {GenerateService} from '../../public-api';
+
+import {GenerateService} from '../../lib/services/generate.service';
 
 export class GenerateCommand {
   constructor(private generateService: GenerateService) {}
