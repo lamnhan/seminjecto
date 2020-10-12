@@ -97,19 +97,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Generate<wbr>Command<span class="tsd-signature-symbol">(</span>generateService<span class="tsd-signature-symbol">: </span><a href="generateservice.html" class="tsd-signature-type">GenerateService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="generatecommand.html" class="tsd-signature-type">GenerateCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Generate<wbr>Command<span class="tsd-signature-symbol">(</span>generateService<span class="tsd-signature-symbol">: </span><a href="generateservice.html" class="tsd-signature-type">GenerateService</a>, modifyService<span class="tsd-signature-symbol">: </span><a href="modifyservice.html" class="tsd-signature-type">ModifyService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="generatecommand.html" class="tsd-signature-type">GenerateCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/8aad0ba/src/cli/commands/generate.command.ts#L6">cli/commands/generate.command.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/bf31250/src/cli/commands/generate.command.ts#L7">cli/commands/generate.command.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>generateService: <a href="generateservice.html" class="tsd-signature-type">GenerateService</a></h5>
+								</li>
+								<li>
+									<h5>modifyService: <a href="modifyservice.html" class="tsd-signature-type">ModifyService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="generatecommand.html" class="tsd-signature-type">GenerateCommand</a></h4>
@@ -123,13 +126,13 @@
 					<a name="run" class="tsd-anchor"></a>
 					<h3>run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nested<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/8aad0ba/src/cli/commands/generate.command.ts#L9">cli/commands/generate.command.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/bf31250/src/cli/commands/generate.command.ts#L13">cli/commands/generate.command.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -139,6 +142,9 @@
 								</li>
 								<li>
 									<h5>dest: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>nested: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -191,7 +197,13 @@
 						<a href="lib.html" class="tsd-kind-icon">Lib</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="modifyservice.html" class="tsd-kind-icon">Modify<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/template.html" class="tsd-kind-icon">Template</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
@@ -215,6 +227,9 @@
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

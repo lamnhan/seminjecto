@@ -187,7 +187,7 @@ A app project is an extended of library, a pair of file and folder added:
 
 Simple dependency injection for Typescript modules.
 
-- [`semidi generate <type> <dest>`](#command-generate)
+- [`semidi generate <type> <dest> --nested`](#command-generate)
 - [`semidi new <type> <name> [description]`](#command-new)
 - [`semidi help`](#command-help)
 
@@ -203,6 +203,10 @@ Generate a resource.
 
 - `<type>`: The resource type
 - `<dest>`: The resource destination
+
+**Options**
+
+- `-n, --nested`: Nested under a folder.
 
 <h3><a name="command-new"><p><code>new</code></p>
 </a></h3>

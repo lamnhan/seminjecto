@@ -129,7 +129,7 @@ export class CreateService {
     if (type === 'workspace') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
-        ': "workspace"': `: "${name}"`,
+        ': "addon"': `: "${name}"`,
         'A Seminjecto project.': description,
       });
       // src/addon/index.ts

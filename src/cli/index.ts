@@ -29,6 +29,7 @@ export class Cli {
   generateCommandDef: CommandDef = [
     'generate <type> <dest>',
     'Generate a resource.',
+    ['-n, --nested', 'Nested under a folder.'],
   ];
 
   constructor() {
@@ -36,7 +37,8 @@ export class Cli {
     // commands
     this.newCommand = new NewCommand(this.seminjectoModule.createService);
     this.generateCommand = new GenerateCommand(
-      this.seminjectoModule.generateService
+      this.seminjectoModule.generateService,
+      this.seminjectoModule.modifyService
     );
   }
 
@@ -65,12 +67,15 @@ export class Cli {
 
     // generate
     (() => {
-      const [command, description] = this.generateCommandDef;
+      const [command, description, nestedOpt] = this.generateCommandDef;
       commander
         .command(command)
         .alias('g')
         .description(description)
-        .action((type, dest) => this.generateCommand.run(type, dest));
+        .option(...nestedOpt) // --nested
+        .action((type, dest, {nested}) =>
+          this.generateCommand.run(type, dest, nested)
+        );
     })();
 
     // help
