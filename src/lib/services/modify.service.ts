@@ -61,7 +61,7 @@ export class ModifyService {
             ".addItem('Help', 'helpSidebar')",
             [
               `.addItem('${titleName}', '${name}Sidebar')`,
-              ".addItem('Help', 'helpSidebar')",
+              "      .addItem('Help', 'helpSidebar')",
             ].join('\n')
           );
         return content;
@@ -92,7 +92,7 @@ export class ModifyService {
             ".addItem('Help', 'helpSidebar')",
             [
               `.addItem('${titleName}', '${name}Modal')`,
-              ".addItem('Help', 'helpSidebar')",
+              "      .addItem('Help', 'helpSidebar')",
             ].join('\n')
           );
         return content;

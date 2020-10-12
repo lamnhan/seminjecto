@@ -22,7 +22,11 @@ export class GenerateCommand {
         // save the file
         await outputFile(fullPath, content);
         // show result
-        console.log(`New ${yellow(type)} saved at ` + green(path));
+        console.log(
+          `New ${
+            yellow(type) + (templates.length > 1 ? ' file' : '')
+          } saved at ` + green(path)
+        );
       }
       // modify
       await this.modifyService.modify(type, mainPath);

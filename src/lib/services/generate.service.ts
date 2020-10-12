@@ -21,8 +21,8 @@ export class GenerateService {
         : type === 'command'
         ? 'cli'
         : 'lib';
-    const destPaths = dest.split('/');
-    const name = (destPaths.pop() as string).split('.')[0].toLowerCase();
+    const destSplits = dest.split('/');
+    const name = (destSplits.pop() as string).split('.')[0].toLowerCase();
     const titleName = name.charAt(0).toUpperCase() + name.substr(1);
     // special sidebar & modal
     if (type === 'sidebar' || type === 'modal') {
@@ -31,7 +31,7 @@ export class GenerateService {
         name,
         type,
         part,
-        destPaths,
+        destSplits,
         isNested,
         'ts'
       );
@@ -47,11 +47,11 @@ export class GenerateService {
         name,
         type,
         part,
-        destPaths,
+        destSplits,
         isNested,
         'html'
       );
-      const htmlContent = this.buildSidebarOrModalHtmlContent();
+      const htmlContent = this.buildSidebarOrModalHtmlContent(titleName);
       const htmlTemplate = {
         path: htmlPath,
         fullPath: htmlFullPath,
@@ -63,7 +63,7 @@ export class GenerateService {
         name,
         type,
         part,
-        destPaths,
+        destSplits,
         isNested,
         'scss'
       );
@@ -79,7 +79,7 @@ export class GenerateService {
         name,
         type,
         part,
-        destPaths,
+        destSplits,
         isNested,
         'ts',
         'server'
@@ -108,7 +108,7 @@ export class GenerateService {
         name,
         type,
         part,
-        destPaths,
+        destSplits,
         isNested,
         'ts'
       );
@@ -128,18 +128,19 @@ export class GenerateService {
     name: string,
     type: string,
     part = 'lib',
-    destPaths: string[] = [],
+    destSplits: string[] = [],
     nested = false,
     ext = 'ts',
     extPrefix?: string
   ) {
+    const filePaths = [...destSplits];
     if (nested) {
-      destPaths.push(name);
+      filePaths.push(name);
     }
     const path = [
       'src',
       part,
-      ...destPaths,
+      ...filePaths,
       `${name}.${type}.${extPrefix ? extPrefix + '.' : ''}${ext}`,
     ].join('/');
     const fullPath = resolve(path);
@@ -167,22 +168,18 @@ export class GenerateService {
   }
 
   private buildSidebarOrModalTsContent() {
-    const content = [
-      'function todo() {',
-      "  return 'Add client logic.';",
-      '}',
-    ].join('\n');
+    const content = ['// TODO: Add client logic here.', ''].join('\n');
     return content;
   }
 
-  private buildSidebarOrModalHtmlContent() {
+  private buildSidebarOrModalHtmlContent(titleName: string) {
     const content = [
       '<!DOCTYPE html>',
       '<html lang="en">',
       '<head>',
       '  <meta charset="UTF-8">',
       '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      '  <title>Title</title>',
+      `  <title>${titleName}</title>`,
       '  <base target="_blank">',
       '</head>',
       '<body>',
@@ -215,15 +212,16 @@ export class GenerateService {
         : [
             `export function ${name}Modal() {`,
             '  return SpreadsheetApp.getUi().showModalDialog(',
-            `    HtmlService.createHtmlOutputFromFile('${titleName}Sidebar').setWidth(720).setHeight(480),`,
+            `    HtmlService.createHtmlOutputFromFile('${titleName}Sidebar')`,
+            '      .setWidth(720)',
+            '      .setHeight(480),',
             `    '${titleName}'`,
             '  );',
             '}',
           ]),
       '',
-      'export function todo() {',
-      "  return 'Add server logic.';",
-      '}',
+      '// TODO: Add server logic here.',
+      '',
     ].join('\n');
     return content;
   }
