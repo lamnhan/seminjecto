@@ -4,7 +4,7 @@ import axios from 'axios';
 import {FileService} from './file.service';
 import {DownloadService} from './download.service';
 
-export type CreateType = 'lib' | 'cli' | 'express' | 'sheetbase';
+export type CreateType = 'lib' | 'cli' | 'express' | 'sheetbase' | 'workspace';
 
 export class CreateService {
   constructor(
@@ -26,6 +26,10 @@ export class CreateService {
 
   async createSheetbase(dest: string, description: string) {
     return this.create('sheetbase', dest, description);
+  }
+
+  async createWorkspace(dest: string, description: string) {
+    return this.create('workspace', dest, description);
   }
 
   private async create(type: CreateType, dest: string, description: string) {
@@ -56,7 +60,7 @@ export class CreateService {
         '{App as LibAppModule}': `{App as ${titleName}AppModule}`,
       }
     );
-    // LIB only
+    // LIB
     if (type === 'lib') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
@@ -64,7 +68,7 @@ export class CreateService {
         'A Seminjecto project.': description,
       });
     }
-    // CLI only
+    // CLI
     else if (type === 'cli') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
@@ -85,7 +89,7 @@ export class CreateService {
         }
       );
     }
-    // EXPRESS only
+    // EXPRESS
     if (type === 'express') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
@@ -103,7 +107,7 @@ export class CreateService {
         }
       );
     }
-    // SHEETBASE only
+    // SHEETBASE
     if (type === 'sheetbase') {
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
@@ -118,6 +122,21 @@ export class CreateService {
           'libModule: LibModule': `${name}Module: ${titleName}Module`, // private ...
           'this.libModule': `this.${name}Module`,
           'new LibModule': `new ${titleName}Module`,
+        }
+      );
+    }
+    // WORKSPACE
+    if (type === 'workspace') {
+      // package.json
+      await this.fileService.changeContent(resolve(dest, 'package.json'), {
+        ': "workspace"': `: "${name}"`,
+        'A Seminjecto project.': description,
+      });
+      // src/addon/index.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'addon', 'index.ts'),
+        {
+          "createMenu('Addon')": `createMenu('${titleName}')`,
         }
       );
     }
