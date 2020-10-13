@@ -217,7 +217,7 @@ export class GenerateService {
         : [
             `export function ${nameCamel}Modal() {`,
             '  return SpreadsheetApp.getUi().showModalDialog(',
-            `    HtmlService.createHtmlOutputFromFile('${namePascal}Sidebar')`,
+            `    HtmlService.createHtmlOutputFromFile('${namePascal}Modal')`,
             '      .setWidth(720)',
             '      .setHeight(480),',
             `    '${nameCapital}'`,
