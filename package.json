@@ -1,6 +1,6 @@
 {
   "name": "@lamnhan/seminjecto",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple dependency injection for Typescript modules.",
   "author": "Lam Nhan",
   "homepage": "https://lamnhan.com",
@@ -42,6 +42,7 @@
     "adm-zip": "^0.4.16",
     "axios": "^0.20.0",
     "chalk": "^4.1.0",
+    "change-case": "^4.1.1",
     "commander": "^6.1.0",
     "fs-extra": "^9.0.1",
     "tty-table": "^4.1.3"
