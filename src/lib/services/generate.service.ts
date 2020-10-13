@@ -1,4 +1,5 @@
 import {resolve} from 'path';
+import {camelCase, capitalCase, pascalCase} from 'change-case';
 
 interface Template {
   path: string;
@@ -23,7 +24,9 @@ export class GenerateService {
         : 'lib';
     const destSplits = dest.split('/');
     const name = (destSplits.pop() as string).split('.')[0].toLowerCase();
-    const titleName = name.charAt(0).toUpperCase() + name.substr(1);
+    const nameCamel = camelCase(name);
+    const namePascal = pascalCase(name);
+    const nameCapital = capitalCase(name);
     // special sidebar & modal
     if (type === 'sidebar' || type === 'modal') {
       // .ts
@@ -51,7 +54,7 @@ export class GenerateService {
         isNested,
         'html'
       );
-      const htmlContent = this.buildSidebarOrModalHtmlContent(titleName);
+      const htmlContent = this.buildSidebarOrModalHtmlContent(nameCapital);
       const htmlTemplate = {
         path: htmlPath,
         fullPath: htmlFullPath,
@@ -86,8 +89,9 @@ export class GenerateService {
       );
       const serverContent = this.buildSidebarOrModalServerContent(
         type,
-        name,
-        titleName
+        nameCamel,
+        namePascal,
+        nameCapital
       );
       const serverTemplate = {
         path: serverPath,
@@ -172,14 +176,14 @@ export class GenerateService {
     return content;
   }
 
-  private buildSidebarOrModalHtmlContent(titleName: string) {
+  private buildSidebarOrModalHtmlContent(nameCapital: string) {
     const content = [
       '<!DOCTYPE html>',
       '<html lang="en">',
       '<head>',
       '  <meta charset="UTF-8">',
       '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      `  <title>${titleName}</title>`,
+      `  <title>${nameCapital}</title>`,
       '  <base target="_blank">',
       '</head>',
       '<body>',
@@ -197,25 +201,26 @@ export class GenerateService {
 
   private buildSidebarOrModalServerContent(
     type: string,
-    name: string,
-    titleName: string
+    nameCamel: string,
+    namePascal: string,
+    nameCapital: string
   ) {
     const content = [
       ...(type === 'sidebar'
         ? [
-            `export function ${name}Sidebar() {`,
+            `export function ${nameCamel}Sidebar() {`,
             '  return SpreadsheetApp.getUi().showSidebar(',
-            `    HtmlService.createHtmlOutputFromFile('${titleName}Sidebar').setTitle('${titleName}')`,
+            `    HtmlService.createHtmlOutputFromFile('${namePascal}Sidebar').setTitle('${nameCapital}')`,
             '  );',
             '}',
           ]
         : [
-            `export function ${name}Modal() {`,
+            `export function ${nameCamel}Modal() {`,
             '  return SpreadsheetApp.getUi().showModalDialog(',
-            `    HtmlService.createHtmlOutputFromFile('${titleName}Sidebar')`,
+            `    HtmlService.createHtmlOutputFromFile('${namePascal}Sidebar')`,
             '      .setWidth(720)',
             '      .setHeight(480),',
-            `    '${titleName}'`,
+            `    '${nameCapital}'`,
             '  );',
             '}',
           ]),

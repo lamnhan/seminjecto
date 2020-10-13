@@ -1,4 +1,5 @@
 import {resolve} from 'path';
+import {camelCase, capitalCase, pascalCase} from 'change-case';
 
 import {FileService} from './file.service';
 
@@ -10,19 +11,21 @@ export class ModifyService {
       .replace('.ts', '')
       .split('.')
       .shift() as string;
-    const titleName = name.charAt(0).toUpperCase() + name.substr(1);
+    const nameCamel = camelCase(name);
+    const namePascal = pascalCase(name);
+    const nameCapital = capitalCase(name);
     if (type === 'sidebar') {
-      return this.modificationForSidebar(path, name, titleName);
+      return this.modificationForSidebar(path, nameCamel, nameCapital);
     } else if (type === 'modal') {
-      return this.modificationForModal(path, name, titleName);
+      return this.modificationForModal(path, nameCamel, nameCapital);
     } else if (type === 'command') {
-      return this.modificationForCommand(path, name, titleName);
+      return this.modificationForCommand(path, name, nameCamel, namePascal);
     } else if (type === 'route') {
       return this.modificationForAnyType(
         type,
         path,
-        name,
-        titleName,
+        nameCamel,
+        namePascal,
         'app',
         'App'
       );
@@ -30,8 +33,8 @@ export class ModifyService {
       return this.modificationForAnyType(
         type,
         path,
-        name,
-        titleName,
+        nameCamel,
+        namePascal,
         'lib',
         'Lib'
       );
@@ -40,8 +43,8 @@ export class ModifyService {
 
   private async modificationForSidebar(
     path: string,
-    name: string,
-    titleName: string
+    nameCamel: string,
+    nameCapital: string
   ) {
     const importPath = path.replace('src/addon/', './').replace('.ts', '');
     const exportPath = importPath.replace('./', './addon/');
@@ -60,7 +63,7 @@ export class ModifyService {
           .replace(
             ".addItem('Help', 'helpSidebar')",
             [
-              `.addItem('${titleName}', '${name}Sidebar')`,
+              `.addItem('${nameCapital}', '${nameCamel}Sidebar')`,
               "      .addItem('Help', 'helpSidebar')",
             ].join('\n')
           );
@@ -71,8 +74,8 @@ export class ModifyService {
 
   private async modificationForModal(
     path: string,
-    name: string,
-    titleName: string
+    nameCamel: string,
+    nameCapital: string
   ) {
     const importPath = path.replace('src/addon/', './').replace('.ts', '');
     const exportPath = importPath.replace('./', './addon/');
@@ -91,7 +94,7 @@ export class ModifyService {
           .replace(
             ".addItem('Help', 'helpSidebar')",
             [
-              `.addItem('${titleName}', '${name}Modal')`,
+              `.addItem('${nameCapital}', '${nameCamel}Modal')`,
               "      .addItem('Help', 'helpSidebar')",
             ].join('\n')
           );
@@ -103,12 +106,13 @@ export class ModifyService {
   private async modificationForCommand(
     path: string,
     name: string,
-    titleName: string
+    nameCamel: string,
+    namePascal: string
   ) {
     const importPath = path.replace('src/cli/', './').replace('.ts', '');
     const exportPath = importPath.replace('./', './cli/');
-    const varName = `${name}Command`;
-    const className = `${titleName}Command`;
+    const varName = `${nameCamel}Command`;
+    const className = `${namePascal}Command`;
     // src/public-api.ts
     await this.fileService.changeContent(
       resolve('src', 'public-api.ts'),
@@ -137,7 +141,7 @@ export class ModifyService {
           .replace(
             '  constructor(',
             [
-              `  ${name}CommandDef: CommandDef = [`,
+              `  ${nameCamel}CommandDef: CommandDef = [`,
               `    '${name}', 'Command description.'`,
               '  ];',
               '',
@@ -165,7 +169,7 @@ export class ModifyService {
           [
             `// ${name}`,
             '    (() => {',
-            `      const [command, description] = this.${name}CommandDef;`,
+            `      const [command, description] = this.${nameCamel}CommandDef;`,
             '      commander',
             '        .command(command)',
             '        .description(description)',
@@ -183,16 +187,16 @@ export class ModifyService {
   private async modificationForAnyType(
     type: string,
     path: string,
-    name: string,
-    titleName: string,
+    nameCamel: string,
+    namePascal: string,
     part: string,
     parentName: string
   ) {
     const classSurfix = type.charAt(0).toUpperCase() + type.substr(1);
     const importPath = path.replace(`src/${part}/`, './').replace('.ts', '');
     const exportPath = importPath.replace('./', `./${part}/`);
-    const varName = `${name}${classSurfix}`;
-    const className = `${titleName}${classSurfix}`;
+    const varName = `${nameCamel}${classSurfix}`;
+    const className = `${namePascal}${classSurfix}`;
     // src/public-api.ts
     await this.fileService.changeContent(
       resolve('src', 'public-api.ts'),
