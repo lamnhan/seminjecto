@@ -71,7 +71,7 @@ export class Cli {
         .command(command)
         .alias('g')
         .description(description)
-        .option(...nestedOpt) // --nested
+        .option(...nestedOpt) // -n, --nested
         .action((type, dest, {nested}) =>
           this.generateCommand.run(type, dest, nested)
         );
