@@ -27,17 +27,21 @@ export class GenerateCommand {
       // save files
       for (let i = 0; i < templates.length; i++) {
         const {path, fullPath, content} = templates[i];
-        // save the file
         await outputFile(fullPath, content);
-        // show result
-        console.log(
-          `New ${
-            yellow(type) + (templates.length > 1 ? ' file' : '')
-          } saved at ` + green(path)
-        );
+        console.log('CREATE ' + green(path));
       }
       // modify
       await this.modifyService.modify(type, mainPath);
+      if (type === 'sidebar' || type === 'modal') {
+        console.log('MODIFY src/addon/index.ts');
+      } else if (type === 'command') {
+        console.log('MODIFY src/cli/index.ts');
+      } else if (type === 'route') {
+        console.log('MODIFY src/app/index.ts');
+      } else {
+        console.log('MODIFY src/lib/index.ts');
+      }
+      console.log('MODIFY src/public-api.ts');
     }
   }
 }
