@@ -44,6 +44,7 @@
     - [App (Express, ...)](#app-express)
 - [Command overview](#command-overview)
 - [Command reference](#command-reference)
+  - [`clean`](#command-clean)
   - [`generate`](#command-generate)
   - [`new`](#command-new)
   - [`help`](#command-help)
@@ -187,12 +188,25 @@ A app project is an extended of library, a pair of file and folder added:
 
 Simple dependency injection for Typescript modules.
 
+- [`semidi clean --skip-question --list --includes [value] --excludes [value]`](#command-clean)
 - [`semidi generate <type> <dest> --nested`](#command-generate)
-- [`semidi new <type> <name> [description]`](#command-new)
+- [`semidi new <type> <name> [description] --skip-install --skip-git`](#command-new)
 - [`semidi help`](#command-help)
 
 <h2><a name="command-reference"><p>Command reference</p>
 </a></h2>
+
+<h3><a name="command-clean"><p><code>clean</code></p>
+</a></h3>
+
+Clean typescript output files.
+
+**Options**
+
+- `-y, --skip-question`: Does not ask question.
+- `-l, --list`: Show list of files.
+- `-i, --includes [value]`: Including files, separated by `|`.
+- `-e, --excludes [value]`: Excluding files, separated by `|`.
 
 <h3><a name="command-generate"><p><code>generate</code></p>
 </a></h3>
@@ -218,6 +232,11 @@ Create a new project.
 - `<type>`: The project type: lib, cli, app, ...
 - `<name>`: The project name
 - `[description]`: The project description
+
+**Options**
+
+- `-i, --skip-install`: Does not install dependency packages.
+- `-g, --skip-git`: Does not initialize a git repository.
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>
