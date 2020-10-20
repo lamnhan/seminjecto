@@ -1,4 +1,5 @@
 import {readFile, outputFile} from 'fs-extra';
+import * as recursiveReaddir from 'recursive-readdir';
 
 export class FileService {
   constructor() {}
@@ -16,5 +17,9 @@ export class FileService {
       );
     }
     return outputFile(filePath, content);
+  }
+
+  async readFiles(path: string, ignores: string[] = []) {
+    return recursiveReaddir(path, ignores);
   }
 }

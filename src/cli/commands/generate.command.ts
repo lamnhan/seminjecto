@@ -4,14 +4,22 @@ import {outputFile, pathExists} from 'fs-extra';
 import {GenerateService} from '../../lib/services/generate.service';
 import {ModifyService} from '../../lib/services/modify.service';
 
+interface GenerateOptions {
+  nested?: boolean;
+}
+
 export class GenerateCommand {
   constructor(
     private generateService: GenerateService,
     private modifyService: ModifyService
   ) {}
 
-  async run(type: string, dest: string, nested: boolean) {
-    const templates = this.generateService.generate(type, dest, nested);
+  async run(type: string, dest: string, cmdOptions: GenerateOptions) {
+    const templates = this.generateService.generate(
+      type,
+      dest,
+      cmdOptions.nested
+    );
     const {path: mainPath, fullPath: mainFullPath} = templates[0];
     if (await pathExists(mainFullPath)) {
       console.log(`A ${yellow(type)} already available at ` + green(mainPath));

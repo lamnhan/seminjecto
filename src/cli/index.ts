@@ -20,6 +20,8 @@ export class Cli {
   newCommandDef: CommandDef = [
     'new <type> <name> [description]',
     'Create a new project.',
+    ['--skip-install', 'Does not install dependency packages.'],
+    ['--skip-git', 'Does not initialize a git repository.'],
   ];
 
   /**
@@ -35,7 +37,10 @@ export class Cli {
   constructor() {
     this.seminjectoModule = new SeminjectoModule();
     // commands
-    this.newCommand = new NewCommand(this.seminjectoModule.createService);
+    this.newCommand = new NewCommand(
+      this.seminjectoModule.fileService,
+      this.seminjectoModule.createService
+    );
     this.generateCommand = new GenerateCommand(
       this.seminjectoModule.generateService,
       this.seminjectoModule.modifyService
@@ -55,12 +60,20 @@ export class Cli {
 
     // new
     (() => {
-      const [command, description] = this.newCommandDef;
+      const [
+        command,
+        description,
+        skipInstallOpt,
+        skipGitOpt,
+      ] = this.newCommandDef;
       commander
         .command(command)
+        .alias('n')
         .description(description)
-        .action((type, name, description) =>
-          this.newCommand.run(type, name, description)
+        .option(...skipInstallOpt) // --skip-install
+        .option(...skipGitOpt) // --skip-git
+        .action((type, name, description, options) =>
+          this.newCommand.run(type, name, description, options)
         );
     })();
 
@@ -72,8 +85,8 @@ export class Cli {
         .alias('g')
         .description(description)
         .option(...nestedOpt) // -n, --nested
-        .action((type, dest, {nested}) =>
-          this.generateCommand.run(type, dest, nested)
+        .action((type, dest, options) =>
+          this.generateCommand.run(type, dest, options)
         );
     })();
 
