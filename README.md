@@ -86,7 +86,7 @@ export class Lib {
 
 ## Benefits
 
-- One approaching to any project
+- One approaching for any project
 - Clean project structure
 - No need for extra IOC libraries
 - Easy to test (using [@lamnhan/testea](https://github.com/lamnhan/testea))
@@ -104,9 +104,11 @@ npm install -g @lamnhan/seminjecto
 
 These skeletons can be use to faster setup a project. You can either clone them manually or using the command [`semidi new <name>`](#command-new):
 
-- [Library](https://github.com/lamnhan/seminjecto-lib): For any normal library.
-- [CLI](https://github.com/lamnhan/seminjecto-cli): For building a Node CLI app.
-- [Express](https://github.com/lamnhan/seminjecto-express): Standard ExpressJS app.
+- [Library](https://github.com/lamnhan/seminjecto-lib): Any library.
+- [CLI](https://github.com/lamnhan/seminjecto-cli): Node CLI app.
+- [Express](https://github.com/lamnhan/seminjecto-express): ExpressJS app.
+- [Sheetbase](https://github.com/lamnhan/seminjecto-sheetbase): Sheetbase server app.
+- [Workspace](https://github.com/lamnhan/seminjecto-workspace): Google Workspace (G Suite) add-on.
 
 ## Convention
 
@@ -132,6 +134,7 @@ Linter and prettier using [@google/gts](https://github.com/google/gts):
 
 - The `.eslintrc.json`: the Eslint config file
 - The `.prettierrc.js`: the Prettier config file
+- Lint by: `npm run lint`
 
 #### Documentation
 
@@ -139,6 +142,7 @@ Automatic document generation using [@lamnhan/ayedocs](https://github.com/lamnha
 
 - The file `.ayedocsrc.js` provides configuration
 - Output will be found in the `docs` folder
+- Generate docs by: `npm run docs`
 
 #### Testing
 
@@ -147,6 +151,27 @@ Testing using [@lamnhan/testea](https://github.com/lamnhan/testea):
 - Generate spec files by: `testea generate`
 - All specs files are under `test` folder
 - Run test by: `npm run test`
+
+### Continuous integration
+
+See [.travis.yml](https://github.com/lamnhan/seminjecto/blob/master/.travis.yml)
+
+#### Vendor code
+
+When you want to include code from other projects, put them into `src/lib/vendors/name.vendor.ts`. For example, a function from `lodash`.
+
+Add `// @ts-nocheck` at the top of the files to disable Typescript.
+
+Vendor files also excluded from linting.
+
+#### Special deployment
+
+Libraries for Node projects are deployed with the `src/` folder that contains all the content.
+
+Special project will be deployed from the `.deploy/` folder:
+
+- Refer using a script (... deploy) to generate `.deploy/`, then deploy, then remove `.deploy/`.
+- Pass `--dry-run` to the script to generate `.deploy/` only.
 
 ### Project types
 
@@ -172,12 +197,26 @@ A CLI project is an extended of library, a pair of file and folder added:
 
 See `bin` property in [package.json](https://github.com/lamnhan/seminjecto/blob/master/package.json) for CLI app registration.
 
-#### App (Express, ...)
+#### Express
 
-A app project is an extended of library, a pair of file and folder added:
+A ExpressJS project is an extended of library, a pair of file and folder added:
 
 - The `www.ts` file: the app logic
 - The `app` folder: the app home, contains `index.ts` (class `App`) and groups of source code by type (routes, ...)
+
+#### Sheetbase
+
+A Sheetbase project is an extended of library, a pair of file and folder added:
+
+- The `www.ts` file: the app logic
+- The `app` folder: the app home, contains `index.ts` (class `App`) and groups of source code by type (routes, ...)
+
+#### Workspace
+
+A Workspace project is an extended of library, a pair of file and folder added:
+
+- The `hook.ts` file: the addon logic
+- The `addon` folder: the addon home, contains `index.ts` (class `Addon`) and groups of source code by type (sidebars, modals, ...)
 
 </section>
 
