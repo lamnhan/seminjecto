@@ -27,19 +27,19 @@ export class NewCommand {
     // create
     switch (type) {
       case 'lib':
-        this.createService.createLib(path, description);
+        await this.createService.createLib(path, description);
         break;
       case 'cli':
-        this.createService.createCli(path, description);
+        await this.createService.createCli(path, description);
         break;
       case 'express':
-        this.createService.createExpress(path, description);
+        await this.createService.createExpress(path, description);
         break;
       case 'sheetbase':
-        this.createService.createSheetbase(path, description);
+        await this.createService.createSheetbase(path, description);
         break;
       case 'workspace':
-        this.createService.createWorkspace(path, description);
+        await this.createService.createWorkspace(path, description);
         break;
       default:
         throw new Error('Not supported project type: ' + red(type));
@@ -47,7 +47,9 @@ export class NewCommand {
     // result
     const files = await this.fileService.readFiles(path);
     console.log(`Create a new ${yellow(type)} project:`, green(name));
-    files.forEach(file => console.log(file));
+    files.forEach(file =>
+      console.log(file.replace(path, '').replace(/\\/g, '/'))
+    );
     // install dependencies
     if (!cmdOptions.skipInstall) {
       execSync('npm install', {stdio: 'inherit', cwd: path});
@@ -56,5 +58,7 @@ export class NewCommand {
     if (!cmdOptions.skipGit) {
       execSync('git init', {stdio: 'inherit', cwd: path});
     }
+    // done
+    return execSync('cd ' + path, {stdio: 'ignore'});
   }
 }
