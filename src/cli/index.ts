@@ -4,11 +4,13 @@ import {Lib as SeminjectoModule} from '../lib/index';
 
 import {NewCommand} from './commands/new.command';
 import {GenerateCommand} from './commands/generate.command';
+import {CleanCommand} from './commands/clean.command';
 
 export class Cli {
   private seminjectoModule: SeminjectoModule;
   newCommand: NewCommand;
   generateCommand: GenerateCommand;
+  cleanCommand: CleanCommand;
 
   commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
@@ -20,8 +22,8 @@ export class Cli {
   newCommandDef: CommandDef = [
     'new <type> <name> [description]',
     'Create a new project.',
-    ['--skip-install', 'Does not install dependency packages.'],
-    ['--skip-git', 'Does not initialize a git repository.'],
+    ['-i, --skip-install', 'Does not install dependency packages.'],
+    ['-g, --skip-git', 'Does not initialize a git repository.'],
   ];
 
   /**
@@ -32,6 +34,15 @@ export class Cli {
     'generate <type> <dest>',
     'Generate a resource.',
     ['-n, --nested', 'Nested under a folder.'],
+  ];
+
+  cleanCommandDef: CommandDef = [
+    'clean',
+    'Clean typescript output files.',
+    ['-y, --skip-question', 'Does not ask question.'],
+    ['-l, --list', 'Show list of files.'],
+    ['-i, --includes [value]', 'Including files, separated by `|`.'],
+    ['-e, --excludes [value]', 'Excluding files, separated by `|`.'],
   ];
 
   constructor() {
@@ -45,6 +56,7 @@ export class Cli {
       this.seminjectoModule.generateService,
       this.seminjectoModule.modifyService
     );
+    this.cleanCommand = new CleanCommand(this.seminjectoModule.fileService);
   }
 
   getApp() {
@@ -88,6 +100,26 @@ export class Cli {
         .action((type, dest, options) =>
           this.generateCommand.run(type, dest, options)
         );
+    })();
+
+    // clean
+    (() => {
+      const [
+        command,
+        description,
+        skipQuestionOpt,
+        listOpt,
+        includesOpt,
+        excludesOpt,
+      ] = this.cleanCommandDef;
+      commander
+        .command(command)
+        .description(description)
+        .option(...skipQuestionOpt) // -y, --skip-question
+        .option(...listOpt) // -l, --list
+        .option(...includesOpt) // -i, --includes
+        .option(...excludesOpt) // -e, --excludes
+        .action(options => this.cleanCommand.run(options));
     })();
 
     // help

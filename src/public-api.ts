@@ -9,3 +9,5 @@ export * from './lib/services/modify.service';
 
 export * from './cli/commands/new.command';
 export * from './cli/commands/generate.command';
+
+export * from './cli/commands/clean.command';
