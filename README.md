@@ -38,10 +38,15 @@
     - [Linter/prettier](#linter-prettier)
     - [Documentation](#documentation)
     - [Testing](#testing)
+    - [Continuous integration](#continuous-integration)
+    - [Vendor code](#vendor-code)
+    - [Special deployment](#special-deployment)
   - [Project types](#project-types)
     - [Library](#library)
     - [CLI](#cli)
-    - [App (Express, ...)](#app-express)
+    - [Express](#express)
+    - [Sheetbase](#sheetbase)
+    - [Workspace](#workspace)
 - [Command overview](#command-overview)
 - [Command reference](#command-reference)
   - [`clean`](#command-clean)
@@ -152,7 +157,7 @@ Testing using [@lamnhan/testea](https://github.com/lamnhan/testea):
 - All specs files are under `test` folder
 - Run test by: `npm run test`
 
-### Continuous integration
+#### Continuous integration
 
 See [.travis.yml](https://github.com/lamnhan/seminjecto/blob/master/.travis.yml)
 
