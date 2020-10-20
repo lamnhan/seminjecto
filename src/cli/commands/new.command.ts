@@ -48,7 +48,7 @@ export class NewCommand {
     const files = await this.fileService.readFiles(path);
     console.log(`Create a new ${yellow(type)} project:`, green(name));
     files.forEach(file =>
-      console.log(file.replace(path, '').replace(/\\/g, '/'))
+      console.log(file.replace(path, '').replace(/\\/g, '/').substr(1))
     );
     // install dependencies
     if (!cmdOptions.skipInstall) {
@@ -58,7 +58,5 @@ export class NewCommand {
     if (!cmdOptions.skipGit) {
       execSync('git init', {stdio: 'inherit', cwd: path});
     }
-    // done
-    return execSync('cd ' + path, {stdio: 'ignore'});
   }
 }
