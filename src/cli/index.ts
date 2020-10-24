@@ -15,29 +15,30 @@ export class Cli {
   commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
   /**
-   * @params <type> - The project type: lib, cli, app, ...
-   * @params <name> - The project name
-   * @params [description] - The project description
+   * @param type - The project type: lib, cli, express, sheetbase, workspace, ...
+   * @param name - The project name
+   * @param description? - The project description
    */
   newCommandDef: CommandDef = [
-    'new <type> <name> [description]',
+    ['new <type> <name> [description]', 'start', 'n'],
     'Create a new project.',
     ['-i, --skip-install', 'Does not install dependency packages.'],
     ['-g, --skip-git', 'Does not initialize a git repository.'],
   ];
 
   /**
-   * @params <type> - The resource type
-   * @params <dest> - The resource destination
+   * @param type - The resource type
+   * @param dest - The resource destination
    */
   generateCommandDef: CommandDef = [
-    'generate <type> <dest>',
+    ['generate <type> <dest>', 'create', 'g'],
     'Generate a resource.',
     ['-n, --nested', 'Nested under a folder.'],
+    ['-t, --typing', 'Save typing file.'],
   ];
 
   cleanCommandDef: CommandDef = [
-    'clean',
+    ['clean', 'c'],
     'Clean typescript output files.',
     ['-y, --skip-question', 'Does not ask question.'],
     ['-l, --list', 'Show list of files.'],
@@ -73,17 +74,17 @@ export class Cli {
     // new
     (() => {
       const [
-        command,
+        [command, ...aliases],
         description,
         skipInstallOpt,
         skipGitOpt,
       ] = this.newCommandDef;
       commander
         .command(command)
-        .alias('n')
+        .aliases(aliases)
         .description(description)
-        .option(...skipInstallOpt) // --skip-install
-        .option(...skipGitOpt) // --skip-git
+        .option(...skipInstallOpt)
+        .option(...skipGitOpt)
         .action((type, name, description, options) =>
           this.newCommand.run(type, name, description, options)
         );
@@ -91,12 +92,18 @@ export class Cli {
 
     // generate
     (() => {
-      const [command, description, nestedOpt] = this.generateCommandDef;
+      const [
+        [command, ...aliases],
+        description,
+        nestedOpt,
+        typingOpt,
+      ] = this.generateCommandDef;
       commander
         .command(command)
-        .alias('g')
+        .aliases(aliases)
         .description(description)
-        .option(...nestedOpt) // -n, --nested
+        .option(...nestedOpt)
+        .option(...typingOpt)
         .action((type, dest, options) =>
           this.generateCommand.run(type, dest, options)
         );
@@ -105,7 +112,7 @@ export class Cli {
     // clean
     (() => {
       const [
-        command,
+        [command, ...aliases],
         description,
         skipQuestionOpt,
         listOpt,
@@ -114,11 +121,12 @@ export class Cli {
       ] = this.cleanCommandDef;
       commander
         .command(command)
+        .aliases(aliases)
         .description(description)
-        .option(...skipQuestionOpt) // -y, --skip-question
-        .option(...listOpt) // -l, --list
-        .option(...includesOpt) // -i, --includes
-        .option(...excludesOpt) // -e, --excludes
+        .option(...skipQuestionOpt)
+        .option(...listOpt)
+        .option(...includesOpt)
+        .option(...excludesOpt)
         .action(options => this.cleanCommand.run(options));
     })();
 
@@ -138,4 +146,4 @@ export class Cli {
   }
 }
 
-type CommandDef = [string, string, ...Array<[string, string]>];
+type CommandDef = [string | string[], string, ...Array<[string, string]>];

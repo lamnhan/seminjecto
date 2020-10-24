@@ -47,12 +47,13 @@
     - [Express](#express)
     - [Sheetbase](#sheetbase)
     - [Workspace](#workspace)
-- [Command overview](#command-overview)
-- [Command reference](#command-reference)
+- [Command overview](#cli-command-overview)
+- [Command reference](#cli-command-reference)
   - [`clean`](#command-clean)
   - [`generate`](#command-generate)
   - [`new`](#command-new)
   - [`help`](#command-help)
+  - [`*`](#command-*)
 - [Detail API reference](https://lamnhan.com/seminjecto)
 
 
@@ -227,17 +228,18 @@ A Workspace project is an extended of library, a pair of file and folder added:
 
 <section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-<h2><a name="command-overview"><p>Command overview</p>
+<h2><a name="cli-command-overview"><p>Command overview</p>
 </a></h2>
 
 Simple dependency injection for Typescript modules.
 
-- [`semidi clean --skip-question --list --includes [value] --excludes [value]`](#command-clean)
-- [`semidi generate <type> <dest> --nested`](#command-generate)
-- [`semidi new <type> <name> [description] --skip-install --skip-git`](#command-new)
+- [`semidi clean|c --skip-question --list --includes [value] --excludes [value]`](#command-clean)
+- [`semidi generate|create|g <type> <dest> --nested`](#command-generate)
+- [`semidi new|start|n <type> <name> [description] --skip-install --skip-git`](#command-new)
 - [`semidi help`](#command-help)
+- [`semidi *`](#command-*)
 
-<h2><a name="command-reference"><p>Command reference</p>
+<h2><a name="cli-command-reference"><p>Command reference</p>
 </a></h2>
 
 <h3><a name="command-clean"><p><code>clean</code></p>
@@ -245,7 +247,14 @@ Simple dependency injection for Typescript modules.
 
 Clean typescript output files.
 
-**Options**
+**Usage:**
+
+```sh
+semidi clean --skip-question --list --includes [value] --excludes [value]
+semidi c --skip-question --list --includes [value] --excludes [value]
+```
+
+**Options:**
 
 - `-y, --skip-question`: Does not ask question.
 - `-l, --list`: Show list of files.
@@ -257,12 +266,20 @@ Clean typescript output files.
 
 Generate a resource.
 
-**Parameters**
+**Usage:**
+
+```sh
+semidi generate <type> <dest> --nested
+semidi create <type> <dest> --nested
+semidi g <type> <dest> --nested
+```
+
+**Parameters:**
 
 - `<type>`: The resource type
 - `<dest>`: The resource destination
 
-**Options**
+**Options:**
 
 - `-n, --nested`: Nested under a folder.
 
@@ -271,13 +288,21 @@ Generate a resource.
 
 Create a new project.
 
-**Parameters**
+**Usage:**
 
-- `<type>`: The project type: lib, cli, app, ...
+```sh
+semidi new <type> <name> [description] --skip-install --skip-git
+semidi start <type> <name> [description] --skip-install --skip-git
+semidi n <type> <name> [description] --skip-install --skip-git
+```
+
+**Parameters:**
+
+- `<type>`: The project type: lib, cli, express, sheetbase, workspace, ...
 - `<name>`: The project name
 - `[description]`: The project description
 
-**Options**
+**Options:**
 
 - `-i, --skip-install`: Does not install dependency packages.
 - `-g, --skip-git`: Does not initialize a git repository.
@@ -286,6 +311,23 @@ Create a new project.
 </a></h3>
 
 Display help.
+
+**Usage:**
+
+```sh
+semidi help
+```
+
+<h3><a name="command-*"><p><code>*</code></p>
+</a></h3>
+
+Any other command is not suppoted.
+
+**Usage:**
+
+```sh
+semidi <cmd>
+```
 
 </section>
 

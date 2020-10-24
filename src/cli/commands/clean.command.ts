@@ -5,7 +5,7 @@ import {prompt} from 'inquirer';
 
 import {FileService} from '../../lib/services/file.service';
 
-interface CleanOptions {
+interface CleanCommandOptions {
   skipQuestion?: boolean;
   list?: boolean;
   includes?: string;
@@ -15,12 +15,12 @@ interface CleanOptions {
 export class CleanCommand {
   constructor(private fileService: FileService) {}
 
-  async run(cmdOptions: CleanOptions) {
-    const includes = cmdOptions.includes
-      ? this.processInputPaths(cmdOptions.includes)
+  async run(commandOptions: CleanCommandOptions) {
+    const includes = commandOptions.includes
+      ? this.processInputPaths(commandOptions.includes)
       : [];
-    const excludes = cmdOptions.excludes
-      ? this.processInputPaths(cmdOptions.excludes)
+    const excludes = commandOptions.excludes
+      ? this.processInputPaths(commandOptions.excludes)
       : [];
     // process files
     const srcFiles = await this.fileService.readFiles('src');
@@ -34,13 +34,13 @@ export class CleanCommand {
       )
       .concat(...includes);
     // show file list
-    if (cmdOptions.list) {
+    if (commandOptions.list) {
       console.log('Files for removal:');
       files.forEach(path => console.log(red(path)));
     }
     // question
     const yes = await (async () => {
-      if (!cmdOptions.skipQuestion) {
+      if (!commandOptions.skipQuestion) {
         const answer = await prompt([
           {
             type: 'input',

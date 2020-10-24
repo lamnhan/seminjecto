@@ -88,18 +88,24 @@
 										<li><a href="#linter-prettier">Linter/prettier</a></li>
 										<li><a href="#documentation">Documentation</a></li>
 										<li><a href="#testing">Testing</a></li>
+										<li><a href="#continuous-integration">Continuous integration</a></li>
+										<li><a href="#vendor-code">Vendor code</a></li>
+										<li><a href="#special-deployment">Special deployment</a></li>
 									</ul>
 								</li>
 								<li><a href="#project-types">Project types</a><ul>
 										<li><a href="#library">Library</a></li>
 										<li><a href="#cli">CLI</a></li>
-										<li><a href="#app-express">App (Express, ...)</a></li>
+										<li><a href="#express">Express</a></li>
+										<li><a href="#sheetbase">Sheetbase</a></li>
+										<li><a href="#workspace">Workspace</a></li>
 									</ul>
 								</li>
 							</ul>
 						</li>
 						<li><a href="#command-overview">Command overview</a></li>
 						<li><a href="#command-reference">Command reference</a><ul>
+								<li><a href="#command-clean"><code>clean</code></a></li>
 								<li><a href="#command-generate"><code>generate</code></a></li>
 								<li><a href="#command-new"><code>new</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
@@ -138,7 +144,7 @@
 						<h2>Benefits</h2>
 					</a>
 					<ul>
-						<li>One approaching to any project</li>
+						<li>One approaching for any project</li>
 						<li>Clean project structure</li>
 						<li>No need for extra IOC libraries</li>
 						<li>Easy to test (using <a href="https://github.com/lamnhan/testea">@lamnhan/testea</a>)</li>
@@ -154,9 +160,11 @@
 					</a>
 					<p>These skeletons can be use to faster setup a project. You can either clone them manually or using the command <a href="#command-new"><code>semidi new &lt;name&gt;</code></a>:</p>
 					<ul>
-						<li><a href="https://github.com/lamnhan/seminjecto-lib">Library</a>: For any normal library.</li>
-						<li><a href="https://github.com/lamnhan/seminjecto-cli">CLI</a>: For building a Node CLI app.</li>
-						<li><a href="https://github.com/lamnhan/seminjecto-express">Express</a>: Standard ExpressJS app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-lib">Library</a>: Any library.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-cli">CLI</a>: Node CLI app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-express">Express</a>: ExpressJS app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-sheetbase">Sheetbase</a>: Sheetbase server app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-workspace">Workspace</a>: Google Workspace (G Suite) add-on.</li>
 					</ul>
 					<a href="#convention" id="convention" style="color: inherit; text-decoration: none;">
 						<h2>Convention</h2>
@@ -182,6 +190,7 @@
 					<ul>
 						<li>The <code>.eslintrc.json</code>: the Eslint config file</li>
 						<li>The <code>.prettierrc.js</code>: the Prettier config file</li>
+						<li>Lint by: <code>npm run lint</code></li>
 					</ul>
 					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 						<h4>Documentation</h4>
@@ -190,6 +199,7 @@
 					<ul>
 						<li>The file <code>.ayedocsrc.js</code> provides configuration</li>
 						<li>Output will be found in the <code>docs</code> folder</li>
+						<li>Generate docs by: <code>npm run docs</code></li>
 					</ul>
 					<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
 						<h4>Testing</h4>
@@ -199,6 +209,25 @@
 						<li>Generate spec files by: <code>testea generate</code></li>
 						<li>All specs files are under <code>test</code> folder</li>
 						<li>Run test by: <code>npm run test</code></li>
+					</ul>
+					<a href="#continuous-integration" id="continuous-integration" style="color: inherit; text-decoration: none;">
+						<h4>Continuous integration</h4>
+					</a>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.travis.yml">.travis.yml</a></p>
+					<a href="#vendor-code" id="vendor-code" style="color: inherit; text-decoration: none;">
+						<h4>Vendor code</h4>
+					</a>
+					<p>When you want to include code from other projects, put them into <code>src/lib/vendors/name.vendor.ts</code>. For example, a function from <code>lodash</code>.</p>
+					<p>Add <code>// @ts-nocheck</code> at the top of the files to disable Typescript.</p>
+					<p>Vendor files also excluded from linting.</p>
+					<a href="#special-deployment" id="special-deployment" style="color: inherit; text-decoration: none;">
+						<h4>Special deployment</h4>
+					</a>
+					<p>Libraries for Node projects are deployed with the <code>src/</code> folder that contains all the content.</p>
+					<p>Special project will be deployed from the <code>.deploy/</code> folder:</p>
+					<ul>
+						<li>Refer using a script (... deploy) to generate <code>.deploy/</code>, then deploy, then remove <code>.deploy/</code>.</li>
+						<li>Pass <code>--dry-run</code> to the script to generate <code>.deploy/</code> only.</li>
 					</ul>
 					<a href="#project-types" id="project-types" style="color: inherit; text-decoration: none;">
 						<h3>Project types</h3>
@@ -223,13 +252,29 @@
 						<li>The <code>cli</code> folder: the CLI home, contains <code>index.ts</code> (class <code>Cli</code>) and groups of source code by type (commands, ...)</li>
 					</ul>
 					<p>See <code>bin</code> property in <a href="https://github.com/lamnhan/seminjecto/blob/master/package.json">package.json</a> for CLI app registration.</p>
-					<a href="#app-express-" id="app-express-" style="color: inherit; text-decoration: none;">
-						<h4>App (Express, ...)</h4>
+					<a href="#express" id="express" style="color: inherit; text-decoration: none;">
+						<h4>Express</h4>
 					</a>
-					<p>A app project is an extended of library, a pair of file and folder added:</p>
+					<p>A ExpressJS project is an extended of library, a pair of file and folder added:</p>
 					<ul>
 						<li>The <code>www.ts</code> file: the app logic</li>
 						<li>The <code>app</code> folder: the app home, contains <code>index.ts</code> (class <code>App</code>) and groups of source code by type (routes, ...)</li>
+					</ul>
+					<a href="#sheetbase" id="sheetbase" style="color: inherit; text-decoration: none;">
+						<h4>Sheetbase</h4>
+					</a>
+					<p>A Sheetbase project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>www.ts</code> file: the app logic</li>
+						<li>The <code>app</code> folder: the app home, contains <code>index.ts</code> (class <code>App</code>) and groups of source code by type (routes, ...)</li>
+					</ul>
+					<a href="#workspace" id="workspace" style="color: inherit; text-decoration: none;">
+						<h4>Workspace</h4>
+					</a>
+					<p>A Workspace project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>hook.ts</code> file: the addon logic</li>
+						<li>The <code>addon</code> folder: the addon home, contains <code>index.ts</code> (class <code>Addon</code>) and groups of source code by type (sidebars, modals, ...)</li>
 					</ul>
 				</section>
 				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
@@ -237,12 +282,23 @@
 					</a></h2>
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
+						<li><a href="#command-clean"><code>semidi clean --skip-question --list --includes [value] --excludes [value]</code></a></li>
 						<li><a href="#command-generate"><code>semidi generate &lt;type&gt; &lt;dest&gt; --nested</code></a></li>
-						<li><a href="#command-new"><code>semidi new &lt;type&gt; &lt;name&gt; [description]</code></a></li>
+						<li><a href="#command-new"><code>semidi new &lt;type&gt; &lt;name&gt; [description] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-help"><code>semidi help</code></a></li>
 					</ul>
 					<h2><a name="command-reference"><p>Command reference</p>
 					</a></h2>
+					<h3><a name="command-clean"><p><code>clean</code></p>
+					</a></h3>
+					<p>Clean typescript output files.</p>
+					<p><strong>Options</strong></p>
+					<ul>
+						<li><code>-y, --skip-question</code>: Does not ask question.</li>
+						<li><code>-l, --list</code>: Show list of files.</li>
+						<li><code>-i, --includes [value]</code>: Including files, separated by <code>|</code>.</li>
+						<li><code>-e, --excludes [value]</code>: Excluding files, separated by <code>|</code>.</li>
+					</ul>
 					<h3><a name="command-generate"><p><code>generate</code></p>
 					</a></h3>
 					<p>Generate a resource.</p>
@@ -263,6 +319,11 @@
 						<li><code>&lt;type&gt;</code>: The project type: lib, cli, app, ...</li>
 						<li><code>&lt;name&gt;</code>: The project name</li>
 						<li><code>[description]</code>: The project description</li>
+					</ul>
+					<p><strong>Options</strong></p>
+					<ul>
+						<li><code>-i, --skip-install</code>: Does not install dependency packages.</li>
+						<li><code>-g, --skip-git</code>: Does not initialize a git repository.</li>
 					</ul>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>

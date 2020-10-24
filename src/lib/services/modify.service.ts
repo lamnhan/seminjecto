@@ -6,7 +6,18 @@ import {FileService} from './file.service';
 export class ModifyService {
   constructor(private fileService: FileService) {}
 
-  modify(type: string, path: string) {
+  async modify(type: string, path: string, typingPath?: string) {
+    // export typing
+    if (typingPath) {
+      const typingExportPath = typingPath
+        .replace('src/', './')
+        .replace('.ts', '');
+      await this.fileService.changeContent(
+        resolve('src', 'public-api.ts'),
+        content => content + `\nexport * from '${typingExportPath}';`
+      );
+    }
+    // modify
     const name = (path.replace(/\\/g, '').split('/').pop() as string)
       .replace('.ts', '')
       .split('.')

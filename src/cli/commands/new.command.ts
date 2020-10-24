@@ -5,7 +5,7 @@ import {yellow, green, red} from 'chalk';
 import {FileService} from '../../lib/services/file.service';
 import {CreateService, CreateType} from '../../lib/services/create.service';
 
-interface NewOptions {
+interface NewCommandOptions {
   skipGit?: boolean;
   skipInstall?: boolean;
 }
@@ -20,7 +20,7 @@ export class NewCommand {
     type: CreateType,
     name: string,
     description: string,
-    cmdOptions: NewOptions
+    commandOptions: NewCommandOptions
   ) {
     const path = resolve(name);
     description = description || 'A Seminjecto project.';
@@ -51,11 +51,11 @@ export class NewCommand {
       console.log(file.replace(path, '').replace(/\\/g, '/').substr(1))
     );
     // install dependencies
-    if (!cmdOptions.skipInstall) {
+    if (!commandOptions.skipInstall) {
       execSync('npm install', {stdio: 'inherit', cwd: path});
     }
     // init git
-    if (!cmdOptions.skipGit) {
+    if (!commandOptions.skipGit) {
       execSync('git init', {stdio: 'inherit', cwd: path});
     }
   }
