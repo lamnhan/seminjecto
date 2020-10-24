@@ -1,11 +1,12 @@
 import {execSync} from 'child_process';
 import {resolve} from 'path';
-import {yellow, green, red} from 'chalk';
+import {yellow, green, gray} from 'chalk';
 
 import {FileService} from '../../lib/services/file.service';
-import {CreateService, CreateType} from '../../lib/services/create.service';
+import {CreateService} from '../../lib/services/create.service';
 
 interface NewCommandOptions {
+  source?: string;
   skipGit?: boolean;
   skipInstall?: boolean;
 }
@@ -17,36 +18,24 @@ export class NewCommand {
   ) {}
 
   async run(
-    type: CreateType,
+    type: string,
     name: string,
     description: string,
     commandOptions: NewCommandOptions
   ) {
-    const path = resolve(name);
+    const url = this.createService.proccessInput(commandOptions.source || type);
+    const validName = name
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9-]/g, ' ')
+      .replace(/ /g, '-');
+    const path = resolve(validName);
     description = description || 'A Seminjecto project.';
     // create
-    switch (type) {
-      case 'lib':
-        await this.createService.createLib(path, description);
-        break;
-      case 'cli':
-        await this.createService.createCli(path, description);
-        break;
-      case 'express':
-        await this.createService.createExpress(path, description);
-        break;
-      case 'sheetbase':
-        await this.createService.createSheetbase(path, description);
-        break;
-      case 'workspace':
-        await this.createService.createWorkspace(path, description);
-        break;
-      default:
-        throw new Error('Not supported project type: ' + red(type));
-    }
-    // result
+    await this.createService.create(url, type, path, description);
+    // show list of files
     const files = await this.fileService.readFiles(path);
-    console.log(`Create a new ${yellow(type)} project:`, green(name));
+    console.log(`Create a new ${yellow(type)} project:`, green(validName));
+    console.log('From: ' + gray(url));
     files.forEach(file =>
       console.log(file.replace(path, '').replace(/\\/g, '/').substr(1))
     );

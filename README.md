@@ -49,9 +49,9 @@
     - [Workspace](#workspace)
 - [Command overview](#cli-command-overview)
 - [Command reference](#cli-command-reference)
+  - [`[`](#command-[)
   - [`clean`](#command-clean)
   - [`generate`](#command-generate)
-  - [`new`](#command-new)
   - [`help`](#command-help)
   - [`*`](#command-*)
 - [Detail API reference](https://lamnhan.com/seminjecto)
@@ -233,14 +233,383 @@ A Workspace project is an extended of library, a pair of file and folder added:
 
 Simple dependency injection for Typescript modules.
 
+- [`semidi [ [ ' n e w < t y p e > < n a m e > [ d e s c r i p t i o n ] ' , ' s t a r t ' , ' n ' ] , ' C r e a t e a n e w p r o j e c t . ' , [ ' - s , - - s o u r c e [ v a l u e ] ' , ' C u s t o m s o u r c e : { i n n e r _ r e p o } @ { t a g } , { o r g } / { r e p o } , { o r g } / { r e p o } @ { t a g } o r u r l . ' , ] , [ ' - i , - - s k i p - i n s t a l l ' , ' D o e s n o t i n s t a l l d e p e n d e n c y p a c k a g e s . ' ] , [ ' - g , - - s k i p - g i t ' , ' D o e s n o t i n i t i a l i z e a g i t r e p o s i t o r y . ' ] , ]`](#command-[)
 - [`semidi clean|c --skip-question --list --includes [value] --excludes [value]`](#command-clean)
 - [`semidi generate|create|g <type> <dest> --nested --typing`](#command-generate)
-- [`semidi new|start|n <type> <name> [description] --skip-install --skip-git`](#command-new)
 - [`semidi help`](#command-help)
 - [`semidi *`](#command-*)
 
 <h2><a name="cli-command-reference"><p>Command reference</p>
 </a></h2>
+
+<h3><a name="command-["><p><code>[</code></p>
+</a></h3>
+
+**Usage:**
+
+```sh
+semidi [         [ ' n e w   < t y p e >   < n a m e >   [ d e s c r i p t i o n ] ' ,   ' s t a r t ' ,   ' n ' ] ,
+         ' C r e a t e   a   n e w   p r o j e c t . ' ,
+         [
+             ' - s ,   - - s o u r c e   [ v a l u e ] ' ,
+             ' C u s t o m   s o u r c e :   { i n n e r _ r e p o } @ { t a g } ,   { o r g } / { r e p o } ,   { o r g } / { r e p o } @ { t a g }   o r   u r l . ' ,
+         ] ,
+         [ ' - i ,   - - s k i p - i n s t a l l ' ,   ' D o e s   n o t   i n s t a l l   d e p e n d e n c y   p a c k a g e s . ' ] ,
+         [ ' - g ,   - - s k i p - g i t ' ,   ' D o e s   n o t   i n i t i a l i z e   a   g i t   r e p o s i t o r y . ' ] ,
+     ]
+```
+
+**Options:**
+
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `[`:
+- `'`:
+- `n`:
+- `e`:
+- `w`:
+- ` `:
+- `<`:
+- `t`:
+- `y`:
+- `p`:
+- `e`:
+- `>`:
+- ` `:
+- `<`:
+- `n`:
+- `a`:
+- `m`:
+- `e`:
+- `>`:
+- ` `:
+- `[`:
+- `d`:
+- `e`:
+- `s`:
+- `c`:
+- `r`:
+- `i`:
+- `p`:
+- `t`:
+- `i`:
+- `o`:
+- `n`:
+- `]`:
+- `'`:
+- `,`:
+- ` `:
+- `'`:
+- `s`:
+- `t`:
+- `a`:
+- `r`:
+- `t`:
+- `'`:
+- `,`:
+- ` `:
+- `'`:
+- `n`:
+- `'`:
+- `]`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `'`:
+- `C`:
+- `r`:
+- `e`:
+- `a`:
+- `t`:
+- `e`:
+- ` `:
+- `a`:
+- ` `:
+- `n`:
+- `e`:
+- `w`:
+- ` `:
+- `p`:
+- `r`:
+- `o`:
+- `j`:
+- `e`:
+- `c`:
+- `t`:
+- `.`:
+- `'`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `[`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `'`:
+- `-`:
+- `s`:
+- `,`:
+- ` `:
+- `-`:
+- `-`:
+- `s`:
+- `o`:
+- `u`:
+- `r`:
+- `c`:
+- `e`:
+- ` `:
+- `[`:
+- `v`:
+- `a`:
+- `l`:
+- `u`:
+- `e`:
+- `]`:
+- `'`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `'`:
+- `C`:
+- `u`:
+- `s`:
+- `t`:
+- `o`:
+- `m`:
+- ` `:
+- `s`:
+- `o`:
+- `u`:
+- `r`:
+- `c`:
+- `e`:
+- `:`:
+- ` `:
+- `{`:
+- `i`:
+- `n`:
+- `n`:
+- `e`:
+- `r`:
+- `_`:
+- `r`:
+- `e`:
+- `p`:
+- `o`:
+- `}`:
+- `@`:
+- `{`:
+- `t`:
+- `a`:
+- `g`:
+- `}`:
+- `,`:
+- ` `:
+- `{`:
+- `o`:
+- `r`:
+- `g`:
+- `}`:
+- `/`:
+- `{`:
+- `r`:
+- `e`:
+- `p`:
+- `o`:
+- `}`:
+- `,`:
+- ` `:
+- `{`:
+- `o`:
+- `r`:
+- `g`:
+- `}`:
+- `/`:
+- `{`:
+- `r`:
+- `e`:
+- `p`:
+- `o`:
+- `}`:
+- `@`:
+- `{`:
+- `t`:
+- `a`:
+- `g`:
+- `}`:
+- ` `:
+- `o`:
+- `r`:
+- ` `:
+- `u`:
+- `r`:
+- `l`:
+- `.`:
+- `'`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `]`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `[`:
+- `'`:
+- `-`:
+- `i`:
+- `,`:
+- ` `:
+- `-`:
+- `-`:
+- `s`:
+- `k`:
+- `i`:
+- `p`:
+- `-`:
+- `i`:
+- `n`:
+- `s`:
+- `t`:
+- `a`:
+- `l`:
+- `l`:
+- `'`:
+- `,`:
+- ` `:
+- `'`:
+- `D`:
+- `o`:
+- `e`:
+- `s`:
+- ` `:
+- `n`:
+- `o`:
+- `t`:
+- ` `:
+- `i`:
+- `n`:
+- `s`:
+- `t`:
+- `a`:
+- `l`:
+- `l`:
+- ` `:
+- `d`:
+- `e`:
+- `p`:
+- `e`:
+- `n`:
+- `d`:
+- `e`:
+- `n`:
+- `c`:
+- `y`:
+- ` `:
+- `p`:
+- `a`:
+- `c`:
+- `k`:
+- `a`:
+- `g`:
+- `e`:
+- `s`:
+- `.`:
+- `'`:
+- `]`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- ` `:
+- `[`:
+- `'`:
+- `-`:
+- `g`:
+- `,`:
+- ` `:
+- `-`:
+- `-`:
+- `s`:
+- `k`:
+- `i`:
+- `p`:
+- `-`:
+- `g`:
+- `i`:
+- `t`:
+- `'`:
+- `,`:
+- ` `:
+- `'`:
+- `D`:
+- `o`:
+- `e`:
+- `s`:
+- ` `:
+- `n`:
+- `o`:
+- `t`:
+- ` `:
+- `i`:
+- `n`:
+- `i`:
+- `t`:
+- `i`:
+- `a`:
+- `l`:
+- `i`:
+- `z`:
+- `e`:
+- ` `:
+- `a`:
+- ` `:
+- `g`:
+- `i`:
+- `t`:
+- ` `:
+- `r`:
+- `e`:
+- `p`:
+- `o`:
+- `s`:
+- `i`:
+- `t`:
+- `o`:
+- `r`:
+- `y`:
+- `.`:
+- `'`:
+- `]`:
+- `,`:
+- ` `:
+- ` `:
+- ` `:
+- `]`:
 
 <h3><a name="command-clean"><p><code>clean</code></p>
 </a></h3>
@@ -283,30 +652,6 @@ semidi g <type> <dest> --nested --typing
 
 - `-n, --nested`: Nested under a folder.
 - `-t, --typing`: Save typing file.
-
-<h3><a name="command-new"><p><code>new</code></p>
-</a></h3>
-
-Create a new project.
-
-**Usage:**
-
-```sh
-semidi new <type> <name> [description] --skip-install --skip-git
-semidi start <type> <name> [description] --skip-install --skip-git
-semidi n <type> <name> [description] --skip-install --skip-git
-```
-
-**Parameters:**
-
-- `<type>`: The project type: lib, cli, express, sheetbase, workspace, ...
-- `<name>`: The project name
-- `[description]`: The project description
-
-**Options:**
-
-- `-i, --skip-install`: Does not install dependency packages.
-- `-g, --skip-git`: Does not initialize a git repository.
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>

@@ -284,7 +284,7 @@
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
 						<li><a href="#command-clean"><code>semidi clean|c --skip-question --list --includes [value] --excludes [value]</code></a></li>
-						<li><a href="#command-generate"><code>semidi generate|create|g &lt;type&gt; &lt;dest&gt; --nested</code></a></li>
+						<li><a href="#command-generate"><code>semidi generate|create|g &lt;type&gt; &lt;dest&gt; --nested --typing</code></a></li>
 						<li><a href="#command-new"><code>semidi new|start|n &lt;type&gt; &lt;name&gt; [description] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-help"><code>semidi help</code></a></li>
 						<li><a href="#command-*"><code>semidi *</code></a></li>
@@ -308,9 +308,9 @@ semidi c --skip-question --list --includes [value] --excludes [value]</code></pr
 					</a></h3>
 					<p>Generate a resource.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">semidi generate &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested
-semidi create &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested
-semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested</code></pre>
+					<pre><code class="language-sh">semidi generate &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
+semidi create &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
+semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;type&gt;</code>: The resource type</li>
@@ -319,6 +319,7 @@ semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested</
 					<p><strong>Options:</strong></p>
 					<ul>
 						<li><code>-n, --nested</code>: Nested under a folder.</li>
+						<li><code>-t, --typing</code>: Save typing file.</li>
 					</ul>
 					<h3><a name="command-new"><p><code>new</code></p>
 					</a></h3>

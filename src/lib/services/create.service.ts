@@ -1,5 +1,4 @@
 import {resolve} from 'path';
-import axios from 'axios';
 import {camelCase, capitalCase, pascalCase} from 'change-case';
 
 import {FileService} from './file.service';
@@ -13,69 +12,52 @@ export class CreateService {
     private downloadService: DownloadService
   ) {}
 
-  async createLib(dest: string, description: string) {
-    return this.create('lib', dest, description);
+  proccessInput(input: string) {
+    // direct url
+    if (input.endsWith('.zip') || input.startsWith('http')) {
+      return input;
+    }
+    // custom github
+    else if (input.indexOf('/') !== -1) {
+      const [pkg, tag = 'latest'] = input.split('@');
+      return `https://github.com/${pkg}/archive/${tag}.zip`;
+    }
+    // lamnhan github
+    else {
+      const [type, tag = 'latest'] = input.split('@');
+      return `https://github.com/lamnhan/seminjecto-${type}/archive/${tag}.zip`;
+    }
   }
 
-  async createCli(dest: string, description: string) {
-    return this.create('cli', dest, description);
-  }
-
-  async createExpress(dest: string, description: string) {
-    return this.create('express', dest, description);
-  }
-
-  async createSheetbase(dest: string, description: string) {
-    return this.create('sheetbase', dest, description);
-  }
-
-  async createWorkspace(dest: string, description: string) {
-    return this.create('workspace', dest, description);
-  }
-
-  private async create(type: CreateType, dest: string, description: string) {
-    const url = await this.resolveLatestRelease('lamnhan/seminjecto-' + type);
-    const filePath = dest + '/download.zip';
-    await this.downloadService.downloadAndUnzip(url, filePath);
-    // modify content
-    const name = (dest.replace(/\\/g, '/').split('/').pop() as string)
-      .toLowerCase()
-      .replace(/[^a-zA-Z-]/g, ' ')
-      .replace(/ /g, '-');
-    const nameCamel = camelCase(name);
-    const namePascal = pascalCase(name);
-    const nameCapital = capitalCase(name);
-    await this.modifyContent(
-      type,
-      dest,
-      name,
-      nameCamel,
-      namePascal,
-      nameCapital,
-      description
-    );
-  }
-
-  private async modifyContent(
-    type: CreateType,
+  async create(
+    resourceUrl: string,
+    type: string,
     dest: string,
-    name: string,
-    nameCamel: string,
-    namePascal: string,
-    nameCapital: string,
     description: string
   ) {
-    // src/public-api.ts
-    await this.fileService.changeContent(
-      resolve(dest, 'src', 'public-api.ts'),
-      {
-        '{Lib as LibModule}': `{Lib as ${namePascal}Module}`,
-        '{Cli as LibCliModule}': `{Cli as ${namePascal}CliModule}`,
-        '{App as LibAppModule}': `{App as ${namePascal}AppModule}`,
-      }
+    await this.downloadService.downloadAndUnzip(
+      resourceUrl,
+      dest + '/download.zip'
     );
+    return this.modifyContent(type, dest, description);
+  }
+
+  private async modifyContent(type: string, dest: string, description: string) {
+    const name = dest.replace(/\\/g, '/').split('/').pop() as string;
+    const nameCamel = camelCase(name);
+    const nameCamelLite = nameCamel.replace(/_/g, '');
+    const namePascal = pascalCase(name);
+    const namePascalLite = namePascal.replace(/_/g, '');
+    const nameCapital = capitalCase(name);
     // LIB
     if (type === 'lib') {
+      // src/public-api.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+        }
+      );
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "lib"': `: "${name}"`,
@@ -84,6 +66,14 @@ export class CreateService {
     }
     // CLI
     else if (type === 'cli') {
+      // src/public-api.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+          '{Cli as LibCliModule}': `{Cli as ${namePascalLite}CliModule}`,
+        }
+      );
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "cli"': `: "${name}"`,
@@ -94,17 +84,25 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'cli', 'index.ts'),
         {
-          '{Lib as LibModule}': `{Lib as ${namePascal}Module}`, // import {...}
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`, // import {...}
           "'cli'": `'${name}'`,
           "'A Seminjecto project.'": `'${description}'`,
-          'libModule: LibModule': `${nameCamel}Module: ${namePascal}Module`, // private ...
-          'this.libModule': `this.${nameCamel}Module`,
-          'new LibModule': `new ${namePascal}Module`,
+          'libModule: LibModule': `${nameCamelLite}Module: ${namePascalLite}Module`, // private ...
+          'this.libModule': `this.${nameCamelLite}Module`,
+          'new LibModule': `new ${namePascalLite}Module`,
         }
       );
     }
     // EXPRESS
     if (type === 'express') {
+      // src/public-api.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+          '{App as LibAppModule}': `{App as ${namePascalLite}AppModule}`,
+        }
+      );
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "app"': `: "${name}"`,
@@ -114,15 +112,23 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'app', 'index.ts'),
         {
-          '{Lib as LibModule}': `{Lib as ${namePascal}Module}`, // import {...}
-          'libModule: LibModule': `${nameCamel}Module: ${namePascal}Module`, // private ...
-          'this.libModule': `this.${nameCamel}Module`,
-          'new LibModule': `new ${namePascal}Module`,
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`, // import {...}
+          'libModule: LibModule': `${nameCamelLite}Module: ${namePascalLite}Module`, // private ...
+          'this.libModule': `this.${nameCamelLite}Module`,
+          'new LibModule': `new ${namePascalLite}Module`,
         }
       );
     }
     // SHEETBASE
     if (type === 'sheetbase') {
+      // src/public-api.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+          '{App as LibAppModule}': `{App as ${namePascalLite}AppModule}`,
+        }
+      );
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "app"': `: "@app/${name}"`,
@@ -132,15 +138,23 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(dest, 'src', 'app', 'index.ts'),
         {
-          '{Lib as LibModule}': `{Lib as ${namePascal}Module}`, // import {...}
-          'libModule: LibModule': `${nameCamel}Module: ${namePascal}Module`, // private ...
-          'this.libModule': `this.${nameCamel}Module`,
-          'new LibModule': `new ${namePascal}Module`,
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`, // import {...}
+          'libModule: LibModule': `${nameCamelLite}Module: ${namePascalLite}Module`, // private ...
+          'this.libModule': `this.${nameCamelLite}Module`,
+          'new LibModule': `new ${namePascalLite}Module`,
         }
       );
     }
     // WORKSPACE
     if (type === 'workspace') {
+      // src/public-api.ts
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        {
+          '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+          '{Addon as LibAddonModule}': `{Addon as ${namePascalLite}AddonModule}`,
+        }
+      );
       // package.json
       await this.fileService.changeContent(resolve(dest, 'package.json'), {
         ': "addon"': `: "${name}"`,
@@ -154,15 +168,20 @@ export class CreateService {
         }
       );
     }
-  }
-
-  private async resolveLatestRelease(pkg: string) {
-    const {data} = await axios({
-      method: 'GET',
-      url: `https://api.github.com/repos/${pkg}/releases/latest`,
-    });
-    const name = pkg;
-    const version = data.name;
-    return `https://github.com/${name}/archive/${version}.zip`;
+    // ANY
+    else {
+      // src/public-api.ts
+      const typeCapital = capitalCase(type);
+      const publicApiReplaces = {
+        '{Lib as LibModule}': `{Lib as ${namePascalLite}Module}`,
+      } as Record<string, string>;
+      publicApiReplaces[
+        `{${typeCapital} as Lib${typeCapital}Module}`
+      ] = `{${typeCapital} as ${namePascalLite}${typeCapital}Module}`;
+      await this.fileService.changeContent(
+        resolve(dest, 'src', 'public-api.ts'),
+        publicApiReplaces
+      );
+    }
   }
 }

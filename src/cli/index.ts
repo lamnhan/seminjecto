@@ -15,13 +15,17 @@ export class Cli {
   commander = ['semidi', 'Simple dependency injection for Typescript modules.'];
 
   /**
-   * @param type - The project type: lib, cli, express, sheetbase, workspace, ...
-   * @param name - The project name
-   * @param description? - The project description
+   * @param type - The project type: lib, cli, sheetbase, ... or {any}.
+   * @param name - The project name.
+   * @param description? - The project description.
    */
   newCommandDef: CommandDef = [
     ['new <type> <name> [description]', 'start', 'n'],
     'Create a new project.',
+    [
+      '-s, --source [value]',
+      'Custom source: {inner_repo}@{tag}, {org}/{repo}, {org}/{repo}@{tag} or url.',
+    ],
     ['-i, --skip-install', 'Does not install dependency packages.'],
     ['-g, --skip-git', 'Does not initialize a git repository.'],
   ];
@@ -76,6 +80,7 @@ export class Cli {
       const [
         [command, ...aliases],
         description,
+        sourceOpt,
         skipInstallOpt,
         skipGitOpt,
       ] = this.newCommandDef;
@@ -83,6 +88,7 @@ export class Cli {
         .command(command)
         .aliases(aliases)
         .description(description)
+        .option(...sourceOpt)
         .option(...skipInstallOpt)
         .option(...skipGitOpt)
         .action((type, name, description, options) =>
