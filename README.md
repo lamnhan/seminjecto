@@ -234,7 +234,7 @@ A Workspace project is an extended of library, a pair of file and folder added:
 Simple dependency injection for Typescript modules.
 
 - [`semidi clean|c --skip-question --list --includes [value] --excludes [value]`](#command-clean)
-- [`semidi generate|create|g <type> <dest> --nested`](#command-generate)
+- [`semidi generate|create|g <type> <dest> --nested --typing`](#command-generate)
 - [`semidi new|start|n <type> <name> [description] --skip-install --skip-git`](#command-new)
 - [`semidi help`](#command-help)
 - [`semidi *`](#command-*)
@@ -269,9 +269,9 @@ Generate a resource.
 **Usage:**
 
 ```sh
-semidi generate <type> <dest> --nested
-semidi create <type> <dest> --nested
-semidi g <type> <dest> --nested
+semidi generate <type> <dest> --nested --typing
+semidi create <type> <dest> --nested --typing
+semidi g <type> <dest> --nested --typing
 ```
 
 **Parameters:**
@@ -282,6 +282,7 @@ semidi g <type> <dest> --nested
 **Options:**
 
 - `-n, --nested`: Nested under a folder.
+- `-t, --typing`: Save typing file.
 
 <h3><a name="command-new"><p><code>new</code></p>
 </a></h3>
