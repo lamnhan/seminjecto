@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GenerateCommandOptions | @lamnhan/seminjecto</title>
+	<title>Template | @lamnhan/seminjecto</title>
 	<meta name="description" content="Documentation for @lamnhan/seminjecto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="generatecommandoptions.html">GenerateCommandOptions</a>
+					<a href="template.html">Template</a>
 				</li>
 			</ul>
-			<h1>Interface GenerateCommandOptions</h1>
+			<h1>Interface Template</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GenerateCommandOptions</span>
+						<span class="target">Template</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="generatecommandoptions.html#nested" class="tsd-kind-icon">nested</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="generatecommandoptions.html#typing" class="tsd-kind-icon">typing</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="template.html#content" class="tsd-kind-icon">content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="template.html#fullpath" class="tsd-kind-icon">full<wbr>Path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="template.html#path" class="tsd-kind-icon">path</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,22 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="nested" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> nested</h3>
-					<div class="tsd-signature tsd-kind-icon">nested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="content" class="tsd-anchor"></a>
+					<h3>content</h3>
+					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/generate.command.ts#L8">cli/commands/generate.command.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/lib/services/generate.service.ts#L7">lib/services/generate.service.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="typing" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> typing</h3>
-					<div class="tsd-signature tsd-kind-icon">typing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="fullpath" class="tsd-anchor"></a>
+					<h3>full<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">full<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/generate.command.ts#L9">cli/commands/generate.command.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/lib/services/generate.service.ts#L6">lib/services/generate.service.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/lib/services/generate.service.ts#L5">lib/services/generate.service.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,27 +164,30 @@
 					<li class=" tsd-kind-interface">
 						<a href="cleancommandoptions.html" class="tsd-kind-icon">Clean<wbr>Command<wbr>Options</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="generatecommandoptions.html" class="tsd-kind-icon">Generate<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="generatecommandoptions.html" class="tsd-kind-icon">Generate<wbr>Command<wbr>Options</a>
+						<a href="template.html" class="tsd-kind-icon">Template</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="generatecommandoptions.html#nested" class="tsd-kind-icon">nested</a>
+								<a href="template.html#content" class="tsd-kind-icon">content</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="generatecommandoptions.html#typing" class="tsd-kind-icon">typing</a>
+								<a href="template.html#fullpath" class="tsd-kind-icon">full<wbr>Path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="template.html#path" class="tsd-kind-icon">path</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="template.html" class="tsd-kind-icon">Template</a>
-					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
 					</li>

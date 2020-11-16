@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CleanCommandOptions | @lamnhan/seminjecto</title>
+	<title>NewCommandOptions | @lamnhan/seminjecto</title>
 	<meta name="description" content="Documentation for @lamnhan/seminjecto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cleancommandoptions.html">CleanCommandOptions</a>
+					<a href="newcommandoptions.html">NewCommandOptions</a>
 				</li>
 			</ul>
-			<h1>Interface CleanCommandOptions</h1>
+			<h1>Interface NewCommandOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CleanCommandOptions</span>
+						<span class="target">NewCommandOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -79,10 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cleancommandoptions.html#excludes" class="tsd-kind-icon">excludes</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cleancommandoptions.html#includes" class="tsd-kind-icon">includes</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cleancommandoptions.html#list" class="tsd-kind-icon">list</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cleancommandoptions.html#skipquestion" class="tsd-kind-icon">skip<wbr>Question</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#skipgit" class="tsd-kind-icon">skip<wbr>Git</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#skipinstall" class="tsd-kind-icon">skip<wbr>Install</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#source" class="tsd-kind-icon">source</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,42 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="excludes" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> excludes</h3>
-					<div class="tsd-signature tsd-kind-icon">excludes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="skipgit" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> skip<wbr>Git</h3>
+					<div class="tsd-signature tsd-kind-icon">skip<wbr>Git<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/clean.command.ts#L12">cli/commands/clean.command.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/cli/commands/new.command.ts#L10">cli/commands/new.command.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="includes" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> includes</h3>
-					<div class="tsd-signature tsd-kind-icon">includes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="skipinstall" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> skip<wbr>Install</h3>
+					<div class="tsd-signature tsd-kind-icon">skip<wbr>Install<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/clean.command.ts#L11">cli/commands/clean.command.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/cli/commands/new.command.ts#L11">cli/commands/new.command.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="list" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> list</h3>
-					<div class="tsd-signature tsd-kind-icon">list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="source" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> source</h3>
+					<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/clean.command.ts#L10">cli/commands/clean.command.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="skipquestion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> skip<wbr>Question</h3>
-					<div class="tsd-signature tsd-kind-icon">skip<wbr>Question<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/39a9bdc/src/cli/commands/clean.command.ts#L9">cli/commands/clean.command.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/lamnhan/seminjecto/blob/75d77cb/src/cli/commands/new.command.ts#L9">cli/commands/new.command.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,33 +161,30 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="cleancommandoptions.html" class="tsd-kind-icon">Clean<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="generatecommandoptions.html" class="tsd-kind-icon">Generate<wbr>Command<wbr>Options</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="cleancommandoptions.html" class="tsd-kind-icon">Clean<wbr>Command<wbr>Options</a>
+						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="cleancommandoptions.html#excludes" class="tsd-kind-icon">excludes</a>
+								<a href="newcommandoptions.html#skipgit" class="tsd-kind-icon">skip<wbr>Git</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="cleancommandoptions.html#includes" class="tsd-kind-icon">includes</a>
+								<a href="newcommandoptions.html#skipinstall" class="tsd-kind-icon">skip<wbr>Install</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="cleancommandoptions.html#list" class="tsd-kind-icon">list</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="cleancommandoptions.html#skipquestion" class="tsd-kind-icon">skip<wbr>Question</a>
+								<a href="newcommandoptions.html#source" class="tsd-kind-icon">source</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="generatecommandoptions.html" class="tsd-kind-icon">Generate<wbr>Command<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="template.html" class="tsd-kind-icon">Template</a>
 					</li>

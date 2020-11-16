@@ -1,0 +1,798 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@lamnhan/seminjecto</title>
+	<meta name="description" content="Documentation for @lamnhan/seminjecto">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@lamnhan/seminjecto</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@lamnhan/seminjecto</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<section id="head" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+					<a href="#lamnhanseminjecto" id="lamnhanseminjecto" style="color: inherit; text-decoration: none;">
+						<h1>@lamnhan/seminjecto</h1>
+					</a>
+					<p><strong>Simple dependency injection for Typescript modules.</strong></p>
+				</section>
+				<section id="header">
+					<p><a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License"></a>
+						<a href="https://github.com/google/gts"><img src="https://img.shields.io/badge/code%20style-google-blueviolet.svg" alt="Code Style: Google"></a>
+						<a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/patreon.svg" alt="Support me on Patreon"></a>
+						<a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/paypal_donate.svg" alt="PayPal"></a>
+					<a href="https://m.me/lamhiennhan"><img src="https://img.shields.io/badge/ask/me-anything-1abc9c.svg" alt="Ask me anything"></a></p>
+				</section>
+				<section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+					<ul>
+						<li><a href="#introduction">Introduction</a></li>
+						<li><a href="#benefits">Benefits</a></li>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#skeletons">Skeletons</a></li>
+						<li><a href="#convention">Convention</a><ul>
+								<li><a href="#helpers">Helpers</a><ul>
+										<li><a href="#vscode">VSCode</a></li>
+										<li><a href="#git">GIT</a></li>
+										<li><a href="#linter-prettier">Linter/prettier</a></li>
+										<li><a href="#documentation">Documentation</a></li>
+										<li><a href="#testing">Testing</a></li>
+										<li><a href="#continuous-integration">Continuous integration</a></li>
+										<li><a href="#vendor-code">Vendor code</a></li>
+										<li><a href="#special-deployment">Special deployment</a></li>
+									</ul>
+								</li>
+								<li><a href="#project-types">Project types</a><ul>
+										<li><a href="#library">Library</a></li>
+										<li><a href="#cli">CLI</a></li>
+										<li><a href="#express">Express</a></li>
+										<li><a href="#sheetbase">Sheetbase</a></li>
+										<li><a href="#workspace">Workspace</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href="#cli-command-overview">Command overview</a></li>
+						<li><a href="#cli-command-reference">Command reference</a><ul>
+								<li><a href="#command-%5B"><code>[</code></a></li>
+								<li><a href="#command-clean"><code>clean</code></a></li>
+								<li><a href="#command-generate"><code>generate</code></a></li>
+								<li><a href="#command-help"><code>help</code></a></li>
+								<li><a href="#command-*"><code>*</code></a></li>
+							</ul>
+						</li>
+						<li><a href="https://lamnhan.com/seminjecto">Detail API reference</a></li>
+					</ul>
+				</section>
+				<section id="main">
+					<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
+						<h2>Introduction</h2>
+					</a>
+					<p>Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like <a href="http://inversify.io/">InversifyJS</a>, <a href="https://github.com/microsoft/tsyringe">tsyringe</a>, ...</p>
+					<p>But you can also manually apply DI to any module using this simple method. There is a central class (<code>Lib</code> for library, <code>Cli</code> for cli app, <code>App</code> for app, ...) that acts as a DI container and injector.</p>
+					<pre><code class="language-ts"><span class="hljs-comment">// the service 1</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service1Service {}
+
+<span class="hljs-comment">// the service 2 is depends on the service 1</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service2Service {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> service1Service: Service1Service</span>) {}
+}
+
+<span class="hljs-comment">// the container for all services and also the injetor</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Lib {
+  service1Service: Service1Service;
+  service2Service: Service2Service;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">this</span>.service1Service = <span class="hljs-keyword">new</span> Service1Service();
+    <span class="hljs-built_in">this</span>.service2Service = <span class="hljs-keyword">new</span> Service2Service(
+      <span class="hljs-built_in">this</span>.service1Service <span class="hljs-comment">// injects the service 1</span>
+    );
+  }
+}</code></pre>
+					<a href="#benefits" id="benefits" style="color: inherit; text-decoration: none;">
+						<h2>Benefits</h2>
+					</a>
+					<ul>
+						<li>One approaching for any project</li>
+						<li>Clean project structure</li>
+						<li>No need for extra IOC libraries</li>
+						<li>Easy to test (using <a href="https://github.com/lamnhan/testea">@lamnhan/testea</a>)</li>
+						<li>Easy to generate documentation (using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>)</li>
+					</ul>
+					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+						<h2>Installation</h2>
+					</a>
+					<p>Install as glocal CLI app.</p>
+					<pre><code class="language-sh">npm install -g @lamnhan/seminjecto</code></pre>
+					<a href="#skeletons" id="skeletons" style="color: inherit; text-decoration: none;">
+						<h2>Skeletons</h2>
+					</a>
+					<p>These skeletons can be use to faster setup a project. You can either clone them manually or using the command <a href="#command-new"><code>semidi new &lt;name&gt;</code></a>:</p>
+					<ul>
+						<li><a href="https://github.com/lamnhan/seminjecto-lib">Library</a>: Any library.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-cli">CLI</a>: Node CLI app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-express">Express</a>: ExpressJS app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-sheetbase">Sheetbase</a>: Sheetbase server app.</li>
+						<li><a href="https://github.com/lamnhan/seminjecto-workspace">Workspace</a>: Google Workspace (G Suite) add-on.</li>
+					</ul>
+					<a href="#convention" id="convention" style="color: inherit; text-decoration: none;">
+						<h2>Convention</h2>
+					</a>
+					<p>This standalization is applied to any project unders <strong>Seminjecto</strong> convention.</p>
+					<a href="#helpers" id="helpers" style="color: inherit; text-decoration: none;">
+						<h3>Helpers</h3>
+					</a>
+					<a href="#vscode" id="vscode" style="color: inherit; text-decoration: none;">
+						<h4>VSCode</h4>
+					</a>
+					<p>The file <code>settings.json</code> unders <code>.vscode</code> folder provides configuration for excluding certain content in VSCode (and other configs you may need):</p>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.vscode/settings.json">.vscode/settings.json</a></p>
+					<a href="#git" id="git" style="color: inherit; text-decoration: none;">
+						<h4>GIT</h4>
+					</a>
+					<p>Files are ignored by GIT:</p>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.gitignore">.gitignore</a></p>
+					<a href="#linterprettier" id="linterprettier" style="color: inherit; text-decoration: none;">
+						<h4>Linter/prettier</h4>
+					</a>
+					<p>Linter and prettier using <a href="https://github.com/google/gts">@google/gts</a>:</p>
+					<ul>
+						<li>The <code>.eslintrc.json</code>: the Eslint config file</li>
+						<li>The <code>.prettierrc.js</code>: the Prettier config file</li>
+						<li>Lint by: <code>npm run lint</code></li>
+					</ul>
+					<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+						<h4>Documentation</h4>
+					</a>
+					<p>Automatic document generation using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>:</p>
+					<ul>
+						<li>The file <code>.ayedocsrc.js</code> provides configuration</li>
+						<li>Output will be found in the <code>docs</code> folder</li>
+						<li>Generate docs by: <code>npm run docs</code></li>
+					</ul>
+					<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+						<h4>Testing</h4>
+					</a>
+					<p>Testing using <a href="https://github.com/lamnhan/testea">@lamnhan/testea</a>:</p>
+					<ul>
+						<li>Generate spec files by: <code>testea generate</code></li>
+						<li>All specs files are under <code>test</code> folder</li>
+						<li>Run test by: <code>npm run test</code></li>
+					</ul>
+					<a href="#continuous-integration" id="continuous-integration" style="color: inherit; text-decoration: none;">
+						<h4>Continuous integration</h4>
+					</a>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/.travis.yml">.travis.yml</a></p>
+					<a href="#vendor-code" id="vendor-code" style="color: inherit; text-decoration: none;">
+						<h4>Vendor code</h4>
+					</a>
+					<p>When you want to include code from other projects, put them into <code>src/lib/vendors/name.vendor.ts</code>. For example, a function from <code>lodash</code>.</p>
+					<p>Add <code>// @ts-nocheck</code> at the top of the files to disable Typescript.</p>
+					<p>Vendor files also excluded from linting.</p>
+					<a href="#special-deployment" id="special-deployment" style="color: inherit; text-decoration: none;">
+						<h4>Special deployment</h4>
+					</a>
+					<p>Libraries for Node projects are deployed with the <code>src/</code> folder that contains all the content.</p>
+					<p>Special project will be deployed from the <code>.deploy/</code> folder:</p>
+					<ul>
+						<li>Refer using a script (... deploy) to generate <code>.deploy/</code>, then deploy, then remove <code>.deploy/</code>.</li>
+						<li>Pass <code>--dry-run</code> to the script to generate <code>.deploy/</code> only.</li>
+					</ul>
+					<a href="#project-types" id="project-types" style="color: inherit; text-decoration: none;">
+						<h3>Project types</h3>
+					</a>
+					<p><strong>Seminjecto</strong> supports these types of Node project, where source code is hosted under <code>src</code> folder.</p>
+					<a href="#library" id="library" style="color: inherit; text-decoration: none;">
+						<h4>Library</h4>
+					</a>
+					<p>A library is a project that can using in other projects.</p>
+					<p>A library is organized into a pair of file and folder:</p>
+					<ul>
+						<li>The <code>public-api.ts</code> file: where you export anything you want other project to access</li>
+						<li>The <code>lib</code> folder: the lirary home, contains <code>index.ts</code> (class <code>Lib</code>) and groups of source code by type (services, ...)</li>
+					</ul>
+					<p>See <a href="https://github.com/lamnhan/seminjecto/blob/master/package.json">package.json</a> for properties and scripts.</p>
+					<a href="#cli" id="cli" style="color: inherit; text-decoration: none;">
+						<h4>CLI</h4>
+					</a>
+					<p>A CLI project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>bin.ts</code> file: the cli logic</li>
+						<li>The <code>cli</code> folder: the CLI home, contains <code>index.ts</code> (class <code>Cli</code>) and groups of source code by type (commands, ...)</li>
+					</ul>
+					<p>See <code>bin</code> property in <a href="https://github.com/lamnhan/seminjecto/blob/master/package.json">package.json</a> for CLI app registration.</p>
+					<a href="#express" id="express" style="color: inherit; text-decoration: none;">
+						<h4>Express</h4>
+					</a>
+					<p>A ExpressJS project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>www.ts</code> file: the app logic</li>
+						<li>The <code>app</code> folder: the app home, contains <code>index.ts</code> (class <code>App</code>) and groups of source code by type (routes, ...)</li>
+					</ul>
+					<a href="#sheetbase" id="sheetbase" style="color: inherit; text-decoration: none;">
+						<h4>Sheetbase</h4>
+					</a>
+					<p>A Sheetbase project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>www.ts</code> file: the app logic</li>
+						<li>The <code>app</code> folder: the app home, contains <code>index.ts</code> (class <code>App</code>) and groups of source code by type (routes, ...)</li>
+					</ul>
+					<a href="#workspace" id="workspace" style="color: inherit; text-decoration: none;">
+						<h4>Workspace</h4>
+					</a>
+					<p>A Workspace project is an extended of library, a pair of file and folder added:</p>
+					<ul>
+						<li>The <code>hook.ts</code> file: the addon logic</li>
+						<li>The <code>addon</code> folder: the addon home, contains <code>index.ts</code> (class <code>Addon</code>) and groups of source code by type (sidebars, modals, ...)</li>
+					</ul>
+				</section>
+				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+					<h2><a name="cli-command-overview"><p>Command overview</p>
+					</a></h2>
+					<p>Simple dependency injection for Typescript modules.</p>
+					<ul>
+						<li><a href="#command-%5B"><code>semidi [ [ &#39; n e w &lt; t y p e &gt; &lt; n a m e &gt; [ d e s c r i p t i o n ] &#39; , &#39; s t a r t &#39; , &#39; n &#39; ] , &#39; C r e a t e a n e w p r o j e c t . &#39; , [ &#39; - s , - - s o u r c e [ v a l u e ] &#39; , &#39; C u s t o m s o u r c e : { i n n e r _ r e p o } @ { t a g } , { o r g } / { r e p o } , { o r g } / { r e p o } @ { t a g } o r u r l . &#39; , ] , [ &#39; - i , - - s k i p - i n s t a l l &#39; , &#39; D o e s n o t i n s t a l l d e p e n d e n c y p a c k a g e s . &#39; ] , [ &#39; - g , - - s k i p - g i t &#39; , &#39; D o e s n o t i n i t i a l i z e a g i t r e p o s i t o r y . &#39; ] , ]</code></a></li>
+						<li><a href="#command-clean"><code>semidi clean|c --skip-question --list --includes [value] --excludes [value]</code></a></li>
+						<li><a href="#command-generate"><code>semidi generate|create|g &lt;type&gt; &lt;dest&gt; --nested --typing</code></a></li>
+						<li><a href="#command-help"><code>semidi help</code></a></li>
+						<li><a href="#command-*"><code>semidi *</code></a></li>
+					</ul>
+					<h2><a name="cli-command-reference"><p>Command reference</p>
+					</a></h2>
+					<h3><a name="command-["><p><code>[</code></p>
+					</a></h3>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi [         [ <span class="hljs-string">&#x27; n e w   &lt; t y p e &gt;   &lt; n a m e &gt;   [ d e s c r i p t i o n ] &#x27;</span> ,   <span class="hljs-string">&#x27; s t a r t &#x27;</span> ,   <span class="hljs-string">&#x27; n &#x27;</span> ] ,
+         <span class="hljs-string">&#x27; C r e a t e   a   n e w   p r o j e c t . &#x27;</span> ,
+         [
+             <span class="hljs-string">&#x27; - s ,   - - s o u r c e   [ v a l u e ] &#x27;</span> ,
+             <span class="hljs-string">&#x27; C u s t o m   s o u r c e :   { i n n e r _ r e p o } @ { t a g } ,   { o r g } / { r e p o } ,   { o r g } / { r e p o } @ { t a g }   o r   u r l . &#x27;</span> ,
+         ] ,
+         [ <span class="hljs-string">&#x27; - i ,   - - s k i p - i n s t a l l &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n s t a l l   d e p e n d e n c y   p a c k a g e s . &#x27;</span> ] ,
+         [ <span class="hljs-string">&#x27; - g ,   - - s k i p - g i t &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n i t i a l i z e   a   g i t   r e p o s i t o r y . &#x27;</span> ] ,
+     ]</code></pre>
+					<p><strong>Options:</strong></p>
+					<ul>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>w</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>y</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&lt;</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>m</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>&gt;</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code>d</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>C</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>a</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>w</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>j</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code>v</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>C</code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>m</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>:</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>_</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>@</code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>/</code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>/</code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code>@</code>:</li>
+						<li><code>{</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>}</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>u</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>k</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>D</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>d</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>d</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>y</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>c</code>:</li>
+						<li><code>k</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>[</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>k</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>-</code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>D</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>n</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>a</code>:</li>
+						<li><code>l</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>z</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>a</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>g</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code> </code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>e</code>:</li>
+						<li><code>p</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>s</code>:</li>
+						<li><code>i</code>:</li>
+						<li><code>t</code>:</li>
+						<li><code>o</code>:</li>
+						<li><code>r</code>:</li>
+						<li><code>y</code>:</li>
+						<li><code>.</code>:</li>
+						<li><code>&#39;</code>:</li>
+						<li><code>]</code>:</li>
+						<li><code>,</code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code> </code>:</li>
+						<li><code>]</code>:</li>
+					</ul>
+					<h3><a name="command-clean"><p><code>clean</code></p>
+					</a></h3>
+					<p>Clean typescript output files.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi clean --skip-question --list --includes [value] --excludes [value]
+semidi c --skip-question --list --includes [value] --excludes [value]</code></pre>
+					<p><strong>Options:</strong></p>
+					<ul>
+						<li><code>-y, --skip-question</code>: Does not ask question.</li>
+						<li><code>-l, --list</code>: Show list of files.</li>
+						<li><code>-i, --includes [value]</code>: Including files, separated by <code>|</code>.</li>
+						<li><code>-e, --excludes [value]</code>: Excluding files, separated by <code>|</code>.</li>
+					</ul>
+					<h3><a name="command-generate"><p><code>generate</code></p>
+					</a></h3>
+					<p>Generate a resource.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi generate &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
+semidi create &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
+semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;type&gt;</code>: The resource type</li>
+						<li><code>&lt;dest&gt;</code>: The resource destination</li>
+					</ul>
+					<p><strong>Options:</strong></p>
+					<ul>
+						<li><code>-n, --nested</code>: Nested under a folder.</li>
+						<li><code>-t, --typing</code>: Save typing file.</li>
+					</ul>
+					<h3><a name="command-help"><p><code>help</code></p>
+					</a></h3>
+					<p>Display help.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi <span class="hljs-built_in">help</span></code></pre>
+					<h3><a name="command-*"><p><code>*</code></p>
+					</a></h3>
+					<p>Any other command is not suppoted.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi &lt;cmd&gt;</code></pre>
+				</section>
+				<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+					<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+						<h2>License</h2>
+					</a>
+					<p><strong>@lamnhan/seminjecto</strong> is released under the <a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE">MIT</a> license.</p>
+				</section>
+				<section id="attr">
+					<hr>
+					<p>⚡️ This document is generated automatically using <a href="https://github.com/lamnhan/ayedocs">@lamnhan/ayedocs</a>.</p>
+				</section>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/cleancommand.html" class="tsd-kind-icon">Clean<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cli.html" class="tsd-kind-icon">Cli</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/generatecommand.html" class="tsd-kind-icon">Generate<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/generateservice.html" class="tsd-kind-icon">Generate<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/lib.html" class="tsd-kind-icon">Lib</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/modifyservice.html" class="tsd-kind-icon">Modify<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cleancommandoptions.html" class="tsd-kind-icon">Clean<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/generatecommandoptions.html" class="tsd-kind-icon">Generate<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/template.html" class="tsd-kind-icon">Template</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#createtype" class="tsd-kind-icon">Create<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
