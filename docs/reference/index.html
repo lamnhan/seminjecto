@@ -105,9 +105,9 @@
 						</li>
 						<li><a href="#cli-command-overview">Command overview</a></li>
 						<li><a href="#cli-command-reference">Command reference</a><ul>
-								<li><a href="#command-%5B"><code>[</code></a></li>
 								<li><a href="#command-clean"><code>clean</code></a></li>
 								<li><a href="#command-generate"><code>generate</code></a></li>
+								<li><a href="#command-new"><code>new</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
 								<li><a href="#command-*"><code>*</code></a></li>
 							</ul>
@@ -283,364 +283,14 @@
 					</a></h2>
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
-						<li><a href="#command-%5B"><code>semidi [ [ &#39; n e w &lt; t y p e &gt; &lt; n a m e &gt; [ d e s c r i p t i o n ] &#39; , &#39; s t a r t &#39; , &#39; n &#39; ] , &#39; C r e a t e a n e w p r o j e c t . &#39; , [ &#39; - s , - - s o u r c e [ v a l u e ] &#39; , &#39; C u s t o m s o u r c e , i n n e r _ r e p o @ t a g , o r g / r e p o , o r g / r e p o @ t a g o r u r l . &#39; , ] , [ &#39; - i , - - s k i p - i n s t a l l &#39; , &#39; D o e s n o t i n s t a l l d e p e n d e n c y p a c k a g e s . &#39; ] , [ &#39; - g , - - s k i p - g i t &#39; , &#39; D o e s n o t i n i t i a l i z e a g i t r e p o s i t o r y . &#39; ] , ]</code></a></li>
 						<li><a href="#command-clean"><code>semidi clean|c --skip-question --list --includes [value] --excludes [value]</code></a></li>
 						<li><a href="#command-generate"><code>semidi generate|create|g &lt;type&gt; &lt;dest&gt; --nested --typing</code></a></li>
+						<li><a href="#command-new"><code>semidi new|start|n &lt;type&gt; &lt;name&gt; [description] --source [value] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-help"><code>semidi help</code></a></li>
 						<li><a href="#command-*"><code>semidi *</code></a></li>
 					</ul>
 					<h2><a name="cli-command-reference"><p>Command reference</p>
 					</a></h2>
-					<h3><a name="command-["><p><code>[</code></p>
-					</a></h3>
-					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">semidi [         [ <span class="hljs-string">&#x27; n e w   &lt; t y p e &gt;   &lt; n a m e &gt;   [ d e s c r i p t i o n ] &#x27;</span> ,   <span class="hljs-string">&#x27; s t a r t &#x27;</span> ,   <span class="hljs-string">&#x27; n &#x27;</span> ] ,
-         <span class="hljs-string">&#x27; C r e a t e   a   n e w   p r o j e c t . &#x27;</span> ,
-         [
-             <span class="hljs-string">&#x27; - s ,   - - s o u r c e   [ v a l u e ] &#x27;</span> ,
-             <span class="hljs-string">&#x27; C u s t o m   s o u r c e ,   i n n e r _ r e p o @ t a g ,   o r g / r e p o ,   o r g / r e p o @ t a g   o r   u r l . &#x27;</span> ,
-         ] ,
-         [ <span class="hljs-string">&#x27; - i ,   - - s k i p - i n s t a l l &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n s t a l l   d e p e n d e n c y   p a c k a g e s . &#x27;</span> ] ,
-         [ <span class="hljs-string">&#x27; - g ,   - - s k i p - g i t &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n i t i a l i z e   a   g i t   r e p o s i t o r y . &#x27;</span> ] ,
-     ]</code></pre>
-					<p><strong>Options:</strong></p>
-					<ul>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>w</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&lt;</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>y</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>&gt;</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&lt;</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>m</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>&gt;</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code>d</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>C</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>a</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>w</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>j</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>.</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>u</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code>v</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>u</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>C</code>:</li>
-						<li><code>u</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>m</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>u</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>_</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>@</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>/</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>/</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>@</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>u</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>.</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>k</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>D</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>d</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>d</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>y</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>c</code>:</li>
-						<li><code>k</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>.</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>[</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>k</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>-</code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>D</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>n</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>a</code>:</li>
-						<li><code>l</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>z</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>a</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>g</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code> </code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>e</code>:</li>
-						<li><code>p</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>s</code>:</li>
-						<li><code>i</code>:</li>
-						<li><code>t</code>:</li>
-						<li><code>o</code>:</li>
-						<li><code>r</code>:</li>
-						<li><code>y</code>:</li>
-						<li><code>.</code>:</li>
-						<li><code>&#39;</code>:</li>
-						<li><code>]</code>:</li>
-						<li><code>,</code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code> </code>:</li>
-						<li><code>]</code>:</li>
-					</ul>
 					<h3><a name="command-clean"><p><code>clean</code></p>
 					</a></h3>
 					<p>Clean typescript output files.</p>
@@ -670,6 +320,25 @@ semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested -
 					<ul>
 						<li><code>-n, --nested</code>: Nested under a folder.</li>
 						<li><code>-t, --typing</code>: Save typing file.</li>
+					</ul>
+					<h3><a name="command-new"><p><code>new</code></p>
+					</a></h3>
+					<p>Create a new project.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">semidi new &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git
+semidi start &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git
+semidi n &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;type&gt;</code>: The project type: lib, cli, sheetbase, ... or {any}.</li>
+						<li><code>&lt;name&gt;</code>: The project name.</li>
+						<li><code>[description]</code>: The project description.</li>
+					</ul>
+					<p><strong>Options:</strong></p>
+					<ul>
+						<li><code>-s, --source [value]</code>: Custom sources.</li>
+						<li><code>-i, --skip-install</code>: Does not install dependency packages.</li>
+						<li><code>-g, --skip-git</code>: Does not initialize a git repository.</li>
 					</ul>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>
