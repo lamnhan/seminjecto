@@ -283,7 +283,7 @@
 					</a></h2>
 					<p>Simple dependency injection for Typescript modules.</p>
 					<ul>
-						<li><a href="#command-%5B"><code>semidi [ [ &#39; n e w &lt; t y p e &gt; &lt; n a m e &gt; [ d e s c r i p t i o n ] &#39; , &#39; s t a r t &#39; , &#39; n &#39; ] , &#39; C r e a t e a n e w p r o j e c t . &#39; , [ &#39; - s , - - s o u r c e [ v a l u e ] &#39; , &#39; C u s t o m s o u r c e : { i n n e r _ r e p o } @ { t a g } , { o r g } / { r e p o } , { o r g } / { r e p o } @ { t a g } o r u r l . &#39; , ] , [ &#39; - i , - - s k i p - i n s t a l l &#39; , &#39; D o e s n o t i n s t a l l d e p e n d e n c y p a c k a g e s . &#39; ] , [ &#39; - g , - - s k i p - g i t &#39; , &#39; D o e s n o t i n i t i a l i z e a g i t r e p o s i t o r y . &#39; ] , ]</code></a></li>
+						<li><a href="#command-%5B"><code>semidi [ [ &#39; n e w &lt; t y p e &gt; &lt; n a m e &gt; [ d e s c r i p t i o n ] &#39; , &#39; s t a r t &#39; , &#39; n &#39; ] , &#39; C r e a t e a n e w p r o j e c t . &#39; , [ &#39; - s , - - s o u r c e [ v a l u e ] &#39; , &#39; C u s t o m s o u r c e , i n n e r _ r e p o @ t a g , o r g / r e p o , o r g / r e p o @ t a g o r u r l . &#39; , ] , [ &#39; - i , - - s k i p - i n s t a l l &#39; , &#39; D o e s n o t i n s t a l l d e p e n d e n c y p a c k a g e s . &#39; ] , [ &#39; - g , - - s k i p - g i t &#39; , &#39; D o e s n o t i n i t i a l i z e a g i t r e p o s i t o r y . &#39; ] , ]</code></a></li>
 						<li><a href="#command-clean"><code>semidi clean|c --skip-question --list --includes [value] --excludes [value]</code></a></li>
 						<li><a href="#command-generate"><code>semidi generate|create|g &lt;type&gt; &lt;dest&gt; --nested --typing</code></a></li>
 						<li><a href="#command-help"><code>semidi help</code></a></li>
@@ -298,7 +298,7 @@
          <span class="hljs-string">&#x27; C r e a t e   a   n e w   p r o j e c t . &#x27;</span> ,
          [
              <span class="hljs-string">&#x27; - s ,   - - s o u r c e   [ v a l u e ] &#x27;</span> ,
-             <span class="hljs-string">&#x27; C u s t o m   s o u r c e :   { i n n e r _ r e p o } @ { t a g } ,   { o r g } / { r e p o } ,   { o r g } / { r e p o } @ { t a g }   o r   u r l . &#x27;</span> ,
+             <span class="hljs-string">&#x27; C u s t o m   s o u r c e ,   i n n e r _ r e p o @ t a g ,   o r g / r e p o ,   o r g / r e p o @ t a g   o r   u r l . &#x27;</span> ,
          ] ,
          [ <span class="hljs-string">&#x27; - i ,   - - s k i p - i n s t a l l &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n s t a l l   d e p e n d e n c y   p a c k a g e s . &#x27;</span> ] ,
          [ <span class="hljs-string">&#x27; - g ,   - - s k i p - g i t &#x27;</span> ,   <span class="hljs-string">&#x27; D o e s   n o t   i n i t i a l i z e   a   g i t   r e p o s i t o r y . &#x27;</span> ] ,
@@ -445,9 +445,8 @@
 						<li><code>r</code>:</li>
 						<li><code>c</code>:</li>
 						<li><code>e</code>:</li>
-						<li><code>:</code>:</li>
+						<li><code>,</code>:</li>
 						<li><code> </code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>i</code>:</li>
 						<li><code>n</code>:</li>
 						<li><code>n</code>:</li>
@@ -458,47 +457,34 @@
 						<li><code>e</code>:</li>
 						<li><code>p</code>:</li>
 						<li><code>o</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>@</code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>t</code>:</li>
 						<li><code>a</code>:</li>
 						<li><code>g</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>,</code>:</li>
 						<li><code> </code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>o</code>:</li>
 						<li><code>r</code>:</li>
 						<li><code>g</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>/</code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>r</code>:</li>
 						<li><code>e</code>:</li>
 						<li><code>p</code>:</li>
 						<li><code>o</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>,</code>:</li>
 						<li><code> </code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>o</code>:</li>
 						<li><code>r</code>:</li>
 						<li><code>g</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>/</code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>r</code>:</li>
 						<li><code>e</code>:</li>
 						<li><code>p</code>:</li>
 						<li><code>o</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code>@</code>:</li>
-						<li><code>{</code>:</li>
 						<li><code>t</code>:</li>
 						<li><code>a</code>:</li>
 						<li><code>g</code>:</li>
-						<li><code>}</code>:</li>
 						<li><code> </code>:</li>
 						<li><code>o</code>:</li>
 						<li><code>r</code>:</li>

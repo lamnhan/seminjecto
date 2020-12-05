@@ -22,10 +22,7 @@ export class Cli {
   newCommandDef: CommandDef = [
     ['new <type> <name> [description]', 'start', 'n'],
     'Create a new project.',
-    [
-      '-s, --source [value]',
-      'Custom source: {inner_repo}@{tag}, {org}/{repo}, {org}/{repo}@{tag} or url.',
-    ],
+    ['-s, --source [value]', 'Custom sources.'],
     ['-i, --skip-install', 'Does not install dependency packages.'],
     ['-g, --skip-git', 'Does not initialize a git repository.'],
   ];
