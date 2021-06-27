@@ -71,8 +71,8 @@
 				<section id="header">
 					<p><a href="https://github.com/lamnhan/seminjecto/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License"></a>
 						<a href="https://github.com/google/gts"><img src="https://img.shields.io/badge/code%20style-google-blueviolet.svg" alt="Code Style: Google"></a>
-						<a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/patreon.svg" alt="Support me on Patreon"></a>
-						<a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.github.io/assets/images/badges/paypal_donate.svg" alt="PayPal"></a>
+						<a href="https://www.patreon.com/lamnhan"><img src="https://lamnhan.com/assets/badges/patreon.svg" alt="Support me on Patreon"></a>
+						<a href="https://www.paypal.me/lamnhan"><img src="https://lamnhan.com/assets/badges/paypal_donate.svg" alt="PayPal"></a>
 					<a href="https://m.me/lamhiennhan"><img src="https://img.shields.io/badge/ask/me-anything-1abc9c.svg" alt="Ask me anything"></a></p>
 				</section>
 				<section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
@@ -122,25 +122,26 @@
 					<p>Dependency injection is a common method for structuring modules. It is native in frontend frameworks like Angular and can be used for any JS modules in the same manner using library like <a href="http://inversify.io/">InversifyJS</a>, <a href="https://github.com/microsoft/tsyringe">tsyringe</a>, ...</p>
 					<p>But you can also manually apply DI to any module using this simple method. There is a central class (<code>Lib</code> for library, <code>Cli</code> for cli app, <code>App</code> for app, ...) that acts as a DI container and injector.</p>
 					<pre><code class="language-ts"><span class="hljs-comment">// the service 1</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service1Service {}
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Service1Service</span> </span>{}
 
 <span class="hljs-comment">// the service 2 is depends on the service 1</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Service2Service {
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> service1Service: Service1Service</span>) {}
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Service2Service</span> </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> service1Service: Service1Service</span>)</span> {}
 }
 
 <span class="hljs-comment">// the container for all services and also the injetor</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Lib {
-  service1Service: Service1Service;
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Lib</span> </span>{
+  <span class="hljs-attr">service1Service</span>: Service1Service;
   service2Service: Service2Service;
 
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
     <span class="hljs-built_in">this</span>.service1Service = <span class="hljs-keyword">new</span> Service1Service();
     <span class="hljs-built_in">this</span>.service2Service = <span class="hljs-keyword">new</span> Service2Service(
       <span class="hljs-built_in">this</span>.service1Service <span class="hljs-comment">// injects the service 1</span>
     );
   }
-}</code></pre>
+}
+</code></pre>
 					<a href="#benefits" id="benefits" style="color: inherit; text-decoration: none;">
 						<h2>Benefits</h2>
 					</a>
@@ -155,7 +156,8 @@
 						<h2>Installation</h2>
 					</a>
 					<p>Install as glocal CLI app.</p>
-					<pre><code class="language-sh">npm install -g @lamnhan/seminjecto</code></pre>
+					<pre><code class="language-sh">npm install -g @lamnhan/seminjecto
+</code></pre>
 					<a href="#skeletons" id="skeletons" style="color: inherit; text-decoration: none;">
 						<h2>Skeletons</h2>
 					</a>
@@ -296,7 +298,8 @@
 					<p>Clean typescript output files.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">semidi clean --skip-question --list --includes [value] --excludes [value]
-semidi c --skip-question --list --includes [value] --excludes [value]</code></pre>
+semidi c --skip-question --list --includes [value] --excludes [value]
+</code></pre>
 					<p><strong>Options:</strong></p>
 					<ul>
 						<li><code>-y, --skip-question</code>: Does not ask question.</li>
@@ -310,7 +313,8 @@ semidi c --skip-question --list --includes [value] --excludes [value]</code></pr
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">semidi generate &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
 semidi create &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
-semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing</code></pre>
+semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested --typing
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;type&gt;</code>: The resource type</li>
@@ -327,7 +331,8 @@ semidi g &lt;<span class="hljs-built_in">type</span>&gt; &lt;dest&gt; --nested -
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">semidi new &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git
 semidi start &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git
-semidi n &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git</code></pre>
+semidi n &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [description] --<span class="hljs-built_in">source</span> [value] --skip-install --skip-git
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;type&gt;</code>: The project type: lib, cli, sheetbase, ... or {any}.</li>
@@ -344,12 +349,14 @@ semidi n &lt;<span class="hljs-built_in">type</span>&gt; &lt;name&gt; [descripti
 					</a></h3>
 					<p>Display help.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">semidi <span class="hljs-built_in">help</span></code></pre>
+					<pre><code class="language-sh">semidi <span class="hljs-built_in">help</span>
+</code></pre>
 					<h3><a name="command-*"><p><code>*</code></p>
 					</a></h3>
 					<p>Any other command is not suppoted.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">semidi &lt;cmd&gt;</code></pre>
+					<pre><code class="language-sh">semidi &lt;cmd&gt;
+</code></pre>
 				</section>
 				<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<a href="#license" id="license" style="color: inherit; text-decoration: none;">

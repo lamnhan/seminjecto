@@ -1,5 +1,5 @@
 module.exports = {
-  url: 'https://lamnhan.com/seminjecto',
+  url: 'https://seminjecto.lamnhan.com',
   fileRender: {
     'README.md': 'clix'
   }
